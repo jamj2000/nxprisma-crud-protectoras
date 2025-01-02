@@ -67,7 +67,7 @@ export async function obtenerMascota(id) {  // obtener artículo con vacunas
 
 export async function obtenerVacunas() {
     try {
-        const vacunas = await prisma.proveedor.findMany()
+        const vacunas = await prisma.vacuna.findMany()
         return vacunas;
     } catch (error) {
         // console.log(error);  
@@ -76,17 +76,17 @@ export async function obtenerVacunas() {
 }
 
 
-export async function obtenerProveedor(id) {  // obtener vacunas con artículos
+export async function obtenerVacuna(id) {  // obtener vacunas con artículos
     try {
-        const proveedor = await prisma.proveedor.findUnique({
+        const vacuna = await prisma.vacuna.findUnique({
             where: { id: +id },
-            include: {
-                mASCOTAs: true
-            }
+            // include: {
+            //     mASCOTAs: true
+            // }
         })
 
-        console.log(proveedor);
-        return proveedor;
+        console.log(vacuna);
+        return vacuna;
     } catch (error) {
         // console.log(error);  
         return null;
@@ -96,7 +96,7 @@ export async function obtenerProveedor(id) {  // obtener vacunas con artículos
 // Obtener array con IDs de todas las vacunas
 export async function obtenerVacunasID() {
     try {
-        const IDs = await prisma.proveedor.findMany({
+        const IDs = await prisma.vacuna.findMany({
             select: { id: true }
         })
         return IDs  // Formato: [ {id: 1}, {id: 2}, ...]

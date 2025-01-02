@@ -1,28 +1,28 @@
-import { obtenerProveedor } from "@/lib/data";
+import { obtenerVacuna } from "@/lib/data";
 import { notFound } from "next/navigation";
 
 
-const Info = (proveedor) => (
+const Info = (vacuna) => (
     <div>
-        <p><strong>{proveedor.nombre}</strong></p>
-        <p>Nacional: {proveedor.nacional ? 'Sí' : 'No'}</p>
+        <p><strong>{vacuna.nombre}</strong></p>
+        <p>Especie: {vacuna.especie}</p>
     </div>
 )
 
 
 
-async function Proveedor({ proveedor, id }) {
+async function Vacuna({ vacuna, id }) {
     if (id) {
-        const proveedor = await obtenerProveedor(id)
-        if (!proveedor) notFound();
+        const vacuna = await obtenerVacuna(id)
+        if (!vacuna) notFound();
 
-        return Info(proveedor)
+        return Info(vacuna)
     }
 
-    return Info(proveedor)
+    return Info(vacuna)
 
 }
 
 
-export default Proveedor
+export default Vacuna
 

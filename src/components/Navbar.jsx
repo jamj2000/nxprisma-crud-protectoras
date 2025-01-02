@@ -21,15 +21,15 @@ function Navbar() {
                         tabIndex={0}
                         className="menu dropdown-content text-white bg-blue-700 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                         <li>
-                            <Link href="/articulos"
-                                className={`${pathname.startsWith('/articulos') && 'text-white bg-blue-900'} p-2 rounded-full`} >
-                                Artículos
+                            <Link href="/mascotas"
+                                className={`${pathname.startsWith('/mascotas') && 'text-white bg-blue-900'} p-2 rounded-full`} >
+                                Mascotas
                             </Link>
                         </li>
                         <li>
-                            <Link href="/proveedores"
-                                className={`${pathname.startsWith('/proveedores') && 'text-white bg-blue-900'} p-2 rounded-full`} >
-                                Proveedores
+                            <Link href="/vacunas"
+                                className={`${pathname.startsWith('/vacunas') && 'text-white bg-blue-900'} p-2 rounded-full`} >
+                                Vacunas
                             </Link>
                         </li>
                     </ul>
@@ -42,15 +42,15 @@ function Navbar() {
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal">
                     <li>
-                        <Link href="/articulos"
-                            className={`${pathname.startsWith('/articulos') && 'text-white bg-blue-900'} p-2 rounded-full`} >
-                            Artículos
+                        <Link href="/mascotas"
+                            className={`${pathname.startsWith('/mascotas') && 'text-white bg-blue-900'} p-2 rounded-full`} >
+                            Mascotas
                         </Link>
                     </li>
                     <li>
-                        <Link href="/proveedores"
-                            className={`${pathname.startsWith('/proveedores') && 'text-white bg-blue-900'} p-2 rounded-full`} >
-                            Proveedores
+                        <Link href="/vacunas"
+                            className={`${pathname.startsWith('/vacunas') && 'text-white bg-blue-900'} p-2 rounded-full`} >
+                            Vacunas
                         </Link>
                     </li>
                 </ul>
@@ -61,13 +61,13 @@ function Navbar() {
                         <User />
                     </summary>
                     <div className="dropdown-content menu bg-blue-600 rounded-box z-[1] w-52 p-2 shadow">
-                        <Link href="/articulos"
-                            className={`${pathname.startsWith('/articulos') && 'text-white bg-blue-900'} p-2 rounded-full`} >
-                            Artículos
+                        <Link href="/mascotas"
+                            className={`${pathname.startsWith('/mascotas') && 'text-white bg-blue-900'} p-2 rounded-full`} >
+                            Mascotas
                         </Link>
-                        <Link href="/proveedores"
-                            className={`${pathname.startsWith('/proveedores') && 'text-white bg-blue-900'} p-2 rounded-full`} >
-                            Proveedores
+                        <Link href="/vacunas"
+                            className={`${pathname.startsWith('/vacunas') && 'text-white bg-blue-900'} p-2 rounded-full`} >
+                            Vacunas
                         </Link>
                     </div>
                 </details>
@@ -80,13 +80,13 @@ function Navbar() {
         //             <Menu />
         //         </summary>
         //         <div className="dropdown-content menu bg-blue-600 rounded-box z-[1] w-52 p-2 shadow">
-        //             <Link href="/articulos"
-        //                 className={`${pathname.startsWith('/articulos') && 'text-white bg-blue-900'} p-2 rounded-full`} >
+        //             <Link href="/mascotas"
+        //                 className={`${pathname.startsWith('/mascotas') && 'text-white bg-blue-900'} p-2 rounded-full`} >
         //                 Artículos
         //             </Link>
-        //             <Link href="/proveedores"
-        //                 className={`${pathname.startsWith('/proveedores') && 'text-white bg-blue-900'} p-2 rounded-full`} >
-        //                 Proveedores
+        //             <Link href="/vacunas"
+        //                 className={`${pathname.startsWith('/vacunas') && 'text-white bg-blue-900'} p-2 rounded-full`} >
+        //                 Vacunas
         //             </Link>
         //         </div>
         //     </details>

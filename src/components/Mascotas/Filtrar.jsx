@@ -79,22 +79,22 @@ export default function Filtrar({ totalPages, query, sort, page, per_page }) {
                     <ClockArrowUp className={classSort} />
                 </label>
 
-                {/* ---------- Buscar ---------- */}
 
-                <label title="BUSCAR..." className='relative flex items-center'>
-                    <input
-                        type='search' name="query"
-                        placeholder="Buscar ..."
-                        // onChange={(e) => updatePage({ query: e.target.value })}
-                        onChange={debounce}
-                        defaultValue={query}
-                        className='peer text-black p-2 pl-10 rounded-full  border-2 border-blue-400 focus:outline-blue-500'
-                    />
-                    <Search className="absolute left-3 text-blue-700 size-4" />
-                </label>
             </div>
 
+            {/* ---------- Buscar ---------- */}
 
+            <label title="BUSCAR..." className='relative flex self-end items-center'>
+                <input
+                    type='search' name="query"
+                    placeholder="Buscar ..."
+                    // onChange={(e) => updatePage({ query: e.target.value })}
+                    onChange={debounce}
+                    defaultValue={query}
+                    className='peer text-black p-2 pl-10 rounded-full  border-2 border-blue-400 focus:outline-blue-500'
+                />
+                <Search className="absolute left-3 text-blue-700 size-4" />
+            </label>
             {/* ---------- Paginar ---------- */}
 
             <div className="flex gap-4 justify-end items-center">

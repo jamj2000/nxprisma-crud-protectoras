@@ -8,7 +8,7 @@ import { toast } from 'sonner';
 
 
 
-export default function ProveedorInsertar() {
+export default function VacunaInsertar() {
     const formId = useId()
     const [state, action, pending] = useActionState(nuevaVacuna, null)
 
@@ -25,7 +25,7 @@ export default function ProveedorInsertar() {
 
     return (
         <form id={formId} action={action} >
-            <h1 className='text-green-700 text-xl font-bold text-center'>Crear nuevo proveedor</h1>
+            <h1 className='text-green-700 text-xl font-bold text-center'>Crear nuevo vacuna</h1>
 
             {state?.success &&
                 <p className='bg-green-100 text-green-700 mb-2 p-3 rounded-md flex gap-2 items-center'>
