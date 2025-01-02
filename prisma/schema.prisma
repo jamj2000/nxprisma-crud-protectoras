@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// datasource db {
+//   provider = "mysql"
+//   url      = env("DATABASE_URL") 
+// }
+
+model Mascota {
+  id               Int         @id @default(autoincrement())
+  nombre           String
+  descripcion      String?
+  fecha_nacimiento DateTime?
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+  vacunas          Vacuna[]
+  Protectora       Protectora? @relation(fields: [protectoraId], references: [id])
+  protectoraId     Int?
+
+  @@map("mascotas")
+}
+
+model Vacuna {
+  id        Int       @id @default(autoincrement())
+  nombre    String
+  especie   String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  mascotas  Mascota[]
+
+  @@map("vacunas")
+}
+
+model Protectora {
+  id        Int       @id @default(autoincrement())
+  nombre    String
+  localidad String?
+  telefono  String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  mascotas  Mascota[]
+
+  @@map("protectoras")
+}
