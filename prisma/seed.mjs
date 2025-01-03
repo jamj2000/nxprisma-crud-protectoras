@@ -24,17 +24,17 @@ const mascotas = [
     {
         nombre: 'Aquiles',
         descripcion: 'Gato atigrado muy cariñoso',
-        fecha_nacimiento: '2025-01-01',
+        fecha_nacimiento: '2025-01-01T00:00:00.000Z',
     },
     {
         nombre: 'Xena',
         descripcion: 'Gata siamesa muy juguetona',
-        fecha_nacimiento: '2025-01-02',
+        fecha_nacimiento: '2025-01-02T00:00:00.000Z',
     },
     {
         nombre: 'Dama',
         descripcion: 'Perra pastora alemana muy fiel',
-        fecha_nacimiento: '2025-01-03',
+        fecha_nacimiento: '2025-01-03T00:00:00.000Z',
     },
 ];
 

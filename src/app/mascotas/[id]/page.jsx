@@ -1,4 +1,4 @@
-import MascotaVer from "@/components/Mascota/Ver";
+import MascotaVer from "@/components/Mascotas/Ver";
 import { Suspense } from "react";
 
 

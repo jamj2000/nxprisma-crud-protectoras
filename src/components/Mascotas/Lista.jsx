@@ -1,9 +1,9 @@
 import { obtenerMascotas } from "@/lib/data"
 import { Eye, Pencil, Trash } from 'lucide-react'
 import Modal from "@/components/Modal"
-import MascotaVer from "@/components/Mascota/Ver"
-import MascotaModificar from '@/components/Mascota/Modificar';
-import MascotaEliminar from '@/components/Mascota/Eliminar';
+import MascotaVer from "@/components/Mascotas/Ver"
+import MascotaModificar from '@/components/Mascotas/Modificar';
+import MascotaEliminar from '@/components/Mascotas/Eliminar';
 import Link from "next/link";
 import Form from "next/form";
 import Filtrar from "@/components/Mascotas/Filtrar";

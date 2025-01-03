@@ -1,4 +1,4 @@
-import MascotaInsertar from '@/components/Mascota/Insertar'
+import MascotaInsertar from '@/components/Mascotas/Insertar'
 import MascotasLista from '@/components/Mascotas/Lista'
 import Modal from '@/components/Modal'
 import { Plus } from 'lucide-react'

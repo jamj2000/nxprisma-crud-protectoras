@@ -1,4 +1,4 @@
-import VacunaVer from "@/components/Vacuna/Ver";
+import VacunaVer from "@/components/Vacunas/Ver";
 import { Suspense } from "react";
 
 
