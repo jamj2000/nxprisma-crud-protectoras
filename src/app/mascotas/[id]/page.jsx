@@ -16,7 +16,7 @@ async function page({ params }) {
 
     return (
         <>
-            <div className='flex gap-1 justify-end'>
+            <div className='flex gap-1 justify-end mb-2'>
                 <Modal
                     icono={<Pencil />}
                     className={'place-self-end p-1 rounded-full border border-orange-500 text-orange-700 bg-orange-200 hover:bg-orange-500 hover:text-white hover:cursor-pointer'}>
