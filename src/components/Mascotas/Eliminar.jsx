@@ -4,8 +4,8 @@ import { useActionState, useEffect, useId } from 'react'
 import { RefreshCw, Trash } from 'lucide-react';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';  // IMPORTANTE: No importar desde next/router
-import MascotaVer from '@/components/Mascotas/Ver'
 import { useParams } from 'next/navigation'
+import MascotaVer from '@/components/Mascotas/Ver'
 
 
 export default function MascotaEliminar({ mascota = {} }) {
@@ -19,7 +19,7 @@ export default function MascotaEliminar({ mascota = {} }) {
         if (state.success) {
             toast.success(state.success)
             document.getElementById(formId).closest('dialog')?.close() // Si el padre es un dialog, lo cerramos
-            if (params.id) back()  // Si estamos en una página con params (como id), salimos de la página
+            if (params.id) back()  // Si estamos en una página con params id, salimos de la página
         }
         if (state.error) toast.error(state.error)
         refresh()     // refrescamos página después de mostrar mensaje de success o error
