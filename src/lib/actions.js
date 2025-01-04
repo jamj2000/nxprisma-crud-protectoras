@@ -248,7 +248,12 @@ export async function modificarVacuna(prevState, formData) {
   }
 }
 
-
+/*
+cuando eliminamos un elemento usaremos refresh en el cliente 
+en lugar de revalidatePath en el servidor para dar tiempo
+a mostrar el mensaje success o error antes de 
+eliminar el elemento de la vista
+*/
 export async function eliminarVacuna(prevState, formData) {
   const id = Number(formData.get('id'))
 
@@ -259,7 +264,7 @@ export async function eliminarVacuna(prevState, formData) {
       },
     })
 
-    revalidatePath('/vacunas')
+    // revalidatePath('/vacunas')
     return { success: 'Eliminación exitosa' }
   } catch (error) {
     return { error: error.message }
