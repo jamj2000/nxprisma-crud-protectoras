@@ -26,7 +26,7 @@ function Logo() {
     return (
         <Link
             href="/"
-            className="flex items-center space-x-3 rtl:space-x-reverse">
+            className="flex gap-3 items-center">
 
             <Image
                 src="/logo.svg"
@@ -36,7 +36,7 @@ function Logo() {
             />
 
             <span className="hidden sm:block self-center text-xl font-semibold whitespace-nowrap text-gray-900 dark:text-gray-100/80">
-                Protectora
+                Protectoras
             </span>
         </Link>
     );

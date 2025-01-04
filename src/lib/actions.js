@@ -271,3 +271,69 @@ export async function eliminarVacuna(prevState, formData) {
   }
 }
 
+
+
+
+
+//// PROTECTORAS
+
+export async function nuevaProtectora(prevState, formData) {
+  const nombre = formData.get('nombre')
+  const localidad = formData.get('localidad')
+  const telefono = formData.get('telefono')
+
+  try {
+    const protectora = await prisma.protectora.create({
+      data: { nombre, localidad, telefono },
+    })
+
+    revalidatePath('/protectoras')
+    return { success: 'Creación exitosa' }
+  } catch (error) {
+    return { error: error.message }
+  }
+}
+
+
+export async function modificarProtectora(prevState, formData) {
+  const id = Number(formData.get('id'))
+  const nombre = formData.get('nombre')
+  const localidad = formData.get('localidad')
+  const telefono = formData.get('telefono')
+
+  try {
+    const protectora = await prisma.protectora.update({
+      where: { id },
+      data: { nombre, localidad, telefono },
+    })
+
+    revalidatePath('/protectoras')
+    return { success: 'Modificación exitosa' }
+  } catch (error) {
+    return { error: error.message }
+  }
+}
+
+/*
+cuando eliminamos un elemento usaremos refresh en el cliente 
+en lugar de revalidatePath en el servidor para dar tiempo
+a mostrar el mensaje success o error antes de 
+eliminar el elemento de la vista
+*/
+export async function eliminarProtectora(prevState, formData) {
+  const id = Number(formData.get('id'))
+
+  try {
+    const protectora = await prisma.protectora.delete({
+      where: {
+        id: id,
+      },
+    })
+
+    // revalidatePath('/protectoras')
+    return { success: 'Eliminación exitosa' }
+  } catch (error) {
+    return { error: error.message }
+  }
+}
+

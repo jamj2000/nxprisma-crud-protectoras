@@ -108,3 +108,34 @@ export async function obtenerVacunasID() {
 }
 
 
+
+//// PROTECTORAS
+
+
+export async function obtenerProtectoras() {
+    try {
+        const protectoras = await prisma.protectora.findMany()
+        return protectoras;
+    } catch (error) {
+        // console.log(error);  
+        return null;
+    }
+}
+
+
+export async function obtenerProtectora(id) {  // obtener protectoras con artículos
+    try {
+        const protectora = await prisma.protectora.findUnique({
+            where: { id: +id },
+            // include: {
+            //     mASCOTAs: true
+            // }
+        })
+
+        console.log(protectora);
+        return protectora;
+    } catch (error) {
+        // console.log(error);  
+        return null;
+    }
+}
