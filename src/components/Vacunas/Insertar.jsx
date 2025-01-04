@@ -10,7 +10,7 @@ import { toast } from 'sonner';
 
 export default function VacunaInsertar() {
     const formId = useId()
-    const [state, action, pending] = useActionState(nuevaVacuna, null)
+    const [state, action, pending] = useActionState(nuevaVacuna, {})
 
 
     useEffect(() => {

@@ -3,22 +3,26 @@ import { eliminarMascota } from '@/lib/actions'
 import { useActionState, useEffect, useId } from 'react'
 import { RefreshCw, Trash } from 'lucide-react';
 import { toast } from 'sonner';
-import { default_image } from "@/components/InputImage";
+import { useRouter } from 'next/navigation';  // IMPORTANTE: No importar desde next/router
 import MascotaVer from '@/components/Mascotas/Ver'
+import { useParams } from 'next/navigation'
 
 
 export default function MascotaEliminar({ mascota = {} }) {
+    const params = useParams()
     const formId = useId()
-    const [state, action, pending] = useActionState(eliminarMascota, null)
+    const { refresh, back } = useRouter()
+    const [state, action, pending] = useActionState(eliminarMascota, {})
 
 
     useEffect(() => {
-        if (state?.success) {
+        if (state.success) {
             toast.success(state.success)
             document.getElementById(formId).closest('dialog')?.close() // Si el padre es un dialog, lo cerramos
+            if (params.id) back()  // Si estamos en una página con params (como id), salimos de la página
         }
-        if (state?.error) toast.error(state.error)
-
+        if (state.error) toast.error(state.error)
+        refresh()     // refrescamos página después de mostrar mensaje de success o error
     }, [formId, state])
 
 
@@ -28,20 +32,9 @@ export default function MascotaEliminar({ mascota = {} }) {
 
             <h1 className='text-red-700 text-xl font-bold text-center'>Eliminar mascota</h1>
 
-            <div className='text-lg mb-4 w-full flex flex-col  gap-4 p-6 rounded-lg border-2 border-zinc-200'>
+            <div className='mb-4 w-full flex flex-col gap-4 p-6 '>
 
-                {/* <MascotaVer mascota={mascota} /> */}
-                <div className="flex flex-col">
-                    <img
-                        className="place-self-center"
-                        src={mascota.foto || default_image}
-                        width={324}
-                        alt="foto"
-                    />
-                    <p className="text-2xl font-bold">{mascota.nombre}</p>
-                    <p>{mascota.descripcion}</p>
-                    <p>Fecha de nacimiento: {mascota.fecha_nacimiento.toLocaleDateString('es-ES')}</p>
-                </div>
+                <MascotaVer mascota={mascota} />
 
                 <button type="submit" disabled={pending}
                     className='md:col-span-2 mt-6 w-full p-3 bg-red-700 text-white disabled:bg-zinc-400 font-bold text-center rounded-md'

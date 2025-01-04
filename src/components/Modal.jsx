@@ -28,17 +28,23 @@ function Modal({ children, icono, texto, className }) {
 
     return (
         <>
-            <div onClick={openDialog} className={className}>
+            <div
+                onClick={openDialog}
+                className={className}>
                 {icono} {texto}
             </div>
 
 
-            <dialog ref={dialogRef} onMouseDown={handleClickOutside}
+            <dialog
+                ref={dialogRef}
+                onMouseDown={handleClickOutside}
                 className="backdrop:bg-black/50 backdrop:backdrop-blur-none w-[90%] lg:w-[60%] py-12 px-2 md:px-8 rounded-md outline-none">
 
                 {children}
 
-                <div onClick={closeDialog} className="absolute top-4 right-4 cursor-pointer" >
+                <div
+                    onClick={closeDialog}
+                    className="absolute top-4 right-4 cursor-pointer" >
                     ❌
                 </div>
             </dialog>

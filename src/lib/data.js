@@ -9,6 +9,7 @@ export async function obtenerMascotas({ query, sort, page, per_page = 5 }) {
     const limit = +per_page
     const offset = (+page - 1) * +per_page
 
+
     try {
         const total = await prisma.mascota.count({
             where: {

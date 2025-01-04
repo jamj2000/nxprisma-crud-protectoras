@@ -1,18 +1,15 @@
 import VacunaVer from "@/components/Vacunas/Ver";
-import { Suspense } from "react";
-
+import { obtenerVacuna } from "@/lib/data";
+import { notFound } from "next/navigation";
 
 
 async function page({ params }) {
     const { id } = await params
+    const vacuna = await obtenerVacuna(id)
 
-    return <Suspense fallback={
-        <div className="text-2xl text-blue-200 font-bold animate-pulse">
-            Obteniendo datos ...
-        </div>
-    }>
-        <VacunaVer id={+id} />
-    </Suspense>
+    if (!vacuna) notFound()
+
+    return <VacunaVer vacuna={vacuna} />
 }
 
 

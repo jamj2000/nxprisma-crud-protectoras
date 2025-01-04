@@ -2,9 +2,9 @@
 import prisma from '@/lib/prisma'
 import { revalidatePath } from 'next/cache';
 import { obtenerVacunasID } from '@/lib/data'
+import { redirect } from 'next/navigation';
 import cloudinary from '@/lib/cloudinary';
 import path from 'node:path'
-
 
 
 
@@ -186,7 +186,12 @@ export async function modificarMascota(prevState, formData) {
   }
 }
 
-
+/*
+cuando eliminamos un elemento usaremos refresh en el cliente 
+en lugar de revalidatePath en el servidor para dar tiempo
+a mostrar el mensaje success o error antes de 
+eliminar el elemento de la vista
+*/
 export async function eliminarMascota(prevState, formData) {
   const id = Number(formData.get('id'))
 
@@ -197,7 +202,7 @@ export async function eliminarMascota(prevState, formData) {
       },
     })
 
-    revalidatePath('/mascotas')
+    // revalidatePath('/mascotas')
     return { success: 'Eliminación exitosa' }
   } catch (error) {
     return { error: error.message }

@@ -1,8 +1,7 @@
 'use client'
 import { useActionState, useEffect, useId } from 'react'
-import { CircleCheck, CircleX, Pencil, RefreshCw } from 'lucide-react';
+import { CircleX, Pencil, RefreshCw } from 'lucide-react';
 import { toast } from 'sonner';
-
 import { modificarMascota } from '@/lib/actions'
 import InputImage, { default_image } from '@/components/InputImage';
 
@@ -10,14 +9,14 @@ import InputImage, { default_image } from '@/components/InputImage';
 
 export default function MascotaModificar({ mascota = {} }) {
     const formId = useId()
-    const [state, action, pending] = useActionState(modificarMascota, null)
+    const [state, action, pending] = useActionState(modificarMascota, {})
 
     useEffect(() => {
-        if (state?.success) {
+        if (state.success) {
             toast.success(state.success)
             document.getElementById(formId).closest('dialog')?.close() // Si el padre es un dialog, lo cerramos
         }
-        if (state?.error) toast.error(state.error)
+        if (state.error) toast.error(state.error)
 
     }, [formId, state])
 

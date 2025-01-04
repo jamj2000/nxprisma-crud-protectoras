@@ -14,9 +14,9 @@
   }
 }
 
-html {
+/* html {
   scrollbar-gutter: stable; 
-}
+} */
 
 body {
   color: var(--foreground);

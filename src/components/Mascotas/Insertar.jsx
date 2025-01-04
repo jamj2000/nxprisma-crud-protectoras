@@ -14,7 +14,7 @@ export default function MascotaInsertar() {
 
 
     useEffect(() => {
-        if (state?.success) {
+        if (state.success) {
             toast.success(state.success)
             document.getElementById(formId).closest('dialog')?.close() // Si el padre es un dialog, lo cerramos
         }

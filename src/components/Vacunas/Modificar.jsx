@@ -8,7 +8,7 @@ import { toast } from 'sonner';
 
 export default function VacunaModificar({ vacuna = {} }) {
     const formId = useId()
-    const [state, action, pending] = useActionState(modificarVacuna, null)
+    const [state, action, pending] = useActionState(modificarVacuna, {})
 
     useEffect(() => {
         if (state?.success) {
