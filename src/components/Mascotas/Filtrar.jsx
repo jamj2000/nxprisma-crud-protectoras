@@ -95,7 +95,8 @@ export default function Filtrar({ totalPages, query, sort, page, per_page }) {
                 />
                 <Search className="absolute left-3 text-blue-700 size-4" />
             </label>
-            {/* ---------- Paginar ---------- */}
+
+            {/* ---------- Paginar - Número de items ---------- */}
 
             <div className="flex gap-4 justify-end items-center">
                 <select name="per_page" value={per_page}
@@ -108,8 +109,24 @@ export default function Filtrar({ totalPages, query, sort, page, per_page }) {
             </div>
 
             <div>
-                <div className="flex justify-between items-center rounded-full border border-slate-200 bg-blue-400">
+                {/* ---------- Paginar - Lista de páginas ---------- */}
+                <div className="flex flex-nowrap mb-1 overflow-x-auto mx-10">
+                    {
+                        [...Array(totalPages).keys()].map(i =>
+                            <button
+                                key={i}
+                                onMouseDown={(e) => e.target.classList.replace('bg-blue-100', 'bg-blue-300')}
+                                onClick={() => { document.getElementById('page').value = i + 1 }}
+                                className={`inline shrink-0 w-16 h-8 border bg-blue-100 border-slate-100 hover:bg-blue-300 ${page == i + 1 && 'bg-blue-400 font-bold text-white'}`}
+                            >
+                                {i + 1}
+                            </button>
+                        )
+                    }
 
+                </div>
+                {/* ---------- Paginar - Adelante/Atrás ---------- */}
+                <div className="flex justify-between items-center rounded-full border border-slate-200 bg-blue-400">
                     <button
                         disabled={page <= 1}
                         onClick={() => { document.getElementById('page').value = +page - 1 }}
@@ -140,23 +157,8 @@ export default function Filtrar({ totalPages, query, sort, page, per_page }) {
                     </button>
                 </div>
 
-                {/* ---------- Lista de páginas ---------- */}
 
-                <div className="flex flex-nowrap mb-1 overflow-x-auto mx-10">
-                    {
-                        [...Array(totalPages).keys()].map(i =>
-                            <button
-                                key={i}
-                                onMouseDown={(e) => e.target.classList.replace('bg-blue-100', 'bg-blue-300')}
-                                onClick={() => { document.getElementById('page').value = i + 1 }}
-                                className={`inline shrink-0 w-16 h-8 border bg-blue-100 border-slate-100 hover:bg-blue-300 ${page == i + 1 && 'bg-blue-400 font-bold text-white'}`}
-                            >
-                                {i + 1}
-                            </button>
-                        )
-                    }
 
-                </div>
             </div>
         </>
     );

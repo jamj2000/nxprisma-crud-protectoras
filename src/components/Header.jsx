@@ -1,20 +1,17 @@
+import Image from "next/image";
 import Link from "next/link";
 import Menu from "@/components/Menu"
-import Image from "next/image";
 
 
 
-export default async function Header({ session }) {
+
+export default function Header({ session }) {
 
     return (
-        <header className="flex justify-between px-10 bg-slate-200 dark:bg-slate-900 items-center font-bold p-2 sticky top-0 z-50 border-b-[1px] border-blue-400/90 dark:border-sky-600">
-            <div className="flex items-center gap-2 lg:gap-10">
-                <div className="lg:order-last">
-                    <Menu />
-                </div>
-                <div>
-                    <Logo />
-                </div>
+        <header className="flex justify-between items-center px-8 bg-slate-200 dark:bg-slate-900 font-bold sticky top-0 z-50 ">
+            <div className="flex items-center gap-2 lg:gap-10 lg:flex-row-reverse">
+                <Menu />
+                <Logo />
             </div>
 
             <div>
@@ -27,25 +24,21 @@ export default async function Header({ session }) {
 
 function Logo() {
     return (
-        <nav className="border-gray-200 dark:bg-transparent">
-            <div className="max-w-screen-xl flex flex-wrap items-center mx-auto">
-                <div>
-                    <Link
-                        href="/"
-                        className="flex items-center space-x-3 rtl:space-x-reverse"
-                    >
-                        <Image
-                            height={48} width={48}
-                            src="/logo.svg"
-                            alt="Protectora Logo"
-                        />
-                        <span className="hidden sm:block self-center text-xl font-semibold whitespace-nowrap text-gray-900 dark:text-gray-100/80">
-                            Protectora
-                        </span>
-                    </Link>
-                </div>
-            </div>
-        </nav>
+        <Link
+            href="/"
+            className="flex items-center space-x-3 rtl:space-x-reverse">
+
+            <Image
+                src="/logo.svg"
+                height={48}
+                width={48}
+                alt="Protectora Logo"
+            />
+
+            <span className="hidden sm:block self-center text-xl font-semibold whitespace-nowrap text-gray-900 dark:text-gray-100/80">
+                Protectora
+            </span>
+        </Link>
     );
 }
 

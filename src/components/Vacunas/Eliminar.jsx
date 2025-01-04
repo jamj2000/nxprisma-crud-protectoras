@@ -16,12 +16,12 @@ export default function VacunaEliminar({ vacuna = {} }) {
 
 
     useEffect(() => {
-        if (state?.success) {
+        if (state.success) {
             toast.success(state.success)
             document.getElementById(formId).closest('dialog')?.close() // Si el padre es un dialog, lo cerramos
             if (params.id) back()  // Si estamos en una página con params id, salimos de la página
         }
-        if (state?.error) toast.error(state.error)
+        if (state.error) toast.error(state.error)
         refresh()     // refrescamos página después de mostrar mensaje de success o error
     }, [formId, state])
 
