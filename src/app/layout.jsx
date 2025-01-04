@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
           {children}
         </main>
         <Footer />
-        <Toaster position="top-right" richColors />
+        <Toaster position="top-right" closeButton={true} duration={2000} richColors />
       </body>
     </html>
   );

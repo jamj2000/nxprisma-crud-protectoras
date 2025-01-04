@@ -27,7 +27,7 @@ export default function VacunaInsertar() {
         <form id={formId} action={action} >
             <h1 className='text-green-700 text-xl font-bold text-center'>Crear nuevo vacuna</h1>
 
-            {state?.success &&
+            {/* {state?.success &&
                 <p className='bg-green-100 text-green-700 mb-2 p-3 rounded-md flex gap-2 items-center'>
                     <CircleCheck /> {state?.success}
                 </p>
@@ -36,7 +36,7 @@ export default function VacunaInsertar() {
                 <p className='bg-red-100 text-red-700 mb-2 p-3 rounded-md flex gap-2 items-center'>
                     <CircleX /> {state?.error}
                 </p>
-            }
+            } */}
 
             <div className='text-lg mb-4 w-full grid grid-cols-1 md:grid-cols-[100px_auto] items-center gap-4 p-6 rounded-lg border-2 border-zinc-200'>
                 <label htmlFor="nombre"> Nombre </label>
