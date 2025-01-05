@@ -1,7 +1,7 @@
 import { default_image } from "@/components/InputImage";
 
 
-function MascotaVer({ mascota = {} }) {
+function MascotaVer({ mascota = {}, protectoras = [] }) {
 
     return (
         <div className="flex flex-col">
@@ -16,6 +16,7 @@ function MascotaVer({ mascota = {} }) {
             <p>{mascota?.descripcion}</p>
             {/* <p>Fecha de nacimiento: {mascota.fecha_nacimiento.toISOString().split('T')[0]}</p> */}
             <p>Fecha de nacimiento: {mascota?.fecha_nacimiento?.toLocaleDateString('es-ES')}</p>
+            <p>Protectora: {protectoras.find(p => p.id == mascota?.protectoraId)?.nombre}</p>
         </div>
     )
 

@@ -4,7 +4,7 @@ import { useRef } from 'react'
 
 
 
-function Modal({ children, icono, texto, className }) {
+function Modal({ children, icono, texto, imagen, className }) {
 
     const dialogRef = useRef(null);
 
@@ -31,7 +31,7 @@ function Modal({ children, icono, texto, className }) {
             <div
                 onClick={openDialog}
                 className={className}>
-                {icono} {texto}
+                {imagen} {icono} {texto}
             </div>
 
 

@@ -7,10 +7,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// datasource db {
-//   provider = "mysql"
-//   url      = env("DATABASE_URL") 
-// }
+model Protectora {
+  id        Int       @id @default(autoincrement())
+  nombre    String
+  localidad String?
+  telefono  String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  mascotas  Mascota[]
+
+  @@map("protectoras")
+}
 
 model Mascota {
   id               Int         @id @default(autoincrement())
@@ -21,7 +28,7 @@ model Mascota {
   createdAt        DateTime    @default(now())
   updatedAt        DateTime    @updatedAt
   vacunas          Vacuna[]
-  Protectora       Protectora? @relation(fields: [protectoraId], references: [id])
+  Protectora       Protectora? @relation(fields: [protectoraId], references: [id], onDelete: SetNull, onUpdate: Cascade)
   protectoraId     Int?
 
   @@map("mascotas")
@@ -36,16 +43,4 @@ model Vacuna {
   mascotas  Mascota[]
 
   @@map("vacunas")
-}
-
-model Protectora {
-  id        Int       @id @default(autoincrement())
-  nombre    String
-  localidad String?
-  telefono  String?
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  mascotas  Mascota[]
-
-  @@map("protectoras")
 }

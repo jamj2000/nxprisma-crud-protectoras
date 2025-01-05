@@ -2,7 +2,6 @@
 import prisma from '@/lib/prisma'
 import { revalidatePath } from 'next/cache';
 import { obtenerVacunasID } from '@/lib/data'
-import { redirect } from 'next/navigation';
 import cloudinary from '@/lib/cloudinary';
 import path from 'node:path'
 
@@ -66,7 +65,7 @@ export async function nuevaMascota(prevState, formData) {
   const fecha_nacimiento = new Date(formData.get('fecha_nacimiento'))
   const file = formData.get('file')
   let foto;  // URL de la foto
-
+  const protectoraId = Number(formData.get('protectoraId')) || null
 
   // Array con IDs de todas las vacunas
   const vacunasID = await obtenerVacunasID()  // Formato: [ {id: 1}, {id: 2}, ...]
@@ -97,6 +96,7 @@ export async function nuevaMascota(prevState, formData) {
         descripcion,
         fecha_nacimiento,
         foto,
+        protectoraId,
         // vacunas,
       },
       // include: {
@@ -140,7 +140,7 @@ export async function modificarMascota(prevState, formData) {
   const fecha_nacimiento = new Date(formData.get('fecha_nacimiento'))
   const file = formData.get('file')
   let foto = formData.get('foto')
-
+  const protectoraId = Number(formData.get('protectoraId'))
 
   // Array con IDs de todas las vacunas
   const vacunasID = await obtenerVacunasID()  // Formato: [ {id: 1}, {id: 2}, ...]
@@ -171,6 +171,7 @@ export async function modificarMascota(prevState, formData) {
         descripcion,
         fecha_nacimiento,
         foto,
+        protectoraId,
         // vacunas,
       },
       // include: {

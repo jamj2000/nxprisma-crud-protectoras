@@ -38,6 +38,15 @@ export default function Menu() {
                 <ul className="bg-slate-200 dark:bg-slate-900 font-medium flex flex-col gap-2 mt-1 px-8 py-4 rounded-sm lg:static lg:flex-row lg:mt-0 lg:p-2 ">
 
                     <li>
+                        <Link href="/protectoras"
+                            className={`bg-slate-400 block py-2 px-3 text-white hover:text-white hover:bg-gray-700 hover:outline hover:outline-gray-200 hover:outline-2 rounded dark:text-white dark:hover:bg-gray-700 dark:hover:text-blue-200 md:dark:hover:text-blue-200 
+                            ${pathname.startsWith('/protectoras') && 'outline outline-2'}`}
+                        >
+                            Protectoras
+                        </Link>
+                    </li>
+
+                    <li>
                         <Link href="/mascotas"
                             className={`bg-slate-400 block py-2 px-3 text-white hover:text-white hover:bg-gray-700 hover:outline hover:outline-gray-200 hover:outline-2 rounded dark:text-white dark:hover:bg-gray-700 dark:hover:text-blue-200 md:dark:hover:text-blue-200 
                             ${pathname.startsWith('/mascotas') && 'outline outline-2'}`}

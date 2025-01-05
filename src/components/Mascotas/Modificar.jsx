@@ -1,5 +1,5 @@
 'use client'
-import { useActionState, useEffect, useId } from 'react'
+import { useActionState, useEffect, useId, useState } from 'react'
 import { CircleX, Pencil, RefreshCw } from 'lucide-react';
 import { toast } from 'sonner';
 import { modificarMascota } from '@/lib/actions'
@@ -7,9 +7,11 @@ import InputImage, { default_image } from '@/components/InputImage';
 
 
 
-export default function MascotaModificar({ mascota = {} }) {
+export default function MascotaModificar({ mascota = {}, protectoras = [], vacunas = [] }) {
     const formId = useId()
     const [state, action, pending] = useActionState(modificarMascota, {})
+
+    const [protectoraId, setProtectoraId] = useState(mascota?.protectoraId)
 
     useEffect(() => {
         if (state.success) {
@@ -25,6 +27,7 @@ export default function MascotaModificar({ mascota = {} }) {
         <form id={formId} action={action}>
             <input type="hidden" name="id" defaultValue={mascota?.id} />
             <input type="hidden" name="foto" defaultValue={mascota?.foto} />
+
             {/* {state?.success &&
                 <p className='bg-green-100 text-green-700 mb-2 p-3 rounded-md flex gap-2 items-center'>
                     <CircleCheck /> {state?.success}
@@ -81,6 +84,21 @@ export default function MascotaModificar({ mascota = {} }) {
                     />
                 </label>
 
+                <details>
+                    <summary>Protectora</summary>
+
+                    {protectoras?.map((protectora) => (
+                        <label key={protectora.id} className='block'>
+                            <input
+                                type='radio'
+                                name='protectoraId'
+                                value={protectora.id}
+                                defaultChecked={protectora.id == mascota.protectoraId} />
+
+                            {protectora.nombre}
+                        </label>
+                    ))}
+                </details>
 
                 <button type="submit" disabled={pending}
                     className='md:col-span-2 mt-6 w-full p-3 bg-orange-700 text-white disabled:bg-zinc-400 font-bold text-center rounded-md'

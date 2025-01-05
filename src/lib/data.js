@@ -52,7 +52,7 @@ export async function obtenerMascota(id) {  // obtener artículo con vacunas
             }
         })
 
-        console.log(mascota);
+        //console.log(mascota);
         return mascota;
     } catch (error) {
         // console.log(error);  
@@ -86,7 +86,7 @@ export async function obtenerVacuna(id) {  // obtener vacunas con artículos
             // }
         })
 
-        console.log(vacuna);
+        //console.log(vacuna);
         return vacuna;
     } catch (error) {
         // console.log(error);  
@@ -114,7 +114,11 @@ export async function obtenerVacunasID() {
 
 export async function obtenerProtectoras() {
     try {
-        const protectoras = await prisma.protectora.findMany()
+        const protectoras = await prisma.protectora.findMany({
+            include: {
+                mascotas: true
+            }
+        })
         return protectoras;
     } catch (error) {
         // console.log(error);  
@@ -127,12 +131,12 @@ export async function obtenerProtectora(id) {  // obtener protectoras con artíc
     try {
         const protectora = await prisma.protectora.findUnique({
             where: { id: +id },
-            // include: {
-            //     mASCOTAs: true
-            // }
+            include: {
+                mascotas: true
+            }
         })
 
-        console.log(protectora);
+        //console.log(protectora);
         return protectora;
     } catch (error) {
         // console.log(error);  

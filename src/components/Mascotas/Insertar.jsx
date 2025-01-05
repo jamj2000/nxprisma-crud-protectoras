@@ -8,7 +8,7 @@ import InputImage from '../InputImage';
 
 
 
-export default function MascotaInsertar() {
+export default function MascotaInsertar({ protectoras = [], vacunas = [] }) {
     const formId = useId()
     const [state, action, pending] = useActionState(nuevaMascota, {})
 
@@ -80,6 +80,21 @@ export default function MascotaInsertar() {
                     />
                 </label>
 
+                <details>
+                    <summary>Protectora</summary>
+
+                    {protectoras?.map((protectora) => (
+                        <label key={protectora.id} className='block'>
+                            <input
+                                type='radio'
+                                name='protectoraId'
+                                value={protectora.id}
+                            />
+
+                            {protectora.nombre}
+                        </label>
+                    ))}
+                </details>
 
                 <button type="submit" disabled={pending}
                     className='mt-6 w-full p-3 bg-green-700 text-white disabled:bg-zinc-400 font-bold text-center rounded-md'

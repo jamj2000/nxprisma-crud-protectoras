@@ -8,7 +8,7 @@ import { useParams } from 'next/navigation'
 import MascotaVer from '@/components/Mascotas/Ver'
 
 
-export default function MascotaEliminar({ mascota = {} }) {
+export default function MascotaEliminar({ mascota = {}, protectoras = [] }) {
     const params = useParams()
     const formId = useId()
     const { refresh, back } = useRouter()
@@ -34,7 +34,7 @@ export default function MascotaEliminar({ mascota = {} }) {
 
             <div className='mb-4 w-full flex flex-col gap-4 p-6 '>
 
-                <MascotaVer mascota={mascota} />
+                <MascotaVer mascota={mascota} protectoras={protectoras} />
 
                 <button type="submit" disabled={pending}
                     className='md:col-span-2 mt-6 w-full p-3 bg-red-700 text-white disabled:bg-zinc-400 font-bold text-center rounded-md'
