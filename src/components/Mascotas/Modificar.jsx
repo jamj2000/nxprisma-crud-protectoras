@@ -1,6 +1,6 @@
 'use client'
-import { useActionState, useEffect, useId, useState } from 'react'
-import { CircleX, Pencil, RefreshCw } from 'lucide-react';
+import { useActionState, useEffect, useId } from 'react'
+import { Pencil, RefreshCw } from 'lucide-react';
 import { toast } from 'sonner';
 import { modificarMascota } from '@/lib/actions'
 import InputImage, { default_image } from '@/components/InputImage';
@@ -11,7 +11,6 @@ export default function MascotaModificar({ mascota = {}, protectoras = [], vacun
     const formId = useId()
     const [state, action, pending] = useActionState(modificarMascota, {})
 
-    const [protectoraId, setProtectoraId] = useState(mascota?.protectoraId)
 
     useEffect(() => {
         if (state.success) {
