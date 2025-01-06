@@ -43,10 +43,6 @@ function ProtectoraVer({ protectora = {}, enPagina = false }) {
                 </div>
             }
 
-
-
-
-
         </div >
     )
 }
