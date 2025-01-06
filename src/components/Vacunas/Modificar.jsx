@@ -6,7 +6,7 @@ import { toast } from 'sonner';
 
 
 
-export default function VacunaModificar({ vacuna = {} }) {
+export default function VacunaModificar({ vacuna = {}, mascotas = {} }) {
     const formId = useId()
     const [state, action, pending] = useActionState(modificarVacuna, {})
 
@@ -19,6 +19,8 @@ export default function VacunaModificar({ vacuna = {} }) {
 
     }, [formId, state])
 
+
+    const mascotasIDs = vacuna?.mascotas?.map(mascota => mascota.id)
 
     return (
         <form id={formId} action={action} >
@@ -58,6 +60,23 @@ export default function VacunaModificar({ vacuna = {} }) {
                     className='place-self-start self-center bg-zinc-100 p-2 rounded hover:ring-1 focus:outline-none disabled:bg-zinc-400 disabled:text-zinc-200'
                     disabled={pending}
                 />
+
+                <details>
+                    <summary>Mascotas</summary>
+
+                    {mascotas?.map((mascota) => (
+                        <label key={mascota.id} className='block'>
+                            <input
+                                type='checkbox'
+                                name={mascota.id}
+                                value={mascota.id}
+                                defaultChecked={mascotasIDs.includes(mascota.id)}
+                            />
+
+                            {mascota.nombre}
+                        </label>
+                    ))}
+                </details>
 
 
                 <button type="submit" disabled={pending}

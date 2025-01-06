@@ -1,8 +1,6 @@
-import MascotaInsertar from '@/components/Mascotas/Insertar'
 import MascotasLista from '@/components/Mascotas/Lista'
-import Modal from '@/components/Modal'
-import { Plus } from 'lucide-react'
 import { Suspense } from 'react'
+import { PER_PAGE } from '@/lib/pagination';
 
 
 export default async function page({ searchParams }) {
@@ -12,7 +10,7 @@ export default async function page({ searchParams }) {
     query ??= ''
     sort ??= 'createdAt desc'
     page ??= 1
-    per_page ??= 5
+    per_page ??= PER_PAGE
 
     // controlamos valor 0 o negativos en page
     if (Number(page) < 1) redirect('/mascotas?' + new URLSearchParams({ query, sort, page: 1 }))

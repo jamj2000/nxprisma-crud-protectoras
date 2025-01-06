@@ -1,7 +1,7 @@
 'use server'
 import prisma from '@/lib/prisma'
 import { revalidatePath } from 'next/cache';
-import { obtenerVacunasID } from '@/lib/data'
+import { obtenerMascotasIDs, obtenerVacunasIDs } from '@/lib/data'
 import cloudinary from '@/lib/cloudinary';
 import path from 'node:path'
 
@@ -52,9 +52,6 @@ const result = await prisma.mascota.create({
       connect: [{id: 4}, {id: 5}]     
     },
   },
-  include: {
-    vacunas: true,
-  },
 })
 
 */
@@ -68,19 +65,13 @@ export async function nuevaMascota(prevState, formData) {
   const protectoraId = Number(formData.get('protectoraId')) || null
 
   // Array con IDs de todas las vacunas
-  const vacunasID = await obtenerVacunasID()  // Formato: [ {id: 1}, {id: 2}, ...]
+  const vacunasIDs = await obtenerVacunasIDs()  // Formato: [ {id: 1}, {id: 2}, ...]
 
-  // -> Si disponemos de NodeJS 21+
-  // Objecto con 2 arrays: connect con IDs de vacunas marcadas por el usuario y disconnect con IDs no marcadas
-  // const vacunas = Object.groupBy(vacunasID, ({ id }) => formData.get(id) !== null ? 'connect' : 'disconnect')
-
-  // -> Si NO disponemos de NodeJS 21+ 
-  // const connect = vacunasID.filter(({ id }) => formData.get(ids) !== null)
-  // const vacunas = { connect }
+  const connect = vacunasIDs.filter(({ id }) => formData.get(id.toString()) !== null)
+  const vacunas = { connect }
 
   // Información de depuración
   // console.log('VACUNAS ', vacunas);
-
 
 
   try {
@@ -97,11 +88,8 @@ export async function nuevaMascota(prevState, formData) {
         fecha_nacimiento,
         foto,
         protectoraId,
-        // vacunas,
+        vacunas,
       },
-      // include: {
-      //   vacunas: true,
-      // },
     })
 
 
@@ -126,9 +114,6 @@ const result = await prisma.mascota.update({
       disconnect: [{ id: 12 }, { id: 19 }],
     },
   },
-  include: {
-    vacunas: true,
-  },
 })
 
 */
@@ -143,19 +128,19 @@ export async function modificarMascota(prevState, formData) {
   const protectoraId = Number(formData.get('protectoraId'))
 
   // Array con IDs de todas las vacunas
-  const vacunasID = await obtenerVacunasID()  // Formato: [ {id: 1}, {id: 2}, ...]
+  const vacunasIDs = await obtenerVacunasIDs()  // Formato: [ {id: 1}, {id: 2}, ...]
 
   // -> Si disponemos de NodeJS 21+
   // Objecto con 2 arrays: connect con IDs de vacunas marcadas por el usuario y disconnect con IDs no marcadas
-  const vacunas = Object.groupBy(vacunasID, ({ id }) => formData.get(id) !== null ? 'connect' : 'disconnect')
+  const vacunas = Object.groupBy(vacunasIDs, ({ id }) => formData.get(id) !== null ? 'connect' : 'disconnect')
 
   // -> Si NO disponemos de NodeJS 21+ 
-  // const connect = vacunasID.filter(({ id }) => formData.get(id) !== null)
-  // const disconnect = vacunasID.filter(({ id }) => formData.get(id) === null)
+  // const connect = vacunasIDs.filter(({ id }) => formData.get(id) !== null)
+  // const disconnect = vacunasIDs.filter(({ id }) => formData.get(id) === null)
   // const vacunas = { connect, disconnect }
 
   // Información para depuración
-  console.log('VACUNAS ', vacunas);
+  // console.log('VACUNAS ', vacunas);
 
   try {
     // si tenemos nuevo archivo en el input type=file
@@ -172,11 +157,8 @@ export async function modificarMascota(prevState, formData) {
         fecha_nacimiento,
         foto,
         protectoraId,
-        // vacunas,
+        vacunas,
       },
-      // include: {
-      //   vacunas: true,
-      // },
     })
 
 
@@ -218,9 +200,23 @@ export async function nuevaVacuna(prevState, formData) {
   const nombre = formData.get('nombre')
   const especie = formData.get('especie')
 
+  // Array con IDs de todas las mascotas
+  const mascotasIDs = await obtenerMascotasIDs()  // Formato: [ {id: 1}, {id: 2}, ...]
+
+  const connect = mascotasIDs.filter(({ id }) => formData.get(id.toString()) !== null)
+  const mascotas = { connect }
+
+  // Información de depuración
+  // console.log('MASCOTAS ', mascotas);
+
+
   try {
     const vacuna = await prisma.vacuna.create({
-      data: { nombre, especie },
+      data: {
+        nombre,
+        especie,
+        mascotas,
+      }
     })
 
     revalidatePath('/vacunas')
@@ -236,10 +232,29 @@ export async function modificarVacuna(prevState, formData) {
   const nombre = formData.get('nombre')
   const especie = formData.get('especie')
 
+  // Array con IDs de todas las mascotas
+  const mascotasIDs = await obtenerMascotasIDs()  // Formato: [ {id: 1}, {id: 2}, ...]
+
+  // -> Si disponemos de NodeJS 21+
+  // Objecto con 2 arrays: connect con IDs de mascotas marcadas por el usuario y disconnect con IDs no marcadas
+  const mascotas = Object.groupBy(mascotasIDs, ({ id }) => formData.get(id) !== null ? 'connect' : 'disconnect')
+
+  // -> Si NO disponemos de NodeJS 21+ 
+  // const connect = mascotasIDs.filter(({ id }) => formData.get(id) !== null)
+  // const disconnect = mascotasIDs.filter(({ id }) => formData.get(id) === null)
+  // const mascotas = { connect, disconnect }
+
+  // Información para depuración
+  console.log('MASCOTAS ', mascotas);
+
   try {
     const vacuna = await prisma.vacuna.update({
       where: { id },
-      data: { nombre, especie },
+      data: {
+        nombre,
+        especie,
+        mascotas,
+      }
     })
 
     revalidatePath('/vacunas')

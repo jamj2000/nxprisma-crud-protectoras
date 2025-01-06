@@ -1,4 +1,4 @@
-import { obtenerMascotas, obtenerProtectoras } from "@/lib/data"
+import { obtenerMascotasVacunas, obtenerProtectoras, obtenerVacunas } from "@/lib/data"
 import { Eye, Pencil, Plus, Trash } from 'lucide-react'
 import Modal from "@/components/Modal"
 import MascotaVer from "@/components/Mascotas/Ver"
@@ -7,11 +7,12 @@ import MascotaEliminar from '@/components/Mascotas/Eliminar';
 import Link from "next/link";
 import Form from "next/form";
 import Filtrar from "@/components/Mascotas/Filtrar";
-import MascotaInsertar from "./Insertar";
+import MascotaInsertar from "@/components/Mascotas/Insertar";
 
 async function Mascotas({ query, sort, page, per_page }) {
-    const { mascotas, totalPages } = await obtenerMascotas({ query, sort, page, per_page })
+    const { mascotas, totalPages } = await obtenerMascotasVacunas({ query, sort, page, per_page })
     const protectoras = await obtenerProtectoras()
+    const vacunas = await obtenerVacunas()
 
     return (
         <>
@@ -23,7 +24,7 @@ async function Mascotas({ query, sort, page, per_page }) {
             <Modal
                 icono={<Plus />}
                 className={'mx-4 mb-4 place-self-end p-1 rounded-full border border-green-500 text-green-700 bg-green-200 hover:bg-green-500 hover:text-white hover:cursor-pointer'}>
-                <MascotaInsertar protectoras={protectoras} />
+                <MascotaInsertar protectoras={protectoras} vacunas={vacunas} />
             </Modal>
 
             {mascotas.map((mascota) => (
@@ -41,12 +42,12 @@ async function Mascotas({ query, sort, page, per_page }) {
                         <Modal
                             icono={<Eye />}
                             className={'place-self-end p-1 rounded-full border border-blue-500 text-blue-700 bg-blue-200 hover:bg-blue-500 hover:text-white hover:cursor-pointer'}>
-                            <MascotaVer mascota={mascota} protectoras={protectoras} />
+                            <MascotaVer mascota={mascota} protectoras={protectoras} vacunas={vacunas} />
                         </Modal>
                         <Modal
                             icono={<Pencil />}
                             className={'place-self-end p-1 rounded-full border border-orange-500 text-orange-700 bg-orange-200 hover:bg-orange-500 hover:text-white hover:cursor-pointer'}>
-                            <MascotaModificar mascota={mascota} protectoras={protectoras} />
+                            <MascotaModificar mascota={mascota} protectoras={protectoras} vacunas={vacunas} />
                         </Modal>
                         <Modal
                             icono={<Trash />}

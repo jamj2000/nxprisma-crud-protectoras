@@ -3,6 +3,7 @@ import { useRouter, usePathname } from 'next/navigation'
 import { ArrowDownAZ, ArrowDownZA, CircleChevronLeft, CircleChevronRight, ClockArrowDown, ClockArrowUp, RefreshCw, Search } from "lucide-react";
 import { useFormStatus } from 'react-dom'
 import { useDebouncedCallback } from "use-debounce";
+import { PER_PAGE } from '@/lib/pagination';
 
 
 const classSort = "size-10 p-2 text-white rounded-full bg-blue-100 hover:cursor-pointer hover:bg-blue-300 peer-checked:bg-blue-400 peer-checked:duration-[1s]"
@@ -21,7 +22,7 @@ export default function Filtrar({ totalPages, query, sort, page, per_page }) {
         params.set('query', query ?? '')
         params.set('sort', sort ?? 'createdAt desc')
         params.set('page', page ?? 1)
-        params.set('per_page', per_page ?? 5)
+        params.set('per_page', per_page ?? PER_PAGE)
 
         router.replace(pathname + '?' + params.toString());
     }

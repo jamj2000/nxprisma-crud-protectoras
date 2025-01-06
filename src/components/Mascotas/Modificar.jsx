@@ -7,10 +7,10 @@ import InputImage, { default_image } from '@/components/InputImage';
 
 
 
+
 export default function MascotaModificar({ mascota = {}, protectoras = [], vacunas = [] }) {
     const formId = useId()
     const [state, action, pending] = useActionState(modificarMascota, {})
-
 
     useEffect(() => {
         if (state.success) {
@@ -18,8 +18,10 @@ export default function MascotaModificar({ mascota = {}, protectoras = [], vacun
             document.getElementById(formId).closest('dialog')?.close() // Si el padre es un dialog, lo cerramos
         }
         if (state.error) toast.error(state.error)
-
     }, [formId, state])
+
+
+    const vacunasIDs = mascota?.vacunas?.map(vacuna => vacuna.id)
 
 
     return (
@@ -98,6 +100,24 @@ export default function MascotaModificar({ mascota = {}, protectoras = [], vacun
                         </label>
                     ))}
                 </details>
+
+                <details>
+                    <summary>Vacunas</summary>
+
+                    {vacunas?.map((vacuna) => (
+                        <label key={vacuna.id} className='block'>
+                            <input
+                                type='checkbox'
+                                name={vacuna.id}
+                                value={vacuna.id}
+                                defaultChecked={vacunasIDs.includes(vacuna.id)}
+                            />
+
+                            {vacuna.nombre}
+                        </label>
+                    ))}
+                </details>
+
 
                 <button type="submit" disabled={pending}
                     className='md:col-span-2 mt-6 w-full p-3 bg-orange-700 text-white disabled:bg-zinc-400 font-bold text-center rounded-md'

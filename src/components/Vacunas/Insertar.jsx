@@ -8,7 +8,7 @@ import { toast } from 'sonner';
 
 
 
-export default function VacunaInsertar() {
+export default function VacunaInsertar({ mascotas = {} }) {
     const formId = useId()
     const [state, action, pending] = useActionState(nuevaVacuna, {})
 
@@ -58,6 +58,21 @@ export default function VacunaInsertar() {
                     disabled={pending}
                 />
 
+                <details>
+                    <summary>Mascotas</summary>
+
+                    {mascotas?.map((mascota) => (
+                        <label key={mascota.id} className='block'>
+                            <input
+                                type='checkbox'
+                                name={mascota.id}
+                                value={mascota.id}
+                            />
+
+                            {mascota.nombre}
+                        </label>
+                    ))}
+                </details>
 
                 <button type="submit" disabled={pending}
                     className='md:col-span-2 mt-6 w-full p-3 bg-green-700 text-white disabled:bg-zinc-400 font-bold text-center rounded-md'

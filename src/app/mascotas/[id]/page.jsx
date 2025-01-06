@@ -3,7 +3,7 @@ import MascotaEliminar from "@/components/Mascotas/Eliminar";
 import MascotaModificar from "@/components/Mascotas/Modificar";
 import MascotaVer from "@/components/Mascotas/Ver";
 import Modal from "@/components/Modal";
-import { obtenerMascota, obtenerProtectoras } from "@/lib/data";
+import { obtenerMascotaVacunas, obtenerProtectoras } from "@/lib/data";
 import { ArrowLeft, Pencil, Trash } from "lucide-react";
 import { notFound } from "next/navigation";
 
@@ -11,7 +11,7 @@ import { notFound } from "next/navigation";
 
 async function page({ params }) {
     const { id } = await params
-    const mascota = await obtenerMascota(id)
+    const mascota = await obtenerMascotaVacunas(id)
     const protectoras = await obtenerProtectoras()
 
     if (!mascota) notFound()

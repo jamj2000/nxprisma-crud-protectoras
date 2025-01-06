@@ -1,9 +1,5 @@
 import Link from "next/link";
-import VacunasLista from '@/components/Vacunas/Lista'
-import Modal from '@/components/Modal'
-import { Plus } from 'lucide-react'
-import { Suspense } from 'react'
-import VacunaInsertar from '@/components/Vacunas/Insertar'
+
 
 
 export default function Home() {

@@ -3,14 +3,15 @@ import Modal from "@/components/Modal";
 import VacunaEliminar from "@/components/Vacunas/Eliminar";
 import VacunaModificar from "@/components/Vacunas/Modificar";
 import VacunaVer from "@/components/Vacunas/Ver";
-import { obtenerVacuna } from "@/lib/data";
+import { obtenerMascotas, obtenerVacunaMascotas } from "@/lib/data";
 import { ArrowLeft, Pencil, Trash } from "lucide-react";
 import { notFound } from "next/navigation";
 
 
 async function page({ params }) {
     const { id } = await params
-    const vacuna = await obtenerVacuna(id)
+    const vacuna = await obtenerVacunaMascotas(id)
+    const mascotas = await obtenerMascotas()
 
     if (!vacuna) notFound()
 
@@ -25,7 +26,7 @@ async function page({ params }) {
                     <Modal
                         icono={<Pencil />}
                         className={'place-self-end p-1 rounded-full border border-orange-500 text-orange-700 bg-orange-200 hover:bg-orange-500 hover:text-white hover:cursor-pointer'}>
-                        <VacunaModificar vacuna={vacuna} />
+                        <VacunaModificar vacuna={vacuna} mascotas={mascotas} />
                     </Modal>
 
                     <Modal

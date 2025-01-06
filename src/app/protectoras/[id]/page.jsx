@@ -3,14 +3,15 @@ import Modal from "@/components/Modal";
 import ProtectoraEliminar from "@/components/Protectoras/Eliminar";
 import ProtectoraModificar from "@/components/Protectoras/Modificar";
 import ProtectoraVer from "@/components/Protectoras/Ver";
-import { obtenerProtectora } from "@/lib/data";
+import { obtenerProtectoraMascotasVacunas } from "@/lib/data";
 import { ArrowLeft, Pencil, Trash } from "lucide-react";
 import { notFound } from "next/navigation";
 
 
 async function page({ params }) {
     const { id } = await params
-    const protectora = await obtenerProtectora(id)
+    const protectora = await obtenerProtectoraMascotasVacunas(id)
+    // console.log('protectora', protectora);
 
     if (!protectora) notFound()
 
@@ -36,7 +37,8 @@ async function page({ params }) {
                 </div>
 
             </div>
-            <ProtectoraVer protectora={protectora} />
+            <ProtectoraVer protectora={protectora} enPagina />
+
         </>
     )
 }

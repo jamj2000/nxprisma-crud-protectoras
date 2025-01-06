@@ -96,6 +96,22 @@ export default function MascotaInsertar({ protectoras = [], vacunas = [] }) {
                     ))}
                 </details>
 
+                <details>
+                    <summary>Vacunas</summary>
+
+                    {vacunas?.map((vacuna) => (
+                        <label key={vacuna.id} className='block'>
+                            <input
+                                type='checkbox'
+                                name={vacuna.id}
+                                value={vacuna.id}
+                            />
+
+                            {vacuna.nombre}
+                        </label>
+                    ))}
+                </details>
+
                 <button type="submit" disabled={pending}
                     className='mt-6 w-full p-3 bg-green-700 text-white disabled:bg-zinc-400 font-bold text-center rounded-md'
                 >
