@@ -1,3 +1,4 @@
+'use client'
 import { default_image } from "@/components/InputImage";
 
 

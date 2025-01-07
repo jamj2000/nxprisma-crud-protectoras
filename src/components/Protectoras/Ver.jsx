@@ -1,3 +1,4 @@
+'use client'
 import MascotaVer from "@/components/Mascotas/Ver"
 import Modal from "@/components/Modal"
 import { default_image } from "@/components/InputImage"
