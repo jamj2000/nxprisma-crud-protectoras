@@ -80,6 +80,24 @@ export default function MascotaInsertar({ protectoras = [], vacunas = [] }) {
                     />
                 </label>
 
+
+                <label className='flex flex-col'> Protectora
+                    <select
+                        //key={mascota.protectoraId}       // IMPORTANTE para re-render (VDOM->DOM) tras cambio de valor
+                        name="protectoraId"
+                        defaultValue={''}
+                        className='p-2'
+                    >
+                        <option value={''}> {''} </option>
+                        {protectoras?.map(protectora => (
+                            <option key={protectora.id} value={protectora.id}> {protectora.nombre} </option>
+                        ))}
+
+                    </select>
+                </label>
+
+                {/* 
+                // Usando input radio en lugar de select 
                 <details>
                     <summary>Protectora</summary>
 
@@ -94,7 +112,7 @@ export default function MascotaInsertar({ protectoras = [], vacunas = [] }) {
                             {protectora.nombre}
                         </label>
                     ))}
-                </details>
+                </details> */}
 
                 <details>
                     <summary>Vacunas</summary>

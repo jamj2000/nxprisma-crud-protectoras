@@ -125,7 +125,7 @@ export async function modificarMascota(prevState, formData) {
   const fecha_nacimiento = new Date(formData.get('fecha_nacimiento'))
   const file = formData.get('file')
   let foto = formData.get('foto')
-  const protectoraId = Number(formData.get('protectoraId'))
+  const protectoraId = Number(formData.get('protectoraId')) || null
 
   // Array con IDs de todas las vacunas
   const vacunasIDs = await obtenerVacunasIDs()  // Formato: [ {id: 1}, {id: 2}, ...]

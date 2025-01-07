@@ -22,7 +22,7 @@ export default function MascotaModificar({ mascota = {}, protectoras = [], vacun
 
 
     const vacunasIDs = mascota?.vacunas?.map(vacuna => vacuna.id)
-
+    console.log(vacunasIDs);
 
     return (
         <form id={formId} action={action}>
@@ -85,6 +85,23 @@ export default function MascotaModificar({ mascota = {}, protectoras = [], vacun
                     />
                 </label>
 
+                <label className='flex flex-col'> Protectora
+                    <select
+                        key={mascota.protectoraId}       // IMPORTANTE para re-render (VDOM->DOM) tras cambio de valor
+                        name="protectoraId"
+                        defaultValue={mascota.protectoraId ?? ''}
+                        className='p-2'
+                    >
+                        <option value={''}> {''} </option>
+                        {protectoras?.map(protectora => (
+                            <option key={protectora.id} value={protectora.id}> {protectora.nombre} </option>
+                        ))}
+
+                    </select>
+                </label>
+
+                {/*
+                // Usando input radio en lugar de select 
                 <details>
                     <summary>Protectora</summary>
 
@@ -99,7 +116,8 @@ export default function MascotaModificar({ mascota = {}, protectoras = [], vacun
                             {protectora.nombre}
                         </label>
                     ))}
-                </details>
+                </details> */}
+
 
                 <details>
                     <summary>Vacunas</summary>
