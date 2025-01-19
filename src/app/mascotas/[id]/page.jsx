@@ -6,11 +6,29 @@ import Modal from "@/components/Modal";
 import { obtenerMascotaVacunas, obtenerProtectoras, obtenerVacunas } from "@/lib/data";
 import { ArrowLeft, Pencil, Trash } from "lucide-react";
 import { notFound } from "next/navigation";
-
+import { Suspense } from "react";
 
 
 async function page({ params }) {
     const { id } = await params
+
+    return (
+        <Suspense fallback={
+            <div className="text-2xl text-blue-200 font-bold animate-pulse">
+                Obteniendo datos de mascota ...
+            </div>
+        }>
+            <Mascota id={id} />
+        </Suspense>
+    )
+}
+
+
+export default page;
+
+
+// COMPONENTE
+async function Mascota({ id }) {
     const mascota = await obtenerMascotaVacunas(id)
     const protectoras = await obtenerProtectoras()
     const vacunas = await obtenerVacunas()
@@ -43,5 +61,3 @@ async function page({ params }) {
     )
 }
 
-
-export default page;

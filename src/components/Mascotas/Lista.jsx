@@ -1,4 +1,4 @@
-import { obtenerMascotasVacunas, obtenerProtectoras, obtenerVacunas } from "@/lib/data"
+import { obtenerMascotasVacunasSinPag, obtenerMascotasVacunas, obtenerProtectoras, obtenerVacunas } from "@/lib/data"
 import { Eye, Pencil, Plus, Trash } from 'lucide-react'
 import Modal from "@/components/Modal"
 import MascotaVer from "@/components/Mascotas/Ver"
@@ -11,6 +11,7 @@ import MascotaInsertar from "@/components/Mascotas/Insertar";
 
 async function Mascotas({ query, sort, page, per_page }) {
     const { mascotas, totalPages } = await obtenerMascotasVacunas({ query, sort, page, per_page })
+    // const { mascotas } = await obtenerMascotasVacunasSinPag()
     const protectoras = await obtenerProtectoras()
     const vacunas = await obtenerVacunas()
 

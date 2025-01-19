@@ -110,6 +110,25 @@ export async function obtenerMascotasVacunas({ query, sort, page, per_page = PER
 }
 
 
+export async function obtenerMascotasVacunasSinPag() {
+
+
+    try {
+        const mascotas = await prisma.mascota.findMany({
+            include: {
+                vacunas: true,
+            },
+        })
+
+        return { mascotas }
+    } catch (error) {
+        // console.log(error);  
+        return null;
+    }
+}
+
+
+
 export async function obtenerMascotas() {
     try {
         const mascota = await prisma.mascota.findMany()
