@@ -27,15 +27,14 @@ export default function VacunaEliminar({ vacuna = {} }) {
 
 
     return (
-        <form id={formId} action={action} >
-            <input type="hidden" name="id" value={vacuna?.id} />
+        <div className='mb-4 w-full flex flex-col gap-4 p-6 '>
 
             <h1 className='text-red-700 text-xl font-bold text-center'>Eliminar vacuna</h1>
 
-            <div className='mb-4 w-full flex flex-col gap-4 p-6 '>
+            <VacunaVer vacuna={vacuna} />
 
-                <VacunaVer vacuna={vacuna} />
-
+            <form id={formId} action={action} >
+                <input type="hidden" name="id" value={vacuna?.id} />
                 <button type="submit" disabled={pending}
                     className='md:col-span-2 mt-6 w-full p-3 bg-red-700 text-white disabled:bg-zinc-400 font-bold text-center rounded-md'
                 >
@@ -45,8 +44,7 @@ export default function VacunaEliminar({ vacuna = {} }) {
 
                     }
                 </button>
-
-            </div>
-        </form>
+            </form>
+        </div>
     )
 }

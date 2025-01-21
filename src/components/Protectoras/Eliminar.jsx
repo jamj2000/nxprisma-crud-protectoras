@@ -27,14 +27,14 @@ export default function ProtectoraEliminar({ protectora = {} }) {
 
 
     return (
-        <form id={formId} action={action} >
-            <input type="hidden" name="id" value={protectora?.id} />
+        <div className='mb-4 w-full flex flex-col gap-4 p-6 '>
 
             <h1 className='text-red-700 text-xl font-bold text-center'>Eliminar protectora</h1>
 
-            <div className='mb-4 w-full flex flex-col gap-4 p-6 '>
+            <ProtectoraVer protectora={protectora} />
 
-                <ProtectoraVer protectora={protectora} />
+            <form id={formId} action={action} >
+                <input type="hidden" name="id" value={protectora?.id} />
 
                 <button type="submit" disabled={pending}
                     className='md:col-span-2 mt-6 w-full p-3 bg-red-700 text-white disabled:bg-zinc-400 font-bold text-center rounded-md'
@@ -46,7 +46,9 @@ export default function ProtectoraEliminar({ protectora = {} }) {
                     }
                 </button>
 
-            </div>
-        </form>
+            </form >
+
+        </div>
+
     )
 }

@@ -346,7 +346,7 @@ export async function eliminarProtectora(prevState, formData) {
       },
     })
 
-    // revalidatePath('/protectoras')
+    //revalidatePath('/protectoras')
     return { success: 'Eliminación exitosa' }
   } catch (error) {
     return { error: error.message }
