@@ -1,6 +1,6 @@
 function Spinner() {
     return (
-        <div className="flex flex-col items-center h-screen">
+        <div className="grid place-content-center h-screen">
             {/* <div className="text-2xl text-blue-200 font-bold animate-pulse">
             Obteniendo datos ...
             </div> 
