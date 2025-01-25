@@ -1,4 +1,4 @@
-import { obtenerMascotasVacunasSinPag, obtenerMascotasVacunas, obtenerProtectoras, obtenerVacunas } from "@/lib/data"
+import { obtenerMascotasVacunas, obtenerProtectoras, obtenerVacunas } from "@/lib/data"
 import { Eye, Pencil, Plus, Trash } from 'lucide-react'
 import Modal from "@/components/Modal"
 import MascotaVer from "@/components/Mascotas/Ver"
@@ -9,11 +9,23 @@ import Form from "next/form";
 import Filtrar from "@/components/Mascotas/Filtrar";
 import MascotaInsertar from "@/components/Mascotas/Insertar";
 
+
 async function Mascotas({ query, sort, page, per_page }) {
-    const { mascotas, totalPages } = await obtenerMascotasVacunas({ query, sort, page, per_page })
-    // const { mascotas } = await obtenerMascotasVacunasSinPag()
-    const protectoras = await obtenerProtectoras()
-    const vacunas = await obtenerVacunas()
+    // const { mascotas, totalPages } = await obtenerMascotasVacunas({ query, sort, page, per_page })
+    // const protectoras = await obtenerProtectoras()
+    // const vacunas = await obtenerVacunas()
+
+    // Para hacer consultas en paralelo y mejorar la eficiencia
+    // usamos Promise.all
+    const [
+        { mascotas, totalPages },
+        protectoras,
+        vacunas
+    ] = await Promise.all([
+        obtenerMascotasVacunas({ query, sort, page, per_page }),
+        obtenerProtectoras(),
+        obtenerVacunas()
+    ])
 
     return (
         <>
@@ -43,7 +55,7 @@ async function Mascotas({ query, sort, page, per_page }) {
                         <Modal
                             icono={<Eye />}
                             className={'place-self-end p-1 rounded-full border border-blue-500 text-blue-700 bg-blue-200 hover:bg-blue-500 hover:text-white hover:cursor-pointer'}>
-                            <MascotaVer mascota={mascota} protectoras={protectoras} vacunas={vacunas} />
+                            <MascotaVer mascota={mascota} protectoras={protectoras} />
                         </Modal>
                         <Modal
                             icono={<Pencil />}

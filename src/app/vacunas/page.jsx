@@ -1,10 +1,6 @@
 import VacunasLista from '@/components/Vacunas/Lista'
-import Modal from '@/components/Modal'
-import { Plus } from 'lucide-react'
-import { Suspense } from 'react'
-import VacunaInsertar from '@/components/Vacunas/Insertar'
 import Spinner from '@/components/Spinner'
-
+import { Suspense } from 'react'
 
 export default function PaginaVacunas() {
     return (
