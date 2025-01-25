@@ -1,9 +1,10 @@
 import ProtectorasLista from '@/components/Protectoras/Lista'
+import Spinner from '@/components/Spinner'
 import { Suspense } from 'react'
 
 
 
-export default function page() {
+export default function PaginaProtectoras() {
     return (
         <div className='container mx-auto px-4 py-10 flex flex-col'>
             <div className='flex justify-between px-4 pb-2 mb-8 border-b-4 border-blue-100'>
@@ -11,11 +12,7 @@ export default function page() {
             </div>
 
 
-            <Suspense fallback={
-                <div className="text-2xl text-blue-200 font-bold animate-pulse">
-                    Obteniendo protectoras ...
-                </div>
-            }>
+            <Suspense fallback={<Spinner />}>
                 <ProtectorasLista />
             </Suspense>
 

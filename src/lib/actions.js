@@ -130,14 +130,14 @@ export async function modificarMascota(prevState, formData) {
   // Array con IDs de todas las vacunas
   const vacunasIDs = await obtenerVacunasIDs()  // Formato: [ {id: 1}, {id: 2}, ...]
 
+  // -> Si NO disponemos de NodeJS 21+ 
+  const connect = vacunasIDs.filter(vacuna => formData.get(vacuna.id) !== null)
+  const disconnect = vacunasIDs.filter(vacuna => formData.get(vacuna.id) === null)
+  const vacunas = { connect, disconnect }
+
   // -> Si disponemos de NodeJS 21+
   // Objecto con 2 arrays: connect con IDs de vacunas marcadas por el usuario y disconnect con IDs no marcadas
-  const vacunas = Object.groupBy(vacunasIDs, vacuna => formData.get(vacuna.id) !== null ? 'connect' : 'disconnect')
-
-  // -> Si NO disponemos de NodeJS 21+ 
-  // const connect = vacunasIDs.filter(vacuna => formData.get(vacuna.id) !== null)
-  // const disconnect = vacunasIDs.filter(vacuna => formData.get(vacuna.id) === null)
-  // const vacunas = { connect, disconnect }
+  // const vacunas = Object.groupBy(vacunasIDs, vacuna => formData.get(vacuna.id) !== null ? 'connect' : 'disconnect')
 
   // Información para depuración
   // console.log('VACUNAS ', vacunas);
@@ -235,14 +235,15 @@ export async function modificarVacuna(prevState, formData) {
   // Array con IDs de todas las mascotas
   const mascotasIDs = await obtenerMascotasIDs()  // Formato: [ {id: 1}, {id: 2}, ...]
 
+  // -> Si NO disponemos de NodeJS 21+ 
+  const connect = mascotasIDs.filter(mascota => formData.get(mascota.id) !== null)
+  const disconnect = mascotasIDs.filter(mascota => formData.get(mascota.id) === null)
+  const mascotas = { connect, disconnect }
+
   // -> Si disponemos de NodeJS 21+
   // Objecto con 2 arrays: connect con IDs de mascotas marcadas por el usuario y disconnect con IDs no marcadas
-  const mascotas = Object.groupBy(mascotasIDs, mascota => formData.get(mascota.id) !== null ? 'connect' : 'disconnect')
+  // const mascotas = Object.groupBy(mascotasIDs, mascota => formData.get(mascota.id) !== null ? 'connect' : 'disconnect')
 
-  // -> Si NO disponemos de NodeJS 21+ 
-  // const connect = mascotasIDs.filter(mascota => formData.get(mascota.id) !== null)
-  // const disconnect = mascotasIDs.filter(mascota => formData.get(mascota.id) === null)
-  // const mascotas = { connect, disconnect }
 
   // Información para depuración
   console.log('MASCOTAS ', mascotas);

@@ -3,9 +3,10 @@ import Modal from '@/components/Modal'
 import { Plus } from 'lucide-react'
 import { Suspense } from 'react'
 import VacunaInsertar from '@/components/Vacunas/Insertar'
+import Spinner from '@/components/Spinner'
 
 
-export default function page() {
+export default function PaginaVacunas() {
     return (
         <div className='container mx-auto px-4 py-10 flex flex-col'>
             <div className='flex justify-between px-4 pb-2 mb-8 border-b-4 border-blue-100'>
@@ -13,11 +14,7 @@ export default function page() {
             </div>
 
 
-            <Suspense fallback={
-                <div className="text-2xl text-blue-200 font-bold animate-pulse">
-                    Obteniendo vacunas ...
-                </div>
-            }>
+            <Suspense fallback={<Spinner />}>
                 <VacunasLista />
             </Suspense>
 
