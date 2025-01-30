@@ -21,7 +21,7 @@ async function Mascotas({ query, sort, page, per_page }) {
         { mascotas, totalPages },
         protectoras,
         vacunas
-    ] = await Promise.allSettled([
+    ] = await Promise.all([
         obtenerMascotasVacunas({ query, sort, page, per_page }),
         obtenerProtectoras(),
         obtenerVacunas()
