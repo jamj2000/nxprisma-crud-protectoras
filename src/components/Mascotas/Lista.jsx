@@ -23,7 +23,7 @@ async function Mascotas({ query, sort, page, per_page }) {
         vacunas
     ] = await Promise.all([
         obtenerMascotasVacunas({ query, sort, page, per_page }),
-        obtenerProtectoras(),
+        obtenerProtectoras(),  // incluye mascotas
         obtenerVacunas()
     ])
 

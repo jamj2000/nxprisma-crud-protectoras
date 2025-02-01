@@ -8,7 +8,7 @@ import { obtenerProtectoras } from "@/lib/data"
 import { Eye, Pencil, Plus, Trash } from 'lucide-react'
 
 async function Protectoras() {
-    const protectoras = await obtenerProtectoras()
+    const protectoras = await obtenerProtectoras()  // incluye mascotas
 
     return (
         <>
