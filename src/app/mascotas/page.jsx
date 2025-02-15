@@ -1,7 +1,7 @@
-import MascotasLista from '@/components/Mascotas/Lista'
+import MascotasLista from '@/components/mascotas/lista'
 import { Suspense } from 'react'
 import { PER_PAGE } from '@/lib/pagination';
-import Spinner from '@/components/Spinner';
+import Spinner from '@/components/spinner';
 
 
 export default async function PaginaMascotas({ searchParams }) {

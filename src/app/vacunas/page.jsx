@@ -1,5 +1,5 @@
-import VacunasLista from '@/components/Vacunas/Lista'
-import Spinner from '@/components/Spinner'
+import VacunasLista from '@/components/vacunas/lista'
+import Spinner from '@/components/spinner'
 import { Suspense } from 'react'
 
 export default function PaginaVacunas() {

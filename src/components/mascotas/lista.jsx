@@ -1,13 +1,13 @@
 import { obtenerMascotasVacunas, obtenerProtectoras, obtenerVacunas } from "@/lib/data"
 import { Eye, Pencil, Plus, Trash } from 'lucide-react'
-import Modal from "@/components/Modal"
-import MascotaVer from "@/components/Mascotas/Ver"
-import MascotaModificar from '@/components/Mascotas/Modificar';
-import MascotaEliminar from '@/components/Mascotas/Eliminar';
+import Modal from "@/components/modal"
+import MascotaVer from "@/components/mascotas/ver"
+import MascotaModificar from '@/components/mascotas/modificar';
+import MascotaEliminar from '@/components/mascotas/eliminar';
 import Link from "next/link";
 import Form from "next/form";
-import Filtrar from "@/components/Mascotas/Filtrar";
-import MascotaInsertar from "@/components/Mascotas/Insertar";
+import Filtrar from "@/components/mascotas/filtrar";
+import MascotaInsertar from "@/components/mascotas/insertar";
 
 
 async function Mascotas({ query, sort, page, per_page }) {

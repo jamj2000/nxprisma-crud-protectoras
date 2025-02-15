@@ -1,5 +1,5 @@
 'use client'
-import { default_image } from "@/components/InputImage";
+import { default_image } from "@/components/input-image";
 
 
 function MascotaVer({ mascota = {}, protectoras = [], vacunas = [] }) {

@@ -1,9 +1,9 @@
 import Link from "next/link"
-import Modal from "@/components/Modal"
-import ProtectoraVer from "@/components/Protectoras/Ver"
-import ProtectoraModificar from '@/components/Protectoras/Modificar';
-import ProtectoraEliminar from '@/components/Protectoras/Eliminar';
-import ProtectoraInsertar from "./Insertar";
+import Modal from "@/components/modal"
+import ProtectoraVer from "@/components/protectoras/ver"
+import ProtectoraModificar from '@/components/protectoras/modificar';
+import ProtectoraEliminar from '@/components/protectoras/eliminar';
+import ProtectoraInsertar from "./insertar";
 import { obtenerProtectoras } from "@/lib/data"
 import { Eye, Pencil, Plus, Trash } from 'lucide-react'
 

@@ -1,8 +1,8 @@
-import BackButton from "@/components/BackButton";
-import Modal from "@/components/Modal";
-import ProtectoraEliminar from "@/components/Protectoras/Eliminar";
-import ProtectoraModificar from "@/components/Protectoras/Modificar";
-import ProtectoraVer from "@/components/Protectoras/Ver";
+import BackButton from "@/components/back-button";
+import Modal from "@/components/modal";
+import ProtectoraEliminar from "@/components/protectoras/eliminar";
+import ProtectoraModificar from "@/components/protectoras/modificar";
+import ProtectoraVer from "@/components/protectoras/ver";
 import { obtenerProtectoraMascotasVacunas } from "@/lib/data";
 import { ArrowLeft, Pencil, Trash } from "lucide-react";
 import { notFound } from "next/navigation";

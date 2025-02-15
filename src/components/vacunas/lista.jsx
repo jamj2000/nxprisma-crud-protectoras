@@ -1,11 +1,11 @@
 import Link from "next/link"
-import Modal from "@/components/Modal"
-import VacunaVer from "@/components/Vacunas/Ver"
-import VacunaModificar from '@/components/Vacunas/Modificar';
-import VacunaEliminar from '@/components/Vacunas/Eliminar';
+import Modal from "@/components/modal"
+import VacunaVer from "@/components/vacunas/ver"
+import VacunaModificar from '@/components/vacunas/modificar';
+import VacunaEliminar from '@/components/vacunas/eliminar';
 import { obtenerVacunasMascotas, obtenerMascotas } from "@/lib/data"
 import { Eye, Pencil, Plus, Trash } from 'lucide-react'
-import VacunaInsertar from "./Insertar";
+import VacunaInsertar from "./insertar";
 
 
 async function Vacunas() {

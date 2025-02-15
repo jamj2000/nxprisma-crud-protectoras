@@ -1,18 +1,19 @@
-import BackButton from "@/components/BackButton";
-import Modal from "@/components/Modal";
-import VacunaEliminar from "@/components/Vacunas/Eliminar";
-import VacunaModificar from "@/components/Vacunas/Modificar";
-import VacunaVer from "@/components/Vacunas/Ver";
-import { obtenerMascotas, obtenerVacunaMascotas } from "@/lib/data";
+import BackButton from "@/components/back-button";
+import MascotaEliminar from "@/components/mascotas/eliminar";
+import MascotaModificar from "@/components/mascotas/modificar";
+import MascotaVer from "@/components/mascotas/ver";
+import Modal from "@/components/modal";
+import { obtenerMascota, obtenerProtectoras, obtenerVacunas } from "@/lib/data";
 import { ArrowLeft, Pencil, Trash } from "lucide-react";
 import { notFound } from "next/navigation";
 
 
-async function Vacuna({ id }) {
-    const vacuna = await obtenerVacunaMascotas(id)
-    const mascotas = await obtenerMascotas()
+async function Mascota({ id }) {
+    const mascota = await obtenerMascota(id)  // incluye vacunas
+    const protectoras = await obtenerProtectoras() // incluye mascotas
+    const vacunas = await obtenerVacunas()
 
-    if (!vacuna) notFound()
+    if (!mascota) notFound()
 
     return (
         <>
@@ -25,21 +26,19 @@ async function Vacuna({ id }) {
                     <Modal
                         icono={<Pencil />}
                         className={'place-self-end p-1 rounded-full border border-orange-500 text-orange-700 bg-orange-200 hover:bg-orange-500 hover:text-white hover:cursor-pointer'}>
-                        <VacunaModificar vacuna={vacuna} mascotas={mascotas} />
+                        <MascotaModificar mascota={mascota} protectoras={protectoras} vacunas={vacunas} />
                     </Modal>
-
                     <Modal
                         icono={<Trash />}
                         className={'place-self-end p-1 rounded-full border border-red-500 text-red-700 bg-red-200 hover:bg-red-500 hover:text-white hover:cursor-pointer'}>
-                        <VacunaEliminar vacuna={vacuna} />
+                        <MascotaEliminar mascota={mascota} protectoras={protectoras} />
                     </Modal>
                 </div>
 
             </div>
-            <VacunaVer vacuna={vacuna} />
+            <MascotaVer mascota={mascota} protectoras={protectoras} />
         </>
     )
 }
 
-
-export default Vacuna;
+export default Mascota

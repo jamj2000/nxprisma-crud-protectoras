@@ -1,5 +1,5 @@
-import ProtectorasLista from '@/components/Protectoras/Lista'
-import Spinner from '@/components/Spinner'
+import ProtectorasLista from '@/components/protectoras/lista'
+import Spinner from '@/components/spinner'
 import { Suspense } from 'react'
 
 

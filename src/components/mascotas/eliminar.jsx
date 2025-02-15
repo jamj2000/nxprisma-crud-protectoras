@@ -5,7 +5,7 @@ import { RefreshCw, Trash } from 'lucide-react';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';  // IMPORTANTE: No importar desde next/router
 import { useParams } from 'next/navigation'
-import MascotaVer from '@/components/Mascotas/Ver'
+import MascotaVer from '@/components/mascotas/ver'
 
 
 export default function MascotaEliminar({ mascota = {}, protectoras = [] }) {

@@ -1,16 +1,17 @@
 'use client'
+import { nuevaMascota } from '@/lib/actions'
 import { useActionState, useEffect, useId } from 'react'
-import { Pencil, RefreshCw } from 'lucide-react';
+import { CircleCheck, CircleX, Plus, RefreshCw } from 'lucide-react';
 import { toast } from 'sonner';
-import { modificarMascota } from '@/lib/actions'
-import InputImage, { default_image } from '@/components/InputImage';
+import InputImage from '../input-image';
 
 
 
 
-export default function MascotaModificar({ mascota = {}, protectoras = [], vacunas = [] }) {
+export default function MascotaInsertar({ protectoras = [], vacunas = [] }) {
     const formId = useId()
-    const [state, action, pending] = useActionState(modificarMascota, {})
+    const [state, action, pending] = useActionState(nuevaMascota, {})
+
 
     useEffect(() => {
         if (state.success) {
@@ -18,16 +19,13 @@ export default function MascotaModificar({ mascota = {}, protectoras = [], vacun
             document.getElementById(formId).closest('dialog')?.close() // Si el padre es un dialog, lo cerramos
         }
         if (state.error) toast.error(state.error)
+
     }, [formId, state])
 
 
-    const vacunasIDs = mascota?.vacunas?.map(vacuna => vacuna.id)
-    console.log(vacunasIDs);
-
     return (
-        <form id={formId} action={action}>
-            <input type="hidden" name="id" defaultValue={mascota?.id} />
-            <input type="hidden" name="foto" defaultValue={mascota?.foto} />
+        <form id={formId} action={action} >
+            <h1 className='text-green-700 text-xl font-bold text-center'>Dar de alta a nueva mascota</h1>
 
             {/* {state?.success &&
                 <p className='bg-green-100 text-green-700 mb-2 p-3 rounded-md flex gap-2 items-center'>
@@ -39,20 +37,18 @@ export default function MascotaModificar({ mascota = {}, protectoras = [], vacun
                     <CircleX /> {state?.error}
                 </p>
             } */}
-            <h1 className='text-orange-700 text-xl font-bold text-center'>Actualizar mascota</h1>
 
-            <div className='text-lg mb-4 w-full flex flex-col gap-4 p-6 rounded-lg border-2 border-zinc-200'>
-
+            <div className='text-lg mb-4 w-full flex flex-col  gap-4 p-6 rounded-lg border-2 border-zinc-200'>
                 <div className='self-center' >
-                    <InputImage image={mascota?.foto || default_image} />
+                    <InputImage />
                 </div>
+
 
                 <label className='flex flex-col'> Nombre
                     <input
                         type="text"
                         id="nombre"
                         name="nombre"
-                        defaultValue={mascota?.nombre}
                         placeholder="Introduce un nombre"
                         className='bg-zinc-100 p-2 rounded hover:ring-1 focus:outline-none disabled:bg-zinc-400 disabled:text-zinc-200'
                         disabled={pending}
@@ -65,7 +61,6 @@ export default function MascotaModificar({ mascota = {}, protectoras = [], vacun
                         type="text"
                         id="descripcion"
                         name="descripcion"
-                        defaultValue={mascota?.descripcion}
                         placeholder="Introduce una descripción"
                         className='bg-zinc-100 p-2 rounded hover:ring-1 focus:outline-none disabled:bg-zinc-400 disabled:text-zinc-200'
                         disabled={pending}
@@ -78,18 +73,19 @@ export default function MascotaModificar({ mascota = {}, protectoras = [], vacun
                         type="date"
                         id="fecha_nacimiento"
                         name="fecha_nacimiento"
-                        defaultValue={new Date(mascota.fecha_nacimiento).toISOString().split('T')[0]}
+                        defaultValue={new Date().toISOString().split('T')[0]}
                         className='bg-zinc-100 p-2 rounded hover:ring-1 focus:outline-none disabled:bg-zinc-400 disabled:text-zinc-200'
                         disabled={pending}
                         required
                     />
                 </label>
 
+
                 <label className='flex flex-col'> Protectora
                     <select
-                        key={mascota.protectoraId}       // IMPORTANTE para re-render (VDOM->DOM) tras cambio de valor
+                        //key={mascota.protectoraId}       // IMPORTANTE para re-render (VDOM->DOM) tras cambio de valor
                         name="protectoraId"
-                        defaultValue={mascota.protectoraId ?? ''}
+                        defaultValue={''}
                         className='p-2'
                     >
                         <option value={''}> {''} </option>
@@ -100,7 +96,7 @@ export default function MascotaModificar({ mascota = {}, protectoras = [], vacun
                     </select>
                 </label>
 
-                {/*
+                {/* 
                 // Usando input radio en lugar de select 
                 <details>
                     <summary>Protectora</summary>
@@ -111,13 +107,12 @@ export default function MascotaModificar({ mascota = {}, protectoras = [], vacun
                                 type='radio'
                                 name='protectoraId'
                                 value={protectora.id}
-                                defaultChecked={protectora.id == mascota.protectoraId} />
+                            />
 
                             {protectora.nombre}
                         </label>
                     ))}
                 </details> */}
-
 
                 <details>
                     <summary>Vacunas</summary>
@@ -128,7 +123,6 @@ export default function MascotaModificar({ mascota = {}, protectoras = [], vacun
                                 type='checkbox'
                                 name={vacuna.id}
                                 value={vacuna.id}
-                                defaultChecked={vacunasIDs.includes(vacuna.id)}
                             />
 
                             {vacuna.nombre}
@@ -136,13 +130,12 @@ export default function MascotaModificar({ mascota = {}, protectoras = [], vacun
                     ))}
                 </details>
 
-
                 <button type="submit" disabled={pending}
-                    className='md:col-span-2 mt-6 w-full p-3 bg-orange-700 text-white disabled:bg-zinc-400 font-bold text-center rounded-md'
+                    className='mt-6 w-full p-3 bg-green-700 text-white disabled:bg-zinc-400 font-bold text-center rounded-md'
                 >
                     {pending
-                        ? <div><RefreshCw className='inline animate-spin' /> Actualizando...</div>
-                        : <div><Pencil className='inline' /> Actualizar</div>
+                        ? <div><RefreshCw className='inline animate-spin' /> Guardando...</div>
+                        : <div><Plus className='inline' /> Guardar</div>
 
                     }
                 </button>

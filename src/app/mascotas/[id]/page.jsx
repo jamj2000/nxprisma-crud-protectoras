@@ -1,5 +1,5 @@
-import Mascota from "@/components/Mascotas/Item"
-import Spinner from "@/components/Spinner"
+import Mascota from "@/components/mascotas/item"
+import Spinner from "@/components/spinner"
 import { Suspense } from "react"
 
 

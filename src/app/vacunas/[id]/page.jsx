@@ -1,5 +1,5 @@
-import Vacuna from "@/components/Vacunas/Item"
-import Spinner from "@/components/Spinner"
+import Vacuna from "@/components/vacunas/item"
+import Spinner from "@/components/spinner"
 import { Suspense } from "react"
 
 

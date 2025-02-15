@@ -1,18 +1,18 @@
 'use client'
-import { eliminarProtectora } from '@/lib/actions'
+import { eliminarVacuna } from '@/lib/actions'
 import { useActionState, useEffect, useId } from 'react'
 import { RefreshCw, Trash } from 'lucide-react';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';  // IMPORTANTE: No importar desde next/router
 import { useParams } from 'next/navigation'
-import ProtectoraVer from '@/components/Protectoras/Ver'
+import VacunaVer from '@/components/vacunas/ver'
 
 
-export default function ProtectoraEliminar({ protectora = {} }) {
+export default function VacunaEliminar({ vacuna = {} }) {
     const params = useParams()
     const formId = useId()
     const { refresh, back } = useRouter()
-    const [state, action, pending] = useActionState(eliminarProtectora, {})
+    const [state, action, pending] = useActionState(eliminarVacuna, {})
 
 
     useEffect(() => {
@@ -29,13 +29,12 @@ export default function ProtectoraEliminar({ protectora = {} }) {
     return (
         <div className='mb-4 w-full flex flex-col gap-4 p-6 '>
 
-            <h1 className='text-red-700 text-xl font-bold text-center'>Eliminar protectora</h1>
+            <h1 className='text-red-700 text-xl font-bold text-center'>Eliminar vacuna</h1>
 
-            <ProtectoraVer protectora={protectora} />
+            <VacunaVer vacuna={vacuna} />
 
             <form id={formId} action={action} >
-                <input type="hidden" name="id" value={protectora?.id} />
-
+                <input type="hidden" name="id" value={vacuna?.id} />
                 <button type="submit" disabled={pending}
                     className='md:col-span-2 mt-6 w-full p-3 bg-red-700 text-white disabled:bg-zinc-400 font-bold text-center rounded-md'
                 >
@@ -45,10 +44,7 @@ export default function ProtectoraEliminar({ protectora = {} }) {
 
                     }
                 </button>
-
-            </form >
-
+            </form>
         </div>
-
     )
 }
