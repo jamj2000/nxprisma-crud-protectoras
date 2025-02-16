@@ -44,7 +44,7 @@ async function Mascotas({ query, sort, page, per_page }) {
 
                 <div key={mascota.id} className="px-4 py-1 flex justify-between items-center even:bg-blue-100 odd:bg-slate-100">
 
-                    <Link
+                    <Link prefetch={true} 
                         href={`/mascotas/${mascota.id}`}
                         className="font-bold hover:text-blue-700">
                         {mascota.nombre}
