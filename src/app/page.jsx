@@ -11,7 +11,7 @@ export default function Home() {
       </h1>
 
       <Link href='/protectoras' className="block text-2xl">PROTECTORAS</Link>
-      <Link href='/mascotas' className="block text-2xl">MASCOTAS</Link>
+      <Link prefetch={true} href='/mascotas' className="block text-2xl">MASCOTAS</Link>
       <Link href='/vacunas' className="block text-2xl">VACUNAS</Link>
 
     </div>
