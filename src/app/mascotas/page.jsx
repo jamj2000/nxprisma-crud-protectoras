@@ -2,6 +2,7 @@ import MascotasLista from '@/components/mascotas/lista'
 import { Suspense } from 'react'
 import { PER_PAGE } from '@/lib/pagination';
 import Spinner from '@/components/spinner';
+import Loading from './loading';
 
 
 export default async function PaginaMascotas({ searchParams }) {
@@ -23,7 +24,7 @@ export default async function PaginaMascotas({ searchParams }) {
             </div>
 
 
-            <Suspense fallback={<Spinner />}>
+            <Suspense fallback={<Loading />}>
                 <MascotasLista query={query} sort={sort} page={page} per_page={per_page} />
             </Suspense>
 
