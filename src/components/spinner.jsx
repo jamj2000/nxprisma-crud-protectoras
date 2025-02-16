@@ -26,7 +26,7 @@ function Spinner() {
                 viewBox="0 0 100 100"
             >
                 <g transform="translate(80 50)">
-                    <circle r="6" fill="#0516a4">
+                    <circle r="6" fill="#8991d5">
                         <animateTransform
                             attributeName="transform"
                             begin="-0.875s"
@@ -47,7 +47,7 @@ function Spinner() {
                     </circle>
                 </g>
                 <g transform="rotate(45 -50.355 121.569)">
-                    <circle r="6" fill="#0516a4" fillOpacity="0.875">
+                    <circle r="6" fill="#8991d5" fillOpacity="0.875">
                         <animateTransform
                             attributeName="transform"
                             begin="-0.75s"
@@ -68,7 +68,7 @@ function Spinner() {
                     </circle>
                 </g>
                 <g transform="rotate(90 -15 65)">
-                    <circle r="6" fill="#0516a4" fillOpacity="0.75">
+                    <circle r="6" fill="#8991d5" fillOpacity="0.75">
                         <animateTransform
                             attributeName="transform"
                             begin="-0.625s"
@@ -89,7 +89,7 @@ function Spinner() {
                     </circle>
                 </g>
                 <g transform="rotate(135 -.355 41.569)">
-                    <circle r="6" fill="#0516a4" fillOpacity="0.625">
+                    <circle r="6" fill="#8991d5" fillOpacity="0.625">
                         <animateTransform
                             attributeName="transform"
                             begin="-0.5s"
@@ -110,7 +110,7 @@ function Spinner() {
                     </circle>
                 </g>
                 <g transform="rotate(180 10 25)">
-                    <circle r="6" fill="#0516a4" fillOpacity="0.5">
+                    <circle r="6" fill="#8991d5" fillOpacity="0.5">
                         <animateTransform
                             attributeName="transform"
                             begin="-0.375s"
@@ -131,7 +131,7 @@ function Spinner() {
                     </circle>
                 </g>
                 <g transform="rotate(-135 20.355 8.431)">
-                    <circle r="6" fill="#0516a4" fillOpacity="0.375">
+                    <circle r="6" fill="#8991d5" fillOpacity="0.375">
                         <animateTransform
                             attributeName="transform"
                             begin="-0.25s"
@@ -152,7 +152,7 @@ function Spinner() {
                     </circle>
                 </g>
                 <g transform="rotate(-90 35 -15)">
-                    <circle r="6" fill="#0516a4" fillOpacity="0.25">
+                    <circle r="6" fill="#8991d5" fillOpacity="0.25">
                         <animateTransform
                             attributeName="transform"
                             begin="-0.125s"
@@ -173,7 +173,7 @@ function Spinner() {
                     </circle>
                 </g>
                 <g transform="rotate(-45 70.355 -71.569)">
-                    <circle r="6" fill="#0516a4" fillOpacity="0.125">
+                    <circle r="6" fill="#8991d5" fillOpacity="0.125">
                         <animateTransform
                             attributeName="transform"
                             begin="0s"
