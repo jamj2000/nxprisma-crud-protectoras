@@ -22,7 +22,7 @@ function Spinner() {
                 height="200"
                 display="block"
                 preserveAspectRatio="xMidYMid"
-                style={{ background: "#fff" }}
+                style={{ background: "transparent" }}
                 viewBox="0 0 100 100"
             >
                 <g transform="translate(80 50)">

@@ -40,7 +40,7 @@ export default function Menu() {
                     <li>
                         <Link href="/protectoras"
                             className={`bg-slate-400 block py-2 px-3 text-white hover:text-white hover:bg-gray-700 hover:outline hover:outline-gray-200 hover:outline-2 rounded dark:text-white dark:hover:bg-gray-700 dark:hover:text-blue-200 md:dark:hover:text-blue-200 
-                            ${pathname.startsWith('/protectoras') && 'outline outline-2'}`}
+                            ${pathname.startsWith('/protectoras') && 'outline outline-2 outline-slate-500 dark:outline-white'}`}
                         >
                             Protectoras
                         </Link>
@@ -49,7 +49,7 @@ export default function Menu() {
                     <li>
                         <Link href="/mascotas"
                             className={`bg-slate-400 block py-2 px-3 text-white hover:text-white hover:bg-gray-700 hover:outline hover:outline-gray-200 hover:outline-2 rounded dark:text-white dark:hover:bg-gray-700 dark:hover:text-blue-200 md:dark:hover:text-blue-200 
-                            ${pathname.startsWith('/mascotas') && 'outline outline-2'}`}
+                            ${pathname.startsWith('/mascotas') && 'outline outline-2 outline-slate-500 dark:outline-white'}`}
                         >
                             Mascotas
                         </Link>
@@ -58,7 +58,7 @@ export default function Menu() {
                     <li>
                         <Link href="/vacunas"
                             className={`bg-slate-400 block py-2 px-3 text-white hover:text-white hover:bg-gray-700 hover:outline hover:outline-gray-200 hover:outline-1 rounded dark:text-white dark:hover:bg-gray-700 dark:hover:text-blue-200 md:dark:hover:text-blue-200  
-                            ${pathname.startsWith('/vacunas') && 'outline outline-2'} `}
+                            ${pathname.startsWith('/vacunas') && 'outline outline-2 outline-slate-500 dark:outline-white' } `}
                         >
                             Vacunas
                         </Link>
