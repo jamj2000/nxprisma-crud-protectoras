@@ -1,7 +1,6 @@
 import MascotasLista from '@/components/mascotas/lista'
 import { Suspense } from 'react'
 import { PER_PAGE } from '@/lib/pagination';
-import Spinner from '@/components/spinner';
 import Loading from './loading';
 
 
