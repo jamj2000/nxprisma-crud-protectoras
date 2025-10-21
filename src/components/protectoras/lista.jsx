@@ -22,7 +22,7 @@ async function Protectoras() {
 
                 <div key={protectora.id} className="px-4 py-1 flex justify-between items-center even:bg-blue-100 odd:bg-slate-100">
 
-                    <Link
+                    <Link prefetch
                         href={`/protectoras/${protectora.id}`}
                         className="font-bold hover:text-blue-700">
                         {protectora.nombre}
