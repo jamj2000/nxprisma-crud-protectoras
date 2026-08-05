@@ -1,0 +1,65 @@
+[
+  {
+    "id": 10,
+    "nombre": "Moquillo en perros",
+    "especie": "perros",
+    "createdAt": "2025-01-03T13:06:07.360Z",
+    "updatedAt": "2025-01-03T13:06:07.360Z"
+  },
+  {
+    "id": 11,
+    "nombre": "Parvovirosis en perros",
+    "especie": "perros",
+    "createdAt": "2025-01-03T13:06:07.360Z",
+    "updatedAt": "2025-01-03T13:06:07.360Z"
+  },
+  {
+    "id": 12,
+    "nombre": "Hepatitis vírica canina",
+    "especie": "perros",
+    "createdAt": "2025-01-03T13:06:07.360Z",
+    "updatedAt": "2025-01-03T13:06:07.360Z"
+  },
+  {
+    "id": 14,
+    "nombre": "Rinotraqueítis felina",
+    "especie": "gatos",
+    "createdAt": "2025-01-03T13:06:07.360Z",
+    "updatedAt": "2025-01-03T13:06:07.360Z"
+  },
+  {
+    "id": 15,
+    "nombre": "Leucemia felina",
+    "especie": "gatos",
+    "createdAt": "2025-01-03T13:06:07.360Z",
+    "updatedAt": "2025-01-03T13:06:07.360Z"
+  },
+  {
+    "id": 16,
+    "nombre": "Peritonitis infecciosa felina",
+    "especie": "gatos",
+    "createdAt": "2025-01-03T13:06:07.360Z",
+    "updatedAt": "2025-01-03T13:06:07.360Z"
+  },
+  {
+    "id": 18,
+    "nombre": "Moquillo en gatos",
+    "especie": "gatos",
+    "createdAt": "2025-01-04T11:14:22.014Z",
+    "updatedAt": "2025-01-04T16:04:41.450Z"
+  },
+  {
+    "id": 45,
+    "nombre": "COVID gatos",
+    "especie": "gatos",
+    "createdAt": "2025-01-06T18:51:56.034Z",
+    "updatedAt": "2025-01-06T18:52:16.299Z"
+  },
+  {
+    "id": 17,
+    "nombre": "Rabia",
+    "especie": "perros y gatos",
+    "createdAt": "2025-01-03T13:06:07.360Z",
+    "updatedAt": "2025-01-06T18:56:18.854Z"
+  }
+]

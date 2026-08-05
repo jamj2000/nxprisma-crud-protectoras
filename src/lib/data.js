@@ -1,6 +1,6 @@
 'use server'
 import prisma from '@/lib/prisma'
-import { PER_PAGE } from '@/lib/pagination';
+
 
 
 
@@ -60,69 +60,38 @@ export async function obtenerProtectora(id) {  // obtener protectoras con mascot
 // ------------------- MASCOTAS -----------------------------
 
 // obtener mascotas y sus vacunas
-export async function obtenerMascotasVacunas({ query, sort, page, per_page = PER_PAGE }) {
-    const limit = +per_page
-    const offset = (+page - 1) * +per_page
+export async function obtenerMascotasVacunas({
+    query = '',
+    sort = 'createdAt desc',
+    page = 1,
+    limit = 10
+} = {}) {
+    const limitNum = Number(limit);
+    const skip = (Number(page) - 1) * limitNum;
 
-    let orderBy = {}
+    // Directo y sin fallos: sort siempre es un string válido
+    const [campo, orden] = sort.split(' ');
+    const orderBy = { [campo]: orden };
 
-    switch (sort) {
-        case 'nombre asc': orderBy = { nombre: 'asc' }; break;
-        case 'nombre desc': orderBy = { nombre: 'desc' }; break;
-        case 'createdAt asc': orderBy = { createdAt: 'asc' }; break;
-        case 'createdAt desc': orderBy = { createdAt: 'desc' }; break;
-        default:
-    }
-
-
-    try {
-        const total = await prisma.mascota.count({
-            where: {
-                nombre: {
-                    contains: query,
-                    mode: 'insensitive',
-                },
-            },
-        })
-
-        const mascotas = await prisma.mascota.findMany({
-            include: {
-                vacunas: true,
-            },
-            where: {
-                nombre: {
-                    contains: query,
-                    mode: 'insensitive',
-                },
-            },
-            orderBy,
-            take: limit,
-            skip: offset
-        })
-
-        const totalPages = Math.ceil(total / per_page)
-
-        return { mascotas, totalPages }
-    } catch (error) {
-        // console.log(error);  
-        return null;
-    }
-}
-
-
-export async function obtenerMascotasVacunasSinPag() {
-
+    const where = { nombre: { contains: query, mode: 'insensitive' } };
 
     try {
-        const mascotas = await prisma.mascota.findMany({
-            include: {
-                vacunas: true,
-            },
-        })
+        const [total, mascotas] = await prisma.$transaction([
+            prisma.mascota.count({ where }),
+            prisma.mascota.findMany({
+                where,
+                orderBy,
+                take: limitNum,
+                skip,
+                include: { vacunas: true },
+            }),
+        ]);
 
-        return { mascotas }
+        return {
+            mascotas,
+            totalPages: Math.ceil(total / limitNum) || 1
+        };
     } catch (error) {
-        // console.log(error);  
         return null;
     }
 }

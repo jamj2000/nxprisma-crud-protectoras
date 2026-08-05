@@ -1,0 +1,274 @@
+[
+  {
+    "id": 15,
+    "nombre": "Pepón ",
+    "descripcion": "Gato romano",
+    "fecha_nacimiento": "2025-01-03T00:00:00.000Z",
+    "foto": "https://res.cloudinary.com/jamunoz/image/upload/v1736114826/gato1.jpg",
+    "createdAt": "2025-01-03T21:23:57.644Z",
+    "updatedAt": "2025-01-06T17:50:02.630Z",
+    "protectoraId": null,
+    "vacunas": [
+      {
+        "id": 12,
+        "nombre": "Hepatitis vírica canina",
+        "especie": "perros",
+        "createdAt": "2025-01-03T13:06:07.360Z",
+        "updatedAt": "2025-01-03T13:06:07.360Z"
+      },
+      {
+        "id": 14,
+        "nombre": "Rinotraqueítis felina",
+        "especie": "gatos",
+        "createdAt": "2025-01-03T13:06:07.360Z",
+        "updatedAt": "2025-01-03T13:06:07.360Z"
+      },
+      {
+        "id": 15,
+        "nombre": "Leucemia felina",
+        "especie": "gatos",
+        "createdAt": "2025-01-03T13:06:07.360Z",
+        "updatedAt": "2025-01-03T13:06:07.360Z"
+      },
+      {
+        "id": 16,
+        "nombre": "Peritonitis infecciosa felina",
+        "especie": "gatos",
+        "createdAt": "2025-01-03T13:06:07.360Z",
+        "updatedAt": "2025-01-03T13:06:07.360Z"
+      }
+    ]
+  },
+  {
+    "id": 55,
+    "nombre": "Aquiles",
+    "descripcion": "Pequeño yorkshire muy activo",
+    "fecha_nacimiento": "2025-01-06T00:00:00.000Z",
+    "foto": "https://res.cloudinary.com/jamunoz/image/upload/v1737327953/yorkshire.jpg",
+    "createdAt": "2025-01-06T16:47:14.222Z",
+    "updatedAt": "2025-01-19T23:05:53.676Z",
+    "protectoraId": null,
+    "vacunas": [
+      {
+        "id": 10,
+        "nombre": "Moquillo en perros",
+        "especie": "perros",
+        "createdAt": "2025-01-03T13:06:07.360Z",
+        "updatedAt": "2025-01-03T13:06:07.360Z"
+      },
+      {
+        "id": 11,
+        "nombre": "Parvovirosis en perros",
+        "especie": "perros",
+        "createdAt": "2025-01-03T13:06:07.360Z",
+        "updatedAt": "2025-01-03T13:06:07.360Z"
+      },
+      {
+        "id": 17,
+        "nombre": "Rabia",
+        "especie": "perros y gatos",
+        "createdAt": "2025-01-03T13:06:07.360Z",
+        "updatedAt": "2025-01-06T18:56:18.854Z"
+      }
+    ]
+  },
+  {
+    "id": 46,
+    "nombre": "Misú Misú",
+    "descripcion": "Gato curioso y inquieto",
+    "fecha_nacimiento": "2025-01-04T00:00:00.000Z",
+    "foto": "https://res.cloudinary.com/jamunoz/image/upload/v1736178788/siames.jpg",
+    "createdAt": "2025-01-04T19:52:19.713Z",
+    "updatedAt": "2025-10-22T15:50:33.072Z",
+    "protectoraId": 5,
+    "vacunas": [
+      {
+        "id": 14,
+        "nombre": "Rinotraqueítis felina",
+        "especie": "gatos",
+        "createdAt": "2025-01-03T13:06:07.360Z",
+        "updatedAt": "2025-01-03T13:06:07.360Z"
+      },
+      {
+        "id": 15,
+        "nombre": "Leucemia felina",
+        "especie": "gatos",
+        "createdAt": "2025-01-03T13:06:07.360Z",
+        "updatedAt": "2025-01-03T13:06:07.360Z"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "nombre": "Xena",
+    "descripcion": "Gata siamesa muy fiel",
+    "fecha_nacimiento": "2025-04-04T00:00:00.000Z",
+    "foto": "https://res.cloudinary.com/jamunoz/image/upload/v1736178788/siames.jpg",
+    "createdAt": "2025-01-03T13:06:06.947Z",
+    "updatedAt": "2025-01-07T20:46:40.862Z",
+    "protectoraId": 9,
+    "vacunas": [
+      {
+        "id": 15,
+        "nombre": "Leucemia felina",
+        "especie": "gatos",
+        "createdAt": "2025-01-03T13:06:07.360Z",
+        "updatedAt": "2025-01-03T13:06:07.360Z"
+      },
+      {
+        "id": 16,
+        "nombre": "Peritonitis infecciosa felina",
+        "especie": "gatos",
+        "createdAt": "2025-01-03T13:06:07.360Z",
+        "updatedAt": "2025-01-03T13:06:07.360Z"
+      },
+      {
+        "id": 18,
+        "nombre": "Moquillo en gatos",
+        "especie": "gatos",
+        "createdAt": "2025-01-04T11:14:22.014Z",
+        "updatedAt": "2025-01-04T16:04:41.450Z"
+      },
+      {
+        "id": 45,
+        "nombre": "COVID gatos",
+        "especie": "gatos",
+        "createdAt": "2025-01-06T18:51:56.034Z",
+        "updatedAt": "2025-01-06T18:52:16.299Z"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "nombre": "Altavista",
+    "descripcion": "Gata muy pequeña",
+    "fecha_nacimiento": "2025-01-03T00:00:00.000Z",
+    "foto": "https://res.cloudinary.com/jamunoz/image/upload/v1735916036/gato3.png",
+    "createdAt": "2025-01-03T14:24:21.598Z",
+    "updatedAt": "2025-01-06T18:02:08.973Z",
+    "protectoraId": 5,
+    "vacunas": [
+      {
+        "id": 15,
+        "nombre": "Leucemia felina",
+        "especie": "gatos",
+        "createdAt": "2025-01-03T13:06:07.360Z",
+        "updatedAt": "2025-01-03T13:06:07.360Z"
+      },
+      {
+        "id": 16,
+        "nombre": "Peritonitis infecciosa felina",
+        "especie": "gatos",
+        "createdAt": "2025-01-03T13:06:07.360Z",
+        "updatedAt": "2025-01-03T13:06:07.360Z"
+      },
+      {
+        "id": 45,
+        "nombre": "COVID gatos",
+        "especie": "gatos",
+        "createdAt": "2025-01-06T18:51:56.034Z",
+        "updatedAt": "2025-01-06T18:52:16.299Z"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "nombre": "Kan",
+    "descripcion": "Golden retriever adulto",
+    "fecha_nacimiento": "2025-01-22T00:00:00.000Z",
+    "foto": "https://res.cloudinary.com/jamunoz/image/upload/v1735916131/perro2.webp",
+    "createdAt": "2025-01-03T13:14:28.883Z",
+    "updatedAt": "2025-01-08T15:44:37.535Z",
+    "protectoraId": null,
+    "vacunas": [
+      {
+        "id": 17,
+        "nombre": "Rabia",
+        "especie": "perros y gatos",
+        "createdAt": "2025-01-03T13:06:07.360Z",
+        "updatedAt": "2025-01-06T18:56:18.854Z"
+      }
+    ]
+  },
+  {
+    "id": 59,
+    "nombre": "peruvis",
+    "descripcion": "Es un perro peruano",
+    "fecha_nacimiento": "2024-03-13T00:00:00.000Z",
+    "foto": "https://res.cloudinary.com/jamunoz/image/upload/v1736350656/Captura%20de%20pantalla%202025-01-08%20163530.png",
+    "createdAt": "2025-01-08T15:37:37.221Z",
+    "updatedAt": "2025-10-23T11:32:22.733Z",
+    "protectoraId": null,
+    "vacunas": [
+      {
+        "id": 10,
+        "nombre": "Moquillo en perros",
+        "especie": "perros",
+        "createdAt": "2025-01-03T13:06:07.360Z",
+        "updatedAt": "2025-01-03T13:06:07.360Z"
+      },
+      {
+        "id": 11,
+        "nombre": "Parvovirosis en perros",
+        "especie": "perros",
+        "createdAt": "2025-01-03T13:06:07.360Z",
+        "updatedAt": "2025-01-03T13:06:07.360Z"
+      },
+      {
+        "id": 12,
+        "nombre": "Hepatitis vírica canina",
+        "especie": "perros",
+        "createdAt": "2025-01-03T13:06:07.360Z",
+        "updatedAt": "2025-01-03T13:06:07.360Z"
+      },
+      {
+        "id": 17,
+        "nombre": "Rabia",
+        "especie": "perros y gatos",
+        "createdAt": "2025-01-03T13:06:07.360Z",
+        "updatedAt": "2025-01-06T18:56:18.854Z"
+      }
+    ]
+  },
+  {
+    "id": 47,
+    "nombre": "Dina",
+    "descripcion": "Perrita muy cariñosa",
+    "fecha_nacimiento": "2025-01-04T00:00:00.000Z",
+    "foto": "https://res.cloudinary.com/jamunoz/image/upload/v1736115150/perro5.webp",
+    "createdAt": "2025-01-04T19:52:24.252Z",
+    "updatedAt": "2025-01-05T22:12:31.125Z",
+    "protectoraId": 5,
+    "vacunas": []
+  },
+  {
+    "id": 49,
+    "nombre": "Zeus",
+    "descripcion": "Cachorro de pocas semanas",
+    "fecha_nacimiento": "2025-01-05T00:00:00.000Z",
+    "foto": "https://res.cloudinary.com/jamunoz/image/upload/v1736115202/perro6.jpg",
+    "createdAt": "2025-01-05T21:10:05.742Z",
+    "updatedAt": "2025-01-05T22:13:23.349Z",
+    "protectoraId": 5,
+    "vacunas": []
+  },
+  {
+    "id": 54,
+    "nombre": "Starky",
+    "descripcion": "Perro juguetón",
+    "fecha_nacimiento": "2025-01-05T00:00:00.000Z",
+    "foto": "https://res.cloudinary.com/jamunoz/image/upload/v1736115107/perro4.webp",
+    "createdAt": "2025-01-05T21:29:36.395Z",
+    "updatedAt": "2025-01-25T14:25:20.479Z",
+    "protectoraId": 16,
+    "vacunas": [
+      {
+        "id": 17,
+        "nombre": "Rabia",
+        "especie": "perros y gatos",
+        "createdAt": "2025-01-03T13:06:07.360Z",
+        "updatedAt": "2025-01-06T18:56:18.854Z"
+      }
+    ]
+  }
+]

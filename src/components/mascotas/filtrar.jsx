@@ -3,31 +3,31 @@ import { useRouter, usePathname } from 'next/navigation'
 import { ArrowDownAZ, ArrowDownZA, CircleChevronLeft, CircleChevronRight, ClockArrowDown, ClockArrowUp, RefreshCw, Search } from "lucide-react";
 import { useFormStatus } from 'react-dom'
 import { useDebouncedCallback } from "use-debounce";
-import { PER_PAGE } from '@/lib/pagination';
+
 
 
 const classSort = "size-10 p-2 text-white rounded-full bg-blue-100 hover:cursor-pointer hover:bg-blue-300 peer-checked:bg-blue-400 peer-checked:duration-[1s]"
 
 
-export default function Filtrar({ totalPages, query, sort, page, per_page }) {
+export default function Filtrar({ totalPages, query, sort, page, limit }) {
 
     const router = useRouter()
     const pathname = usePathname()
     const { pending } = useFormStatus()
 
 
-    function updatePage({ query, sort, page, per_page }) {
+    function updatePage({ query, sort, page, limit }) {
         const params = new URLSearchParams()
 
         params.set('query', query ?? '')
         params.set('sort', sort ?? 'createdAt desc')
         params.set('page', page ?? 1)
-        params.set('per_page', per_page ?? PER_PAGE)
+        params.set('limit', limit ?? 10)
 
         router.replace(pathname + '?' + params.toString());
     }
 
-    const debounce = useDebouncedCallback((e) => updatePage({ query: e.target.value, sort, per_page }), 500)
+    const debounce = useDebouncedCallback((e) => updatePage({ query: e.target.value, sort, limit }), 500)
 
 
     return (
@@ -41,7 +41,7 @@ export default function Filtrar({ totalPages, query, sort, page, per_page }) {
                         type="radio" name="sort"
                         value='nombre asc'
                         checked={sort == 'nombre asc'}
-                        onChange={(e) => updatePage({ query, page, per_page, sort: e.target.value })}
+                        onChange={(e) => updatePage({ query, page, limit, sort: e.target.value })}
                         className="hidden peer"
                     />
                     <ArrowDownAZ className={classSort} />
@@ -52,7 +52,7 @@ export default function Filtrar({ totalPages, query, sort, page, per_page }) {
                         type="radio" name="sort"
                         value='nombre desc'
                         checked={sort == 'nombre desc'}
-                        onChange={(e) => updatePage({ query, page, per_page, sort: e.target.value })}
+                        onChange={(e) => updatePage({ query, page, limit, sort: e.target.value })}
                         className="hidden peer"
                     />
                     <ArrowDownZA className={classSort} />
@@ -63,7 +63,7 @@ export default function Filtrar({ totalPages, query, sort, page, per_page }) {
                         type="radio" name="sort"
                         value='createdAt asc'
                         checked={sort == 'createdAt asc'}
-                        onChange={(e) => updatePage({ query, page, per_page, sort: e.target.value })}
+                        onChange={(e) => updatePage({ query, page, limit, sort: e.target.value })}
                         className="hidden peer"
                     />
                     <ClockArrowDown className={classSort} />
@@ -74,7 +74,7 @@ export default function Filtrar({ totalPages, query, sort, page, per_page }) {
                         type="radio" name="sort"
                         value='createdAt desc'
                         checked={sort == 'createdAt desc'}
-                        onChange={(e) => updatePage({ query, page, per_page, sort: e.target.value })}
+                        onChange={(e) => updatePage({ query, page, limit, sort: e.target.value })}
                         className="hidden peer"
                     />
                     <ClockArrowUp className={classSort} />
@@ -100,8 +100,8 @@ export default function Filtrar({ totalPages, query, sort, page, per_page }) {
             {/* ---------- Paginar - Número de items ---------- */}
 
             <div className="flex gap-4 justify-end items-center">
-                <select name="per_page" value={per_page}
-                    onChange={(e) => updatePage({ query, page, sort, per_page: e.target.value })}
+                <select name="limit" value={10}
+                    onChange={(e) => updatePage({ query, page, sort, limit: e.target.value })}
                     className="py-2 px-4 bg-blue-100 w-fit text-right rounded-md focus:outline-none">
                     <option value={5}> 5 items por página </option>
                     <option value={10}> 10 items por página </option>

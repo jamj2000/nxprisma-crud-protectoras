@@ -1,17 +1,17 @@
 import MascotasLista from '@/components/mascotas/lista'
 import { Suspense } from 'react'
-import { PER_PAGE } from '@/lib/pagination';
+
 import Loading from './loading';
 
 
 export default async function PaginaMascotas({ searchParams }) {
-    let { query, sort, page, per_page } = await searchParams
+    let { query, sort, page, limit } = await searchParams
 
     // controlamos valores undefined
     query ??= ''
     sort ??= 'createdAt desc'
     page ??= 1
-    per_page ??= PER_PAGE
+    limit ??= 10
 
     // controlamos valor 0 o negativos en page
     if (Number(page) < 1) redirect('/mascotas?' + new URLSearchParams({ query, sort, page: 1 }))
@@ -24,7 +24,7 @@ export default async function PaginaMascotas({ searchParams }) {
 
 
             <Suspense fallback={<Loading />}>
-                <MascotasLista query={query} sort={sort} page={page} per_page={per_page} />
+                <MascotasLista query={query} sort={sort} page={page} limit={10} />
             </Suspense>
 
         </div>

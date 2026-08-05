@@ -1,0 +1,26 @@
+[
+  {
+    "id": 5,
+    "nombre": "El refugio",
+    "localidad": "Puente Genil",
+    "telefono": "678111112",
+    "createdAt": "2025-01-03T13:06:07.816Z",
+    "updatedAt": "2025-01-03T13:06:07.816Z"
+  },
+  {
+    "id": 9,
+    "nombre": "El álamo",
+    "localidad": "Rute",
+    "telefono": "678111222",
+    "createdAt": "2025-01-06T18:58:22.774Z",
+    "updatedAt": "2025-01-06T18:58:28.605Z"
+  },
+  {
+    "id": 16,
+    "nombre": "Asociación protectora local",
+    "localidad": "Montilla",
+    "telefono": "",
+    "createdAt": "2025-01-25T14:24:58.324Z",
+    "updatedAt": "2025-01-25T14:24:58.324Z"
+  }
+]

@@ -10,8 +10,8 @@ import Filtrar from "@/components/mascotas/filtrar";
 import MascotaInsertar from "@/components/mascotas/insertar";
 
 
-async function Mascotas({ query, sort, page, per_page }) {
-    // const { mascotas, totalPages } = await obtenerMascotasVacunas({ query, sort, page, per_page })
+async function Mascotas({ query, sort, page, limit }) {
+    // const { mascotas, totalPages } = await obtenerMascotasVacunas({ query, sort, page, limit })
     // const protectoras = await obtenerProtectoras()
     // const vacunas = await obtenerVacunas()
 
@@ -22,7 +22,7 @@ async function Mascotas({ query, sort, page, per_page }) {
         protectoras,
         vacunas
     ] = await Promise.all([
-        obtenerMascotasVacunas({ query, sort, page, per_page }),
+        obtenerMascotasVacunas({ query, sort, page, limit }),
         obtenerProtectoras(),  // incluye mascotas
         obtenerVacunas()
     ])
@@ -30,7 +30,7 @@ async function Mascotas({ query, sort, page, per_page }) {
     return (
         <>
             <Form action="" className='flex flex-col gap-4 mb-4'>
-                <Filtrar totalPages={totalPages} query={query} sort={sort} page={page} per_page={per_page} />
+                <Filtrar totalPages={totalPages} query={query} sort={sort} page={page} limit={10} />
             </Form>
 
 
@@ -44,7 +44,7 @@ async function Mascotas({ query, sort, page, per_page }) {
 
                 <div key={mascota.id} className="px-4 py-1 flex justify-between items-center even:bg-blue-100 odd:bg-slate-100">
 
-                    <Link prefetch={true} 
+                    <Link prefetch={true}
                         href={`/mascotas/${mascota.id}`}
                         className="font-bold hover:text-blue-700">
                         {mascota.nombre}
