@@ -1,5 +1,5 @@
 'use client'
-import { eliminarMascota } from '@/lib/actions'
+import { deleteMascota } from '@/lib/actions'
 import { useActionState, useEffect, useId } from 'react'
 import { RefreshCw, Trash } from 'lucide-react';
 import { toast } from 'sonner';
@@ -12,7 +12,7 @@ export default function MascotaEliminar({ mascota = {}, protectoras = [] }) {
     const params = useParams()
     const formId = useId()
     const { refresh, back } = useRouter()
-    const [state, action, pending] = useActionState(eliminarMascota, {})
+    const [state, action, pending] = useActionState(deleteMascota, {})
 
 
     useEffect(() => {

@@ -1,9 +1,17 @@
-import { PrismaClient } from '@prisma/client';
+import "dotenv/config";
+import { PrismaClient } from "../src/generated/prisma/client"
+const connectionString = process.env.DATABASE_URL
+
+
+import { PrismaPg } from "@prisma/adapter-pg";
+const adapter = new PrismaPg({ connectionString });
+const prisma = new PrismaClient({ adapter });
+
+
 import protectoras from './protectoras.json' with { type: 'json'}
 import vacunas from './vacunas.json' with { type: 'json'}
 import mascotas from './mascotas.json' with { type: 'json'}
 
-const prisma = new PrismaClient();
 
 async function main() {
 

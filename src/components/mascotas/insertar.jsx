@@ -1,5 +1,5 @@
 'use client'
-import { nuevaMascota } from '@/lib/actions'
+import { createMascota } from '@/lib/actions'
 import { useActionState, useEffect, useId } from 'react'
 import { CircleCheck, CircleX, Plus, RefreshCw } from 'lucide-react';
 import { toast } from 'sonner';
@@ -10,7 +10,7 @@ import InputImage from '../input-image';
 
 export default function MascotaInsertar({ protectoras = [], vacunas = [] }) {
     const formId = useId()
-    const [state, action, pending] = useActionState(nuevaMascota, {})
+    const [state, action, pending] = useActionState(createMascota, {})
 
 
     useEffect(() => {

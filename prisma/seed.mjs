@@ -1,4 +1,13 @@
-import { PrismaClient } from '@prisma/client'
+import "dotenv/config";
+import { PrismaClient } from "../src/generated/prisma/client"
+const connectionString = process.env.DATABASE_URL
+
+
+import { PrismaPg } from "@prisma/adapter-pg";
+const adapter = new PrismaPg({ connectionString });
+const prisma = new PrismaClient({ adapter });
+
+
 
 // DECLARACIÓN DE DATOS
 const protectoras = [
@@ -76,7 +85,6 @@ const vacunas = [
 ];
 
 
-const prisma = new PrismaClient();
 
 const load = async () => {
     try {

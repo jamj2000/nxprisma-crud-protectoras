@@ -55,24 +55,16 @@ const result = await prisma.mascota.create({
 
 */
 
-export async function nuevaMascota(prevState, formData) {
+export async function createMascota(prevState, formData) {
   const nombre = formData.get('nombre')
   const descripcion = formData.get('descripcion')
-  const fecha_nacimiento = new Date(formData.get('fecha_nacimiento'))
+  const fecha_nacimiento = formData.get('fecha_nacimiento')
   const file = formData.get('file')
   let foto;  // URL de la foto
   const protectoraId = Number(formData.get('protectoraId')) || null
 
-  // Array con IDs de todas las vacunas. Formato: [ {id: 1}, {id: 2}, ...]
-  const vacunasIDs = await prisma.vacuna.findMany({
-    select: { id: true }
-  })
+  const vacunas = formData.getAll('vacunas').map(id => ({ id: +id }))
 
-  const connect = vacunasIDs.filter(vacuna => formData.get(vacuna.id) !== null)
-  const vacunas = { connect }
-
-  // Información de depuración
-  // console.log('VACUNAS ', vacunas);
 
 
   try {
@@ -82,14 +74,14 @@ export async function nuevaMascota(prevState, formData) {
       console.log('foto', foto);
     }
 
-    const mascota = await prisma.mascota.create({
+    await prisma.mascota.create({
       data: {
         nombre,
         descripcion,
         fecha_nacimiento,
         foto,
         protectoraId,
-        vacunas,
+        vacunas: { connect: vacunas },
       },
     })
 
@@ -119,31 +111,17 @@ const result = await prisma.mascota.update({
 
 */
 
-export async function modificarMascota(prevState, formData) {
+export async function updateMascota(prevState, formData) {
   const id = Number(formData.get('id'))
   const nombre = formData.get('nombre')
   const descripcion = formData.get('descripcion')
-  const fecha_nacimiento = new Date(formData.get('fecha_nacimiento'))
+  const fecha_nacimiento = formData.get('fecha_nacimiento')
   const file = formData.get('file')
   let foto = formData.get('foto')
   const protectoraId = Number(formData.get('protectoraId')) || null
 
-  // Array con IDs de todas las vacunas. Formato: [ {id: 1}, {id: 2}, ...]
-  const vacunasIDs = await prisma.vacuna.findMany({
-    select: { id: true }
-  })
+  const vacunas = formData.getAll('vacunas').map(id => ({ id: +id }))
 
-  // -> Si NO disponemos de NodeJS 21+ 
-  const connect = vacunasIDs.filter(vacuna => formData.get(vacuna.id) !== null)
-  const disconnect = vacunasIDs.filter(vacuna => formData.get(vacuna.id) === null)
-  const vacunas = { connect, disconnect }
-
-  // -> Si disponemos de NodeJS 21+
-  // Objecto con 2 arrays: connect con IDs de vacunas marcadas por el usuario y disconnect con IDs no marcadas
-  // const vacunas = Object.groupBy(vacunasIDs, vacuna => formData.get(vacuna.id) !== null ? 'connect' : 'disconnect')
-
-  // Información para depuración
-  // console.log('VACUNAS ', vacunas);
 
   try {
     // si tenemos nuevo archivo en el input type=file
@@ -152,7 +130,7 @@ export async function modificarMascota(prevState, formData) {
       console.log('foto', foto);
     }
 
-    const mascota = await prisma.mascota.update({
+    await prisma.mascota.update({
       where: { id },
       data: {
         nombre,
@@ -160,7 +138,7 @@ export async function modificarMascota(prevState, formData) {
         fecha_nacimiento,
         foto,
         protectoraId,
-        vacunas,
+        vacunas: { set: vacunas }
       },
     })
 
@@ -178,14 +156,12 @@ en lugar de revalidatePath en el servidor para dar tiempo
 a mostrar el mensaje success o error antes de 
 eliminar el elemento de la vista
 */
-export async function eliminarMascota(prevState, formData) {
+export async function deleteMascota(prevState, formData) {
   const id = Number(formData.get('id'))
 
   try {
-    const mascota = await prisma.mascota.delete({
-      where: {
-        id: id,
-      },
+    await prisma.mascota.delete({
+      where: { id },
     })
 
     // revalidatePath('/mascotas')
@@ -199,76 +175,66 @@ export async function eliminarMascota(prevState, formData) {
 
 //// VACUNAS
 
-export async function nuevaVacuna(prevState, formData) {
+export async function createVacuna(prevState, formData) {
   const nombre = formData.get('nombre')
   const especie = formData.get('especie')
 
-  // Array con IDs de todas las mascotas. Formato: [ {id: 1}, {id: 2}, ...]
-  const mascotasIDs = await prisma.mascota.findMany({
-    select: { id: true }
-  })
-
-  const connect = mascotasIDs.filter(mascota => formData.get(mascota.id) !== null)
-  const mascotas = { connect }
-
-  // Información de depuración
-  // console.log('MASCOTAS ', mascotas);
+  const mascotas = formData.getAll('mascotas').map(id => ({ id: +id }))
 
 
   try {
-    const vacuna = await prisma.vacuna.create({
+    await prisma.vacuna.create({
       data: {
         nombre,
         especie,
-        mascotas,
+        mascotas: { connect: mascotas }
       }
     })
 
-    revalidatePath('/vacunas')
-    return { success: 'Creación exitosa' }
   } catch (error) {
-    return { error: error.message }
+    return {
+      type: "error",
+      message: "Error al crear la vacuna"
+    }
+  }
+
+  revalidatePath('/vacunas');
+  return {
+    type: "success",
+    message: "Vacuna creada correctamente"
   }
 }
 
 
-export async function modificarVacuna(prevState, formData) {
+export async function updateVacuna(prevState, formData) {
   const id = Number(formData.get('id'))
   const nombre = formData.get('nombre')
   const especie = formData.get('especie')
 
-  // Array con IDs de todas las mascotas. Formato: [ {id: 1}, {id: 2}, ...]
-  const mascotasIDs = await prisma.mascota.findMany({
-    select: { id: true }
-  })
-
-  // -> Si NO disponemos de NodeJS 21+ 
-  const connect = mascotasIDs.filter(mascota => formData.get(mascota.id) !== null)
-  const disconnect = mascotasIDs.filter(mascota => formData.get(mascota.id) === null)
-  const mascotas = { connect, disconnect }
-
-  // -> Si disponemos de NodeJS 21+
-  // Objecto con 2 arrays: connect con IDs de mascotas marcadas por el usuario y disconnect con IDs no marcadas
-  // const mascotas = Object.groupBy(mascotasIDs, mascota => formData.get(mascota.id) !== null ? 'connect' : 'disconnect')
-
-
-  // Información para depuración
-  console.log('MASCOTAS ', mascotas);
+  const mascotas = formData.getAll('mascotas').map(id => ({ id: +id }))
 
   try {
-    const vacuna = await prisma.vacuna.update({
+    await prisma.vacuna.update({
       where: { id },
       data: {
         nombre,
         especie,
-        mascotas,
+        mascotas: { set: mascotas },
       }
     })
 
-    revalidatePath('/vacunas')
-    return { success: 'Modificación exitosa' }
+
   } catch (error) {
-    return { error: error.message }
+    return {
+      type: "error",
+      message: "Error al actualizar la vacuna"
+    }
+  }
+
+  revalidatePath('/vacunas');
+  return {
+    type: "success",
+    message: "Vacuna actualizada correctamente"
   }
 }
 
@@ -278,22 +244,28 @@ en lugar de revalidatePath en el servidor para dar tiempo
 a mostrar el mensaje success o error antes de 
 eliminar el elemento de la vista
 */
-export async function eliminarVacuna(prevState, formData) {
+export async function deleteVacuna(prevState, formData) {
   const id = Number(formData.get('id'))
 
   try {
-    const vacuna = await prisma.vacuna.delete({
-      where: {
-        id: id,
-      },
+    await prisma.vacuna.delete({
+      where: { id },
     })
 
-    // revalidatePath('/vacunas')
-    return { success: 'Eliminación exitosa' }
   } catch (error) {
-    return { error: error.message }
+    return {
+      type: "error",
+      message: "Error al eliminar la vacuna"
+    }
+  }
+
+  revalidatePath('/vacunas');
+  return {
+    type: "success",
+    message: "Vacuna eliminada correctamente"
   }
 }
+
 
 
 
@@ -301,63 +273,102 @@ export async function eliminarVacuna(prevState, formData) {
 
 //// PROTECTORAS
 
-export async function nuevaProtectora(prevState, formData) {
+export async function createProtectora(prevState, formData) {
   const nombre = formData.get('nombre')
   const localidad = formData.get('localidad')
   const telefono = formData.get('telefono')
 
+
+  const mascotas = formData.getAll('mascotas').map(id => ({ id: +id }))
+
+
   try {
-    const protectora = await prisma.protectora.create({
-      data: { nombre, localidad, telefono },
+    await prisma.protectora.create({
+      data: {
+        nombre,
+        localidad,
+        telefono,
+        mascotas: { connect: mascotas },
+      }
     })
 
-    revalidatePath('/protectoras')
-    return { success: 'Creación exitosa' }
   } catch (error) {
-    return { error: error.message }
+    return {
+      type: "error",
+      message: "Error al crear la protectora"
+    }
   }
+
+  revalidatePath('/protectoras');
+  return {
+    type: "success",
+    message: "Protectora creada correctamente"
+  }
+
 }
 
 
-export async function modificarProtectora(prevState, formData) {
+
+
+
+
+
+export async function updateProtectora(prevState, formData) {
   const id = Number(formData.get('id'))
   const nombre = formData.get('nombre')
   const localidad = formData.get('localidad')
   const telefono = formData.get('telefono')
 
+
+  const mascotas = formData.getAll('mascotas').map(id => ({ id: +id }))
+
+
   try {
-    const protectora = await prisma.protectora.update({
+    await prisma.protectora.update({
       where: { id },
-      data: { nombre, localidad, telefono },
+      data: {
+        nombre,
+        localidad,
+        telefono,
+        mascotas: { set: mascotas },
+      }
     })
 
-    revalidatePath('/protectoras')
-    return { success: 'Modificación exitosa' }
   } catch (error) {
-    return { error: error.message }
+    return {
+      type: "error",
+      message: "Error al modificar la protectora"
+    }
   }
+
+  revalidatePath('/protectoras');
+  return {
+    type: "success",
+    message: "Protectora modificada correctamente"
+  }
+
 }
 
-/*
-cuando eliminamos un elemento usaremos refresh en el cliente 
-en lugar de revalidatePath en el servidor para dar tiempo
-a mostrar el mensaje success o error antes de 
-eliminar el elemento de la vista
-*/
-export async function eliminarProtectora(prevState, formData) {
+
+export async function deleteProtectora(prevState, formData) {
   const id = Number(formData.get('id'))
 
   try {
-    const protectora = await prisma.protectora.delete({
-      where: {
-        id: id,
-      },
+    await prisma.protectora.delete({
+      where: { id }
     })
 
-    //revalidatePath('/protectoras')
-    return { success: 'Eliminación exitosa' }
   } catch (error) {
-    return { error: error.message }
+    console.log(error);
+    return {
+      type: "error",
+      message: "Error al eliminar la protectora"
+    }
+  }
+
+  revalidatePath('/protectoras');
+  return {
+    type: "success",
+    message: "Protectora eliminada correctamente"
   }
 }
-

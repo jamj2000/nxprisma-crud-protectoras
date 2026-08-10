@@ -1,5 +1,5 @@
 import Mascota from "@/components/mascotas/item"
-import Spinner from "@/components/spinner"
+import { Spinner } from "@/components/simpleui"
 import { Suspense } from "react"
 
 

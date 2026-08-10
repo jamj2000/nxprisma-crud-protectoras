@@ -3,6 +3,10 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Footer from "@/components/footer";
 import { Toaster } from "sonner";
 import Header from "@/components/header";
+import { ThemeProvider } from "next-themes";
+import { MainMenu, MenuLink, ThemeToggle } from "@/components/simpleui";
+import Link from "next/link";
+import Image from "next/image";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,15 +26,59 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="es">
+    <html
+      suppressHydrationWarning
+      lang="es"
+    >
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`} >
-        <Header />
-        <main className="container mx-auto grow px-6 py-4">
-          {children}
-        </main>
-        <Footer />
-        <Toaster position="top-right" closeButton={true} duration={2000} richColors />
+        {/* <Header /> */}
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} enableColorScheme>
+
+          <nav className="z-50 px-2 w-full flex gap-2 items-center justify-between py-4  bg-neutral-500/50  backdrop-blur-sm">
+            <div className="bg-white dark:bg-black rounded-full px-4">
+              <Logo />
+            </div>
+
+            <div className="flex gap-2 items-center">
+              <ThemeToggle />
+              <MainMenu>
+                <MenuLink href="/protectoras">Protectoras</MenuLink>
+                <MenuLink href="/mascotas">Mascotas</MenuLink>
+                <MenuLink href="/vacunas">Vacunas</MenuLink>
+              </MainMenu>
+            </div>
+          </nav>
+
+          <main className="container mx-auto grow px-6 py-4">
+            {children}
+          </main>
+          <Footer />
+          <Toaster position="top-center" richColors />
+        </ThemeProvider>
       </body>
     </html>
   );
 }
+
+
+const Logo = () => (
+
+  <Link
+    href="/"
+    className="flex gap-3 items-center">
+
+    <Image
+      src="/logo.svg"
+      height={48}
+      width={48}
+      alt="Protectora Logo"
+      loading="eager"
+    />
+
+    <span className="hidden sm:block self-center text-xl font-semibold whitespace-nowrap text-gray-900 dark:text-gray-100/80">
+      Protect
+    </span>
+  </Link>
+
+
+)

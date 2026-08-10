@@ -42,30 +42,3 @@ function Logo() {
     );
 }
 
-
-// function Login({ sesion }) {
-
-//     if (sesion) return (
-//         <Link href="/auth/logout">
-//             <button className="px-4 py-2 flex gap-2 items-center rounded-lg bg-white/80 dark:bg-blue-400/80 transition duration-500 hover:bg-white hover:shadow-xl ">
-//                 <img
-//                     src={sesion.user?.image ? sesion?.user.image : "/user.svg"}
-//                     className="w-6 rounded-[50%]"
-//                     alt="FloWeather Logo"
-//                 /> Logout
-//             </button>
-//         </Link>)
-
-//     return (
-//         <Link href="/auth/login">
-//             <button className="px-4 py-2 flex gap-2 items-center rounded-lg bg-white/80 dark:bg-blue-400/80  transition duration-500 hover:bg-white hover:shadow-xl 	">
-//                 <img
-//                     src={"/logo-login.png"}
-//                     className="w-6"
-//                     alt="FloWeather Logo"
-//                 /> Login
-//             </button>
-//         </Link>
-//     )
-
-// }

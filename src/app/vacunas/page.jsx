@@ -1,6 +1,7 @@
-import VacunasLista from '@/components/vacunas/lista'
-import Spinner from '@/components/spinner'
+import { Spinner, Table } from '@/components/simpleui'
 import { Suspense } from 'react'
+import { getMascotasIdNombre, getVacunas } from '@/lib/data'
+import { CreateVacuna, DeleteVacuna, UpdateVacuna, ViewVacuna } from './components'
 
 export default function PaginaVacunas() {
     return (
@@ -10,10 +11,45 @@ export default function PaginaVacunas() {
             </div>
 
 
-            <Suspense fallback={<Spinner />}>
-                <VacunasLista />
+            <Suspense>
+                <VacunasData />
             </Suspense>
 
         </div>
     )
+}
+
+
+const VacunasData = async () => {
+    const [vacunas, mascotasIdNombre] = await Promise.all([
+        getVacunas(),
+        getMascotasIdNombre()
+    ])
+
+    const data = vacunas.map(v => ({ ...v, mascotasIdNombre }))
+
+    // console.log(JSON.stringify(data, null, 2))
+
+    return (
+        <Table
+            prefix="/vacunas"
+            data={data}
+            columns={[
+                { name: "nombre", label: "Nombre" },
+                { name: "especie", label: "Especie" },
+            ]}
+            actions={[
+                ViewVacuna,
+                UpdateVacuna,
+                DeleteVacuna
+            ]}
+            sort="nombre"
+        >
+            <div className="flex justify-between">
+                <h2 className="text-2xl text-center inline"></h2>
+                <CreateVacuna data={{ mascotasIdNombre: mascotasIdNombre }} />
+            </div>
+        </Table>
+    )
+
 }

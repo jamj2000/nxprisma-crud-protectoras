@@ -2,16 +2,16 @@ import BackButton from "@/components/back-button";
 import MascotaEliminar from "@/components/mascotas/eliminar";
 import MascotaModificar from "@/components/mascotas/modificar";
 import MascotaVer from "@/components/mascotas/ver";
-import Modal from "@/components/modal";
-import { obtenerMascota, obtenerProtectoras, obtenerVacunas } from "@/lib/data";
+import { Modal } from "@/components/simpleui";
+import { getMascota, getProtectoras, getVacunas } from "@/lib/data";
 import { ArrowLeft, Pencil, Trash } from "lucide-react";
 import { notFound } from "next/navigation";
 
 
 async function Mascota({ id }) {
-    const mascota = await obtenerMascota(id)  // incluye vacunas
-    const protectoras = await obtenerProtectoras() // incluye mascotas
-    const vacunas = await obtenerVacunas()
+    const mascota = await getMascota(id)  // incluye vacunas
+    const protectoras = await getProtectoras() // incluye mascotas
+    const vacunas = await getVacunas()
 
     if (!mascota) notFound()
 

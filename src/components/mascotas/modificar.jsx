@@ -2,7 +2,7 @@
 import { useActionState, useEffect, useId } from 'react'
 import { Pencil, RefreshCw } from 'lucide-react';
 import { toast } from 'sonner';
-import { modificarMascota } from '@/lib/actions'
+import { updateMascota } from '@/lib/actions'
 import InputImage, { default_image } from '@/components/input-image';
 
 
@@ -10,7 +10,7 @@ import InputImage, { default_image } from '@/components/input-image';
 
 export default function MascotaModificar({ mascota = {}, protectoras = [], vacunas = [] }) {
     const formId = useId()
-    const [state, action, pending] = useActionState(modificarMascota, {})
+    const [state, action, pending] = useActionState(updateMascota, {})
 
     useEffect(() => {
         if (state.success) {

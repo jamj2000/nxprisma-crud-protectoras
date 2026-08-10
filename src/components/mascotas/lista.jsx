@@ -1,6 +1,6 @@
-import { obtenerMascotasVacunas, obtenerProtectoras, obtenerVacunas } from "@/lib/data"
+import { getMascotasVacunas, getProtectoras, getVacunas } from "@/lib/data"
 import { Eye, Pencil, Plus, Trash } from 'lucide-react'
-import Modal from "@/components/modal"
+import { Modal } from "@/components/simpleui"
 import MascotaVer from "@/components/mascotas/ver"
 import MascotaModificar from '@/components/mascotas/modificar';
 import MascotaEliminar from '@/components/mascotas/eliminar';
@@ -11,9 +11,9 @@ import MascotaInsertar from "@/components/mascotas/insertar";
 
 
 async function Mascotas({ query, sort, page, limit }) {
-    // const { mascotas, totalPages } = await obtenerMascotasVacunas({ query, sort, page, limit })
-    // const protectoras = await obtenerProtectoras()
-    // const vacunas = await obtenerVacunas()
+    // const { mascotas, totalPages } = await getMascotasVacunas({ query, sort, page, limit })
+    // const protectoras = await getProtectoras()
+    // const vacunas = await getVacunas()
 
     // Para hacer consultas en paralelo y mejorar la eficiencia
     // usamos Promise.all
@@ -22,9 +22,9 @@ async function Mascotas({ query, sort, page, limit }) {
         protectoras,
         vacunas
     ] = await Promise.all([
-        obtenerMascotasVacunas({ query, sort, page, limit }),
-        obtenerProtectoras(),  // incluye mascotas
-        obtenerVacunas()
+        getMascotasVacunas({ query, sort, page, limit }),
+        getProtectoras(),  // incluye mascotas
+        getVacunas()
     ])
 
     return (
