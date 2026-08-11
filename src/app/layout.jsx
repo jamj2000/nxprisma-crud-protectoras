@@ -28,6 +28,7 @@ export default function RootLayout({ children }) {
     <html
       suppressHydrationWarning
       lang="es"
+      className="antialiased scrollbar-gutter-stable"
     >
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`} >
         {/* <Header /> */}
