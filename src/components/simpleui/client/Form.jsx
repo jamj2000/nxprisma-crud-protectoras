@@ -34,44 +34,6 @@ const COMPONENT_MAP = {
 
 
 
-const fields = [
-    {
-        name: "nombre",
-        label: "Nombre",
-        component: "InputText"
-    },
-    {
-        name: "empresa",
-        label: "Empresa",
-        component: "InputText"
-    },
-
-    {
-        name: "cargo",
-        label: "Cargo",
-        component: "InputText"
-    },
-    {
-        name: "habilidades",
-        label: "Habilidades",
-        component: "InputGroup",
-        radio: false,
-        options: [
-            ["Leer", "leer", false],
-            ["Cine", "cine", false],
-            ["Música", "música", true],
-            ["Deporte", "deporte", false]
-        ]
-    },
-    {
-        labels: ["Guardar", "Guardando ..."],
-        component: "Submit"
-    }
-];
-
-
-
-
 
 export const Form = ({
     action = async () => { },
@@ -120,7 +82,7 @@ export const Form = ({
                         <ComponenteUI
                             label={input.label}
                             name={input.name}
-                            defaultValue={valorDefault}
+                            value={valorDefault}
                             disabled={disabled || input.disabled}
                             {...input} // Pasa cualquier otro campo
                         />

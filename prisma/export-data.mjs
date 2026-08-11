@@ -40,9 +40,7 @@ async function main() {
                 } : undefined
             },
         })
-    }
-    )
-    );
+    }));
 
     console.log('mascotas creadas', mascotasCreadas)
 

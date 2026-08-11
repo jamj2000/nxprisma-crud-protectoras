@@ -1,28 +1,44 @@
-'use client' // Error boundaries must be Client Components
+"use client";
 
-import { useEffect } from 'react'
+import { useEffect } from "react";
 
 export default function Error({ error, reset }) {
     useEffect(() => {
-        // Log the error to an error reporting service
-        console.log(error)
-    }, [error])
+        console.error(error);
+    }, [error]);
 
     return (
-        <div className='grid place-content-center min-h-screen'>
-            <h2 className='text-red-400 text-2xl font-bold'>Hubo una excepción no capturada</h2>
-            <p>{error.message}</p>
+        <main className="min-h-screen flex items-center justify-center bg-gray-950 px-6 text-white">
+            <div className="w-full max-w-lg text-center">
+                <div className="mb-6 text-6xl">⚠️</div>
 
-            <ul className='list-disc p-4'>
-                <li className='text-red-700'>¿Has intentado subir una imagen mayor de 4MB?</li>
-                <li className='text-red-700'>¿Has superado el límite de 500 operaciones?</li>
-            </ul>
+                <h1 className="text-4xl font-bold tracking-tight">
+                    Algo salió mal
+                </h1>
 
-            <button
-                onClick={() => reset()}
-                className="px-4 py-2 border mt-4 rounded-md text-white bg-blue-500">
-                Intentar de nuevo
-            </button>
-        </div>
-    )
+                <p className="mt-4 text-gray-400">
+                    Ha ocurrido un error inesperado. Puedes intentar cargar la página
+                    de nuevo.
+                </p>
+
+                <div className="mt-8 flex justify-center gap-4">
+                    <button
+                        onClick={() => reset()}
+                        className="rounded-lg bg-white px-5 py-3 font-medium text-gray-950 transition hover:bg-gray-200"
+                    >
+                        Intentar de nuevo
+                    </button>
+
+                    <a
+                        href="/"
+                        className="rounded-lg border border-gray-700 px-5 py-3 font-medium text-gray-300 transition hover:bg-gray-900"
+                    >
+                        Volver al inicio
+                    </a>
+                </div>
+            </div>
+        </main>
+    );
 }
+
+

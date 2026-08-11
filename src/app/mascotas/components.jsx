@@ -1,15 +1,18 @@
 'use client'   // <---- IMPORTANTE
 
 import { Form, Button, CreateIcon, DeleteIcon, Modal, UpdateIcon, ViewIcon } from "@/components/simpleui";
-import { createMascota, deleteMascota, updateMascota } from "@/lib/actions";
+import { createMascota, deleteMascota, updateMascota } from "@/app/mascotas/actions";
 
 
 
 const fields = (data) => [
     {
-        name: "file",
+        name: "foto",
         label: "Foto",
-        component: "InputImage"
+        component: "InputImage",
+        width: 240,
+        height: 240,
+        className: "self-end"
     },
     {
         name: "nombre",
@@ -19,7 +22,19 @@ const fields = (data) => [
     {
         name: "descripcion",
         label: "Descripción",
-        component: "InputText"
+        component: "InputText",
+    },
+    {
+        name: "fecha_nacimiento",
+        label: "Fecha de nacimiento",
+        component: "InputDate",
+        value: data.fecha_nacimiento?.toISOString().split('T')[0] ?? new Date().toISOString().split('T')[0]
+    },
+    {
+        name: "protectoraId",
+        label: "Protectora",
+        component: "InputSelect",
+        options: data?.protectorasIdNombre?.map(({ id, nombre }) => ([nombre, id, data.protectora?.id == id])) ?? []
     },
     {
         name: "vacunas",

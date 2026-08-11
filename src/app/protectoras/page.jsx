@@ -1,20 +1,26 @@
+import { Table } from '@/components/simpleui'
 import { CreateProtectora, DeleteProtectora, UpdateProtectora, ViewProtectora } from '@/app/protectoras/components'
-import { Spinner, Table } from '@/components/simpleui'
-import { getMascotasIdNombre, getProtectoras } from '@/lib/data'
+import { getMascotasIdNombre } from '@/app/mascotas/data'
+import { getProtectoras, getProtectorasSinMascotas } from '@/app/protectoras/data'
 import { Suspense } from 'react'
+import Link from 'next/link'
 
 
 
-export default function ProtectorasPage() {
+export default function Page() {
     return (
         <div className='container mx-auto px-4 py-10 flex flex-col'>
-            <div className='flex justify-between px-4 pb-2 mb-8 border-b-4 border-blue-100'>
-                <h1 className='text-4xl text-blue-400 font-bold'>PROTECTORAS</h1>
-            </div>
 
+            <h1 className='px-4 pb-2 text-4xl text-blue-400 font-bold mb-8 border-b-4 border-blue-100'>PROTECTORAS</h1>
 
             <Suspense>
-                <ProtectorasData />
+                <Content />
+            </Suspense>
+
+            <h2 className='mt-10 text-2xl text-blue-400 font-bold'>PROTECTORAS SIN MASCOTAS</h2>
+
+            <Suspense>
+                <SinMascotas />
             </Suspense>
 
         </div>
@@ -23,7 +29,7 @@ export default function ProtectorasPage() {
 
 
 
-const ProtectorasData = async () => {
+const Content = async () => {
     const [protectoras, mascotasIdNombre] = await Promise.all([
         getProtectoras(),
         getMascotasIdNombre()
@@ -56,4 +62,26 @@ const ProtectorasData = async () => {
         </Table>
     )
 
+}
+
+
+
+
+const SinMascotas = async () => {
+    const protectoras = await getProtectorasSinMascotas()
+    return (
+        <div>
+            {protectoras?.length > 0 ? (
+                <ul className='list-disc list-inside'>
+                    {protectoras.map((protectora) => (
+                        <li key={protectora.id}>
+                            <Link href={"/protectoras/" + protectora.id} >{protectora.nombre}</Link>
+                        </li>
+                    ))}
+                </ul>
+            ) : (
+                <p>No hay protectoras sin mascotas.</p>
+            )}
+        </div>
+    )
 }

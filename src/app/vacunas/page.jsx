@@ -1,26 +1,34 @@
-import { Spinner, Table } from '@/components/simpleui'
 import { Suspense } from 'react'
-import { getMascotasIdNombre, getVacunas } from '@/lib/data'
-import { CreateVacuna, DeleteVacuna, UpdateVacuna, ViewVacuna } from './components'
+import { CreateVacuna, DeleteVacuna, UpdateVacuna, ViewVacuna } from '@/app/vacunas/components'
+import { getMascotasIdNombre } from '@/app/mascotas/data'
+import { getVacunas, getVacunasSinAdministar } from '@/app/vacunas/data'
+import { Table } from '@/components/simpleui'
+import Link from 'next/link'
 
-export default function PaginaVacunas() {
+
+export default function Page() {
     return (
         <div className='container mx-auto px-4 py-10 flex flex-col'>
-            <div className='flex justify-between px-4 pb-2 mb-8 border-b-4 border-blue-100'>
-                <h1 className='text-4xl text-blue-400 font-bold'>VACUNAS</h1>
-            </div>
 
+            <h1 className='px-4 pb-2 text-4xl text-blue-400 font-bold mb-8 border-b-4 border-blue-100'>VACUNAS</h1>
 
             <Suspense>
-                <VacunasData />
+                <Content />
             </Suspense>
+
+            <h2 className='mt-10 text-2xl text-blue-400 font-bold'>VACUNAS SIN ADMINISTRAR</h2>
+
+            <Suspense>
+                <SinAdministrar />
+            </Suspense>
+
 
         </div>
     )
 }
 
 
-const VacunasData = async () => {
+const Content = async () => {
     const [vacunas, mascotasIdNombre] = await Promise.all([
         getVacunas(),
         getMascotasIdNombre()
@@ -51,5 +59,25 @@ const VacunasData = async () => {
             </div>
         </Table>
     )
+}
 
+
+
+const SinAdministrar = async () => {
+    const vacunas = await getVacunasSinAdministar()
+    return (
+        <div>
+            {vacunas?.length > 0 ? (
+                <ul className='list-disc list-inside'>
+                    {vacunas.map((vacuna) => (
+                        <li key={vacuna.id}>
+                            <Link href={"/vacunas/" + vacuna.id} >{vacuna.nombre}</Link>
+                        </li>
+                    ))}
+                </ul>
+            ) : (
+                <p>No hay vacunas sin administrar.</p>
+            )}
+        </div>
+    )
 }

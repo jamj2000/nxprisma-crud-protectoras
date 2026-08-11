@@ -1,20 +1,32 @@
 import { CreateMascota, DeleteMascota, UpdateMascota, ViewMascota } from '@/app/mascotas/components'
-import { Table } from '@/components/simpleui'
-import { getMascotas, getVacunasIdNombre } from '@/lib/data'
+import { getMascotas, getMascotasSinProtectora, getMascotasSinVacunar } from '@/app/mascotas/data'
+import { getProtectorasIdNombre } from '@/app/protectoras/data'
+import { getVacunasIdNombre } from '@/app/vacunas/data'
 import { Suspense } from 'react'
+import { Table } from '@/components/simpleui'
+import Link from 'next/link'
 
 
-
-export default function MascotasPage() {
+export default function Page() {
     return (
         <div className='container mx-auto px-4 py-10 flex flex-col'>
-            <div className='flex justify-between px-4 pb-2 mb-8 border-b-4 border-blue-100'>
-                <h1 className='text-4xl text-blue-400 font-bold'>MASCOTAS</h1>
-            </div>
 
+            <h1 className='px-4 pb-2 text-4xl text-blue-400 font-bold mb-8 border-b-4 border-blue-100'>MASCOTAS</h1>
 
             <Suspense>
-                <MascotasData />
+                <Content />
+            </Suspense>
+
+            <h2 className='mt-10 text-2xl text-blue-400 font-bold'>MASCOTAS SIN PROTECTORA</h2>
+
+            <Suspense>
+                <SinProtectora />
+            </Suspense>
+
+            <h2 className='mt-10 text-2xl text-blue-400 font-bold'>MASCOTAS SIN VACUNAR</h2>
+
+            <Suspense>
+                <SinVacunar />
             </Suspense>
 
         </div>
@@ -23,15 +35,16 @@ export default function MascotasPage() {
 
 
 
-const MascotasData = async () => {
-    const [mascotas, vacunasIdNombre] = await Promise.all([
+const Content = async () => {
+    const [mascotas, vacunasIdNombre, protectorasIdNombre] = await Promise.all([
         getMascotas(),
-        getVacunasIdNombre()
+        getVacunasIdNombre(),
+        getProtectorasIdNombre()
     ])
 
-    const data = mascotas.map(m => ({ ...m, vacunasIdNombre }))
+    const data = mascotas.map(m => ({ ...m, vacunasIdNombre, protectorasIdNombre }))
 
-    // console.log(JSON.stringify(data, null, 2))
+    // console.log(JSON.stringify(mascotas, null, 2))
 
     return (
         <Table
@@ -54,5 +67,48 @@ const MascotasData = async () => {
             </div>
         </Table>
     )
+}
 
+
+
+const SinProtectora = async () => {
+    const mascotas = await getMascotasSinProtectora();
+
+    return (
+        <div>
+            {mascotas?.length ? (
+                <ul className='list-disc list-inside'>
+                    {mascotas.map((mascota) => (
+                        <li key={mascota.id}>
+                            <Link href={"/mascotas/" + mascota.id} >{mascota.nombre}</Link>
+                        </li>
+                    ))}
+                </ul>
+            ) : (
+                <p>No hay mascotas sin protectora.</p>
+            )}
+        </div>
+    )
+}
+
+
+const SinVacunar = async () => {
+
+    const mascotas = await getMascotasSinVacunar()
+
+    return (
+        <div>
+            {mascotas?.length ? (
+                <ul className='list-disc list-inside'>
+                    {mascotas.map((mascota) => (
+                        <li key={mascota.id}>
+                            <Link href={"/mascotas/" + mascota.id} >{mascota.nombre}</Link>
+                        </li>
+                    ))}
+                </ul>
+            ) : (
+                <p>No hay mascotas sin vacunar.</p>
+            )}
+        </div>
+    )
 }
