@@ -1,11 +1,15 @@
 'use server'
 import prisma from '@/lib/prisma'
+import { cacheTag } from 'next/cache'
 
 
 
 
 
 export async function getVacunas() {
+    'use cache'
+    cacheTag('vacunas')
+
     try {
         const vacunas = await prisma.vacuna.findMany({
             include: {
@@ -21,6 +25,9 @@ export async function getVacunas() {
 
 
 export async function getVacuna(id) {
+    'use cache'
+    cacheTag('vacunas', id.toString())
+
     try {
         const vacuna = await prisma.vacuna.findUnique({
             where: { id: +id },
@@ -40,6 +47,9 @@ export async function getVacuna(id) {
 
 
 export async function getVacunasIdNombre() {
+    'use cache'
+    cacheTag('vacunas', 'id-nombre')
+
     try {
         const vacuna = await prisma.vacuna.findMany({
             select: {
@@ -58,6 +68,9 @@ export async function getVacunasIdNombre() {
 
 
 export async function getVacunasSinAdministar() {
+    'use cache'
+    cacheTag('vacunas', 'sin-administar')
+
     try {
         const vacunas = await prisma.vacuna.findMany({
             where: {

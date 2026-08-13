@@ -1,5 +1,5 @@
 'use server'
-import { revalidatePath } from 'next/cache';
+import { revalidatePath, updateTag } from 'next/cache';
 import prisma from '@/lib/prisma'
 import cloudinary from '@/lib/cloudinary';
 import path from 'node:path'
@@ -42,7 +42,7 @@ async function imageUpload(file) {
 export async function createMascota(prevState, formData) {
   const nombre = formData.get('nombre')
   const descripcion = formData.get('descripcion')
-  const fecha_nacimiento = formData.get('fecha_nacimiento')
+  const fecha_nacimiento = formData.get('fecha_nacimiento') + "T00:00:00.000Z"
   const protectoraId = Number(formData.get('protectoraId')) || null
   let foto = formData.get('foto')     // Tipo file
 
@@ -70,11 +70,12 @@ export async function createMascota(prevState, formData) {
   } catch (error) {
     return {
       type: "error",
-      message: "Error al registrar la mascota"
+      message: "Error al registrar la mascota" + error
     }
   }
 
-  revalidatePath('/mascotas');
+  updateTag('mascotas')
+  // revalidatePath('/mascotas');
   return {
     type: "success",
     message: "Mascota registrada correctamente"
@@ -121,7 +122,8 @@ export async function updateMascota(prevState, formData) {
     }
   }
 
-  revalidatePath('/mascotas');
+  updateTag('mascotas')
+  // revalidatePath('/mascotas');
   return {
     type: "success",
     message: "Mascota actualizada correctamente"
@@ -144,7 +146,8 @@ export async function deleteMascota(prevState, formData) {
     }
   }
 
-  revalidatePath('/mascotas');
+  updateTag('mascotas')
+  // revalidatePath('/mascotas');
   return {
     type: "success",
     message: "Mascota actualizada correctamente"

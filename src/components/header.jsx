@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { MainMenu, MenuLink, ThemeToggle } from "@/components/simpleui";
+import { Suspense } from "react";
 
 
 
@@ -16,9 +17,11 @@ export default function Header() {
             <div className="flex gap-2 items-center">
                 <ThemeToggle />
                 <MainMenu>
-                    <MenuLink href="/protectoras">Protectoras</MenuLink>
-                    <MenuLink href="/mascotas">Mascotas</MenuLink>
-                    <MenuLink href="/vacunas">Vacunas</MenuLink>
+                    <Suspense>
+                        <MenuLink href="/protectoras">Protectoras</MenuLink>
+                        <MenuLink href="/mascotas">Mascotas</MenuLink>
+                        <MenuLink href="/vacunas">Vacunas</MenuLink>
+                    </Suspense>
                 </MainMenu>
             </div>
         </nav>

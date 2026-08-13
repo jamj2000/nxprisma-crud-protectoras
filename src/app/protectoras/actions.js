@@ -1,5 +1,5 @@
 'use server'
-import { revalidatePath } from 'next/cache';
+import { revalidatePath, updateTag } from 'next/cache';
 import prisma from '@/lib/prisma'
 
 
@@ -29,7 +29,8 @@ export async function createProtectora(prevState, formData) {
     }
   }
 
-  revalidatePath('/protectoras');
+  updateTag('protectoras')
+  // revalidatePath('/protectoras');
   return {
     type: "success",
     message: "Protectora creada correctamente"
@@ -71,7 +72,8 @@ export async function updateProtectora(prevState, formData) {
     }
   }
 
-  revalidatePath('/protectoras');
+  updateTag('protectoras')
+  // revalidatePath('/protectoras');
   return {
     type: "success",
     message: "Protectora modificada correctamente"
@@ -96,7 +98,8 @@ export async function deleteProtectora(prevState, formData) {
     }
   }
 
-  revalidatePath('/protectoras');
+  updateTag('protectoras')
+  // revalidatePath('/protectoras');
   return {
     type: "success",
     message: "Protectora eliminada correctamente"

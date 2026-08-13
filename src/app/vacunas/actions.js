@@ -27,7 +27,8 @@ export async function createVacuna(prevState, formData) {
     }
   }
 
-  revalidatePath('/vacunas');
+  updateTag('vacunas')
+  // revalidatePath('/vacunas');
   return {
     type: "success",
     message: "Vacuna creada correctamente"
@@ -60,7 +61,8 @@ export async function updateVacuna(prevState, formData) {
     }
   }
 
-  revalidatePath('/vacunas');
+  updateTag('vacunas')
+  // revalidatePath('/vacunas');
   return {
     type: "success",
     message: "Vacuna actualizada correctamente"
@@ -84,7 +86,8 @@ export async function deleteVacuna(prevState, formData) {
     }
   }
 
-  revalidatePath('/vacunas');
+  updateTag('vacunas')
+  // revalidatePath('/vacunas');
   return {
     type: "success",
     message: "Vacuna eliminada correctamente"

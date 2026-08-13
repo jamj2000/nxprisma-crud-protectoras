@@ -1,9 +1,13 @@
 'use server'
 import prisma from '@/lib/prisma'
+import { cacheTag } from 'next/cache'
 
 
 
 export async function getProtectoras() {
+    'use cache'
+    cacheTag('protectoras')
+
     try {
         const protectoras = await prisma.protectora.findMany({
             include: {
@@ -23,7 +27,10 @@ export async function getProtectoras() {
 }
 
 
-export async function getProtectora(id) {  // obtener protectoras con mascotas
+export async function getProtectora(id) {
+    'use cache'
+    cacheTag('protectoras', id.toString())
+
     try {
         const protectora = await prisma.protectora.findUnique({
             where: { id: +id },
@@ -45,6 +52,9 @@ export async function getProtectora(id) {  // obtener protectoras con mascotas
 
 
 export async function getProtectorasIdNombre() {
+    'use cache'
+    cacheTag('protectoras', 'id-nombre')
+
     try {
         const protectora = await prisma.protectora.findMany({
             select: {
@@ -64,6 +74,9 @@ export async function getProtectorasIdNombre() {
 
 
 export async function getProtectorasSinMascotas() {
+    'use cache'
+    cacheTag('protectoras', 'no-mascotas')
+
     try {
         const protectoras = await prisma.protectora.findMany({
             where: {

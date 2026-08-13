@@ -71,7 +71,7 @@ const Content = async () => {
         >
             <div className="flex justify-between">
                 <h2 className="text-2xl text-center inline"></h2>
-                <CreateMascota data={{ vacunasIdNombre: vacunasIdNombre }} />
+                <CreateMascota data={{ protectorasIdNombre: protectorasIdNombre, vacunasIdNombre: vacunasIdNombre }} />
             </div>
         </List>
     )
