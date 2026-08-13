@@ -62,6 +62,7 @@ export async function updateVacuna(prevState, formData) {
   }
 
   updateTag('vacunas')
+  updateTag('vacunas')
   // revalidatePath('/vacunas');
   return {
     type: "success",

@@ -42,7 +42,7 @@ async function imageUpload(file) {
 export async function createMascota(prevState, formData) {
   const nombre = formData.get('nombre')
   const descripcion = formData.get('descripcion')
-  const fecha_nacimiento = formData.get('fecha_nacimiento') + "T00:00:00.000Z"
+  const fecha_nacimiento = formData.get('fecha_nacimiento') ? formData.get('fecha_nacimiento') + "T00:00:00.000Z" : new Date()
   const protectoraId = Number(formData.get('protectoraId')) || null
   let foto = formData.get('foto')     // Tipo file
 
@@ -88,7 +88,7 @@ export async function updateMascota(prevState, formData) {
   const id = Number(formData.get('id'))
   const nombre = formData.get('nombre')
   const descripcion = formData.get('descripcion')
-  const fecha_nacimiento = formData.get('fecha_nacimiento') + "T00:00:00.000Z"
+  const fecha_nacimiento = formData.get('fecha_nacimiento') ? formData.get('fecha_nacimiento') + "T00:00:00.000Z" : new Date()
   const protectoraId = Number(formData.get('protectoraId')) || null
   let foto = formData.get('foto')  // Tipo file
 
