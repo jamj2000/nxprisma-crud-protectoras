@@ -43,8 +43,8 @@ const Content = async () => {
             data={data}
             columns={[
                 { name: "nombre", label: "Nombre" },
-                { name: "especie", label: "Especie" },
                 { name: "descripcion", label: "Descripción" },
+                { name: "especie", label: "Especie" },
             ]}
             actions={[
                 ViewVacuna,
