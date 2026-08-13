@@ -1,5 +1,5 @@
-import { Table } from '@/components/simpleui'
-import { CreateProtectora, DeleteProtectora, UpdateProtectora, ViewProtectora } from '@/app/protectoras/components'
+import { List, List2, Table } from '@/components/simpleui'
+import { CardProtectora, CreateProtectora, DeleteProtectora, UpdateProtectora, ViewProtectora } from '@/app/protectoras/components'
 import { getMascotasIdNombre } from '@/app/mascotas/data'
 import { getProtectoras, getProtectorasSinMascotas } from '@/app/protectoras/data'
 import { Suspense } from 'react'
@@ -39,9 +39,11 @@ const Content = async () => {
 
     // console.log(JSON.stringify(data, null, 2))
 
+
     return (
-        <Table
+        <List
             prefix="/protectoras"
+            card={CardProtectora}
             data={data}
             columns={[
                 { name: "nombre", label: "Nombre" },
@@ -59,8 +61,32 @@ const Content = async () => {
                 <h2 className="text-2xl text-center inline"></h2>
                 <CreateProtectora data={{ mascotasIdNombre: mascotasIdNombre }} />
             </div>
-        </Table>
+        </List>
     )
+
+
+    // return (
+    //     <Table
+    //         prefix="/protectoras"
+    //         data={data}
+    //         columns={[
+    //             { name: "nombre", label: "Nombre" },
+    //             { name: "localidad", label: "Localidad" },
+    //             { name: "telefono", label: "Telefono" }
+    //         ]}
+    //         actions={[
+    //             ViewProtectora,
+    //             UpdateProtectora,
+    //             DeleteProtectora
+    //         ]}
+    //         sort="nombre"
+    //     >
+    //         <div className="flex justify-between">
+    //             <h2 className="text-2xl text-center inline"></h2>
+    //             <CreateProtectora data={{ mascotasIdNombre: mascotasIdNombre }} />
+    //         </div>
+    //     </Table>
+    // )
 
 }
 

@@ -1,8 +1,8 @@
 import { Suspense } from 'react'
-import { CreateVacuna, DeleteVacuna, UpdateVacuna, ViewVacuna } from '@/app/vacunas/components'
+import { CardVacuna, CreateVacuna, DeleteVacuna, UpdateVacuna, ViewVacuna } from '@/app/vacunas/components'
 import { getMascotasIdNombre } from '@/app/mascotas/data'
 import { getVacunas, getVacunasSinAdministar } from '@/app/vacunas/data'
-import { Table } from '@/components/simpleui'
+import { List, List2, Table } from '@/components/simpleui'
 import Link from 'next/link'
 
 
@@ -36,15 +36,15 @@ const Content = async () => {
 
     const data = vacunas.map(v => ({ ...v, mascotasIdNombre }))
 
-    // console.log(JSON.stringify(data, null, 2))
-
     return (
-        <Table
+        <List
             prefix="/vacunas"
+            card={CardVacuna}
             data={data}
             columns={[
                 { name: "nombre", label: "Nombre" },
                 { name: "especie", label: "Especie" },
+                { name: "descripcion", label: "Descripción" },
             ]}
             actions={[
                 ViewVacuna,
@@ -57,8 +57,30 @@ const Content = async () => {
                 <h2 className="text-2xl text-center inline"></h2>
                 <CreateVacuna data={{ mascotasIdNombre: mascotasIdNombre }} />
             </div>
-        </Table>
+        </List>
     )
+
+    //     return (
+    //         <Table
+    //             prefix="/vacunas"
+    //             data={data}
+    //             columns={[
+    //                 { name: "nombre", label: "Nombre" },
+    //                 { name: "especie", label: "Especie" },
+    //             ]}
+    //             actions={[
+    //                 ViewVacuna,
+    //                 UpdateVacuna,
+    //                 DeleteVacuna
+    //             ]}
+    //             sort="nombre"
+    //         >
+    //             <div className="flex justify-between">
+    //                 <h2 className="text-2xl text-center inline"></h2>
+    //                 <CreateVacuna data={{ mascotasIdNombre: mascotasIdNombre }} />
+    //             </div>
+    //         </Table>
+    //     )
 }
 
 

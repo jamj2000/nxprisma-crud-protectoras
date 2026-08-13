@@ -53,34 +53,42 @@ const vacunas = [
     {
         nombre: 'Moquillo en perros',
         especie: 'perros',
+        descripcion: 'Protege frente al virus del moquillo canino, una enfermedad infecciosa que puede afectar a los sistemas respiratorio, digestivo y nervioso.',
     },
     {
         nombre: 'Parvovirosis en perros',
         especie: 'perros',
+        descripcion: 'Protege frente al parvovirus canino, que provoca principalmente vómitos, diarrea intensa y deshidratación.',
     },
     {
         nombre: 'Hepatitis vírica canina',
         especie: 'perros',
+        descripcion: 'Protege frente al adenovirus canino tipo 1, responsable de una enfermedad que puede afectar principalmente al hígado.',
     },
     {
         nombre: 'Moquillo en gatos',
         especie: 'gatos',
+        descripcion: 'Protege frente a la panleucopenia felina, una enfermedad vírica muy contagiosa que puede provocar fiebre, vómitos y alteraciones digestivas.',
     },
     {
         nombre: 'Rinotraqueítis felina',
         especie: 'gatos',
+        descripcion: 'Protege frente al herpesvirus felino, una de las principales causas de enfermedad respiratoria y ocular en gatos.',
     },
     {
         nombre: 'Leucemia felina',
         especie: 'gatos',
+        descripcion: 'Protege frente al virus de la leucemia felina (FeLV), que puede debilitar el sistema inmunitario y favorecer diversas enfermedades.',
     },
     {
         nombre: 'Peritonitis infecciosa felina',
         especie: 'gatos',
+        descripcion: 'Vacunación destinada a la prevención de la infección por coronavirus felino asociada al desarrollo de peritonitis infecciosa felina.',
     },
     {
         nombre: 'Rabia',
         especie: 'perros y gatos',
+        descripcion: 'Protege frente al virus de la rabia, una enfermedad grave que afecta al sistema nervioso y puede transmitirse a las personas.',
     },
 ];
 

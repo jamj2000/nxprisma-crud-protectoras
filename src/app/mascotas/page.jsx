@@ -1,9 +1,9 @@
-import { CreateMascota, DeleteMascota, UpdateMascota, ViewMascota } from '@/app/mascotas/components'
+import { CardMascota, CreateMascota, DeleteMascota, UpdateMascota, ViewMascota } from '@/app/mascotas/components'
 import { getMascotas, getMascotasSinProtectora, getMascotasSinVacunar } from '@/app/mascotas/data'
 import { getProtectorasIdNombre } from '@/app/protectoras/data'
 import { getVacunasIdNombre } from '@/app/vacunas/data'
 import { Suspense } from 'react'
-import { Table } from '@/components/simpleui'
+import { List, Table } from '@/components/simpleui'
 import Link from 'next/link'
 
 
@@ -42,17 +42,25 @@ const Content = async () => {
         getProtectorasIdNombre()
     ])
 
-    const data = mascotas.map(m => ({ ...m, vacunasIdNombre, protectorasIdNombre }))
+    const data = mascotas.map(m => ({
+        ...m,
+        fecha_nacimiento: m.fecha_nacimiento?.toISOString().split('T')[0],
+        vacunasIdNombre,
+        protectorasIdNombre
+    }))
 
     // console.log(JSON.stringify(mascotas, null, 2))
 
+
     return (
-        <Table
+        <List
             prefix="/mascotas"
+            card={CardMascota}
             data={data}
             columns={[
                 { name: "nombre", label: "Nombre" },
-                { name: "descripcion", label: "Descripción" }
+                { name: "descripcion", label: "Descripción" },
+                { name: "fecha_nacimiento", label: "Fecha de nacimiento" }
             ]}
             actions={[
                 ViewMascota,
@@ -65,8 +73,31 @@ const Content = async () => {
                 <h2 className="text-2xl text-center inline"></h2>
                 <CreateMascota data={{ vacunasIdNombre: vacunasIdNombre }} />
             </div>
-        </Table>
+        </List>
     )
+
+    // return (
+    //     <Table
+    //         prefix="/mascotas"
+    //         data={data}
+    //         columns={[
+    //             { name: "nombre", label: "Nombre" },
+    //             { name: "descripcion", label: "Descripción" },
+    //             { name: "fecha_nacimiento", label: "Fecha de nacimiento" }
+    //         ]}
+    //         actions={[
+    //             ViewMascota,
+    //             UpdateMascota,
+    //             DeleteMascota
+    //         ]}
+    //         sort="nombre"
+    //     >
+    //         <div className="flex justify-between">
+    //             <h2 className="text-2xl text-center inline"></h2>
+    //             <CreateMascota data={{ vacunasIdNombre: vacunasIdNombre }} />
+    //         </div>
+    //     </Table>
+    // )
 }
 
 
