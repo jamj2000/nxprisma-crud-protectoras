@@ -1,5 +1,5 @@
 import { Suspense } from 'react'
-import { CardVacuna, CreateVacuna, DeleteVacuna, UpdateVacuna, ViewVacuna } from '@/app/vacunas/components'
+import { CardVacuna, CardVacuna2, CreateVacuna, DeleteVacuna, UpdateVacuna, ViewVacuna } from '@/app/vacunas/components'
 import { getMascotasIdNombre } from '@/app/mascotas/data'
 import { getVacunas, getVacunasSinAdministar } from '@/app/vacunas/data'
 import { List, List2, Table } from '@/components/simpleui'
@@ -37,9 +37,9 @@ const Content = async () => {
     const data = vacunas.map(v => ({ ...v, mascotasIdNombre }))
 
     return (
-        <List
+        <List2
             prefix="/vacunas"
-            card={CardVacuna}
+            card={CardVacuna2}
             data={data}
             columns={[
                 { name: "nombre", label: "Nombre" },
@@ -57,7 +57,7 @@ const Content = async () => {
                 <h2 className="text-2xl text-center inline"></h2>
                 <CreateVacuna data={{ mascotasIdNombre: mascotasIdNombre }} />
             </div>
-        </List>
+        </List2>
     )
 
     //     return (

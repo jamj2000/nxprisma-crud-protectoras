@@ -197,7 +197,7 @@ export const CardMascota2 = ({ data, actions }) => (
        `}
     >
 
-        <div className="grid grid-cols-[80px_auto] gap-2">
+        <div className="xl:col-span-3 grid grid-cols-[80px_auto] gap-2">
             <img src={data.foto} />
 
             <div>

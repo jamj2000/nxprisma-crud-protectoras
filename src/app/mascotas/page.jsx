@@ -1,9 +1,9 @@
-import { CardMascota, CreateMascota, DeleteMascota, UpdateMascota, ViewMascota } from '@/app/mascotas/components'
+import { CardMascota, CardMascota2, CreateMascota, DeleteMascota, UpdateMascota, ViewMascota } from '@/app/mascotas/components'
 import { getMascotas, getMascotasSinProtectora, getMascotasSinVacunar } from '@/app/mascotas/data'
 import { getProtectorasIdNombre } from '@/app/protectoras/data'
 import { getVacunasIdNombre } from '@/app/vacunas/data'
 import { Suspense } from 'react'
-import { List, Table } from '@/components/simpleui'
+import { List, List2, Table } from '@/components/simpleui'
 import Link from 'next/link'
 
 
@@ -75,6 +75,31 @@ const Content = async () => {
             </div>
         </List>
     )
+
+    // return (
+    //     <List2
+    //         prefix="/mascotas"
+    //         card={CardMascota2}
+    //         data={data}
+    //         columns={[
+    //             { name: "nombre", label: "Nombre" },
+    //             { name: "descripcion", label: "Descripción" },
+    //             { name: "fecha_nacimiento", label: "Fecha de nacimiento" }
+    //         ]}
+    //         actions={[
+    //             ViewMascota,
+    //             UpdateMascota,
+    //             DeleteMascota
+    //         ]}
+    //         sort="nombre"
+    //     >
+    //         <div className="flex justify-between">
+    //             <h2 className="text-2xl text-center inline"></h2>
+    //             <CreateMascota data={{ vacunasIdNombre: vacunasIdNombre }} />
+    //         </div>
+    //     </List2>
+    // )
+
 
     // return (
     //     <Table
