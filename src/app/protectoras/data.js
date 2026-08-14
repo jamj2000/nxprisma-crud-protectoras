@@ -28,8 +28,8 @@ export async function getProtectoras() {
 
 
 export async function getProtectora(id) {
-    // 'use cache'
-    // cacheTag('protectoras', `protectora:${id}`)
+    'use cache'
+    cacheTag('protectoras', `protectora:${id}`)
 
     try {
         const protectora = await prisma.protectora.findUnique({
@@ -52,8 +52,9 @@ export async function getProtectora(id) {
 
 
 export async function getProtectorasIdNombre() {
-    // 'use cache'
-    // cacheTag('protectoras', 'protectoras:id-nombre')
+    'use cache'
+
+    cacheTag('protectoras', 'protectoras:id-nombre')
 
     try {
         const protectora = await prisma.protectora.findMany({
@@ -74,8 +75,8 @@ export async function getProtectorasIdNombre() {
 
 
 export async function getProtectorasSinMascotas() {
-    // 'use cache'
-    // cacheTag('protectoras', 'protectoras:no-mascotas')
+    'use cache'
+    cacheTag('protectoras', 'protectoras:no-mascotas')
 
     try {
         const protectoras = await prisma.protectora.findMany({
