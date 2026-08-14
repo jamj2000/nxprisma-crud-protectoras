@@ -26,6 +26,7 @@ export default async function Page({ params }) {
 
 
 const Content = async ({ params }) => {
+    'use cache'
     const { id } = await params
 
     const [vacuna, mascotasIdNombre] = await Promise.all([

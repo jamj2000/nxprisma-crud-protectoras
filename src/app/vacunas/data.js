@@ -26,7 +26,7 @@ export async function getVacunas() {
 
 export async function getVacuna(id) {
     'use cache'
-    cacheTag('vacunas', id.toString())
+    cacheTag('vacunas', `vacuna:${id}`)
 
     try {
         const vacuna = await prisma.vacuna.findUnique({
@@ -48,7 +48,7 @@ export async function getVacuna(id) {
 
 export async function getVacunasIdNombre() {
     'use cache'
-    cacheTag('vacunas', 'id-nombre')
+    cacheTag('vacunas', 'vacunas:id-nombre')
 
     try {
         const vacuna = await prisma.vacuna.findMany({
