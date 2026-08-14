@@ -59,7 +59,7 @@ const Content = async ({ params }) => {
                 <ArrowLeft />
             </BackButton>
 
-            <img src={mascota.foto} className='mx-auto' />
+            <img src={mascota.foto} className='mx-auto' style={{ viewTransitionName: `mascota-foto-${mascota.id}` }} />
 
             <div className='flex justify-between mt-10'>
 

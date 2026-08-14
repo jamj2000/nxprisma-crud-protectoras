@@ -3,7 +3,7 @@ import { getMascotas, getMascotasSinProtectora, getMascotasSinVacunar } from '@/
 import { getProtectorasIdNombre } from '@/app/protectoras/data'
 import { getVacunasIdNombre } from '@/app/vacunas/data'
 import { Suspense } from 'react'
-import { List, List2, Table } from '@/components/simpleui'
+import { List, List2, Table, Spinner } from '@/components/simpleui'
 import Link from 'next/link'
 
 
@@ -13,19 +13,19 @@ export default function Page() {
 
             <h1 className='px-4 pb-2 text-4xl text-blue-400 font-bold mb-8 border-b-4 border-blue-100'>MASCOTAS</h1>
 
-            <Suspense>
+            <Suspense fallback={<Spinner />}>
                 <Content />
             </Suspense>
 
             <h2 className='mt-10 text-2xl text-blue-400 font-bold'>MASCOTAS SIN PROTECTORA</h2>
 
-            <Suspense>
+            <Suspense fallback={<Spinner />}>
                 <SinProtectora />
             </Suspense>
 
             <h2 className='mt-10 text-2xl text-blue-400 font-bold'>MASCOTAS SIN VACUNAR</h2>
 
-            <Suspense>
+            <Suspense fallback={<Spinner />}>
                 <SinVacunar />
             </Suspense>
 

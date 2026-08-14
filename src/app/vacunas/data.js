@@ -67,7 +67,7 @@ export async function getVacunasIdNombre() {
 }
 
 
-export async function getVacunasSinAdministar() {
+export async function getVacunasSinAdministrar() {
     'use cache'
     cacheTag('vacunas', 'sin-administar')
 

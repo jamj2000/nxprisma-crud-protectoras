@@ -1,8 +1,8 @@
 import { Suspense } from 'react'
 import { CardVacuna, CardVacuna2, CreateVacuna, DeleteVacuna, UpdateVacuna, ViewVacuna } from '@/app/vacunas/components'
 import { getMascotasIdNombre } from '@/app/mascotas/data'
-import { getVacunas, getVacunasSinAdministar } from '@/app/vacunas/data'
-import { List, List2, Table } from '@/components/simpleui'
+import { getVacunas, getVacunasSinAdministrar } from '@/app/vacunas/data'
+import { List, List2, Table, Spinner } from '@/components/simpleui'
 import Link from 'next/link'
 
 
@@ -12,13 +12,13 @@ export default function Page() {
 
             <h1 className='px-4 pb-2 text-4xl text-blue-400 font-bold mb-8 border-b-4 border-blue-100'>VACUNAS</h1>
 
-            <Suspense>
+            <Suspense fallback={<Spinner />}>
                 <Content />
             </Suspense>
 
             <h2 className='mt-10 text-2xl text-blue-400 font-bold'>VACUNAS SIN ADMINISTRAR</h2>
 
-            <Suspense>
+            <Suspense fallback={<Spinner />}>
                 <SinAdministrar />
             </Suspense>
 
@@ -86,7 +86,7 @@ const Content = async () => {
 
 
 const SinAdministrar = async () => {
-    const vacunas = await getVacunasSinAdministar()
+    const vacunas = await getVacunasSinAdministrar()
     return (
         <div>
             {vacunas?.length > 0 ? (

@@ -1,4 +1,4 @@
-import { List, List2, Table } from '@/components/simpleui'
+import { List, List2, Table, Spinner } from '@/components/simpleui'
 import { CardProtectora, CreateProtectora, DeleteProtectora, UpdateProtectora, ViewProtectora } from '@/app/protectoras/components'
 import { getMascotasIdNombre } from '@/app/mascotas/data'
 import { getProtectoras, getProtectorasSinMascotas } from '@/app/protectoras/data'
@@ -13,13 +13,13 @@ export default function Page() {
 
             <h1 className='px-4 pb-2 text-4xl text-blue-400 font-bold mb-8 border-b-4 border-blue-100'>PROTECTORAS</h1>
 
-            <Suspense>
+            <Suspense fallback={<Spinner />}>
                 <Content />
             </Suspense>
 
             <h2 className='mt-10 text-2xl text-blue-400 font-bold'>PROTECTORAS SIN MASCOTAS</h2>
 
-            <Suspense>
+            <Suspense fallback={<Spinner />}>
                 <SinMascotas />
             </Suspense>
 
