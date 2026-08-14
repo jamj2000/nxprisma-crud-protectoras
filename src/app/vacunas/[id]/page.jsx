@@ -1,16 +1,28 @@
 import { Spinner } from '@/components/simpleui'
 import { DeleteVacuna, UpdateVacuna } from '@/app/vacunas/components'
 import { getMascotasIdNombre } from '@/app/mascotas/data'
-import { getVacuna } from '@/app/vacunas/data'
+import { getVacuna, getVacunasIdNombre } from '@/app/vacunas/data'
 import { Suspense } from "react"
 import { ArrowLeft } from 'lucide-react'
 import BackButton from '@/components/back-button'
 import Link from 'next/link'
+import { notFound } from 'next/navigation'
+
+
+
+
+export async function generateStaticParams() {
+    const vacunas = await getVacunasIdNombre()
+    if (!vacunas) return []
+
+    return vacunas.map((vacuna) => ({
+        id: String(vacuna.id),
+    }))
+}
+
 
 
 export default async function Page({ params }) {
-
-
     return (
         <div className='container mx-auto px-4 py-10'>
 
@@ -34,9 +46,9 @@ const Content = async ({ params }) => {
         getMascotasIdNombre()
     ])
 
-    vacuna.mascotasIdNombre = mascotasIdNombre
-
     if (!vacuna) notFound()
+
+    vacuna.mascotasIdNombre = mascotasIdNombre
 
 
 

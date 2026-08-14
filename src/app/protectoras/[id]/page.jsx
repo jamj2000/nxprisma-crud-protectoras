@@ -1,7 +1,7 @@
 import { Suspense } from "react"
 import { UpdateProtectora, DeleteProtectora } from '@/app/protectoras/components';
 import { getMascotasIdNombre } from "@/app/mascotas/data";
-import { getProtectora } from "@/app/protectoras/data";
+import { getProtectora, getProtectorasIdNombre } from "@/app/protectoras/data";
 import { ArrowLeft } from "lucide-react";
 import { notFound } from "next/navigation";
 import { Spinner } from "@/components/simpleui";
@@ -9,6 +9,14 @@ import Link from "next/link";
 import BackButton from "@/components/back-button";
 
 
+export async function generateStaticParams() {
+    const protectoras = await getProtectorasIdNombre()
+    if (!protectoras) return []
+
+    return protectoras.map((protectora) => ({
+        id: String(protectora.id),
+    }))
+}
 
 
 
@@ -41,9 +49,9 @@ const Content = async ({ params }) => {
         getMascotasIdNombre()
     ])
 
-    protectora.mascotasIdNombre = mascotasIdNombre
-
     if (!protectora) notFound()
+
+    protectora.mascotasIdNombre = mascotasIdNombre
 
 
 

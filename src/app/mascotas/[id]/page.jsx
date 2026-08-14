@@ -1,14 +1,22 @@
 import { Spinner } from '@/components/simpleui'
 import { DeleteMascota, UpdateMascota } from '@/app/mascotas/components'
-import { getMascota } from '@/app/mascotas/data'
+import { getMascota, getMascotasIdNombre } from '@/app/mascotas/data'
 import { getProtectorasIdNombre } from '@/app/protectoras/data'
 import { getVacunasIdNombre } from '@/app/vacunas/data'
 import { Suspense } from "react"
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import BackButton from '@/components/back-button'
+import { notFound } from 'next/navigation'
 
+export async function generateStaticParams() {
+    const mascotas = await getMascotasIdNombre()
+    if (!mascotas) return []
 
+    return mascotas.map((mascota) => ({
+        id: String(mascota.id),
+    }))
+}
 
 export default function Page({ params }) {
 
@@ -36,11 +44,12 @@ const Content = async ({ params }) => {
         getProtectorasIdNombre(),
     ])
 
+    if (!mascota) notFound()
+
     mascota.vacunasIdNombre = vacunasIdNombre
     mascota.protectorasIdNombre = protectorasIdNombre
 
     const data = mascota
-    if (!mascota) notFound()
 
 
 
