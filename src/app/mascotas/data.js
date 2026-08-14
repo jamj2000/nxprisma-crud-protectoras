@@ -30,8 +30,8 @@ export async function getMascotas() {
 
 
 export async function getMascota(id) {
-    'use cache'
-    cacheTag('mascotas', `mascota:${id}`)
+    // 'use cache'
+    // cacheTag('mascotas', `mascota:${id}`)
 
     try {
         const mascota = await prisma.mascota.findUnique({
@@ -52,8 +52,8 @@ export async function getMascota(id) {
 
 
 export async function getMascotasIdNombre() {
-    'use cache'
-    cacheTag('mascotas', 'mascotas:id-nombre')
+    // 'use cache'
+    // cacheTag('mascotas', 'mascotas:id-nombre')
 
     try {
         const mascota = await prisma.mascota.findMany({
@@ -74,8 +74,8 @@ export async function getMascotasIdNombre() {
 
 
 export async function getMascotasSinVacunar() {
-    'use cache'
-    cacheTag('mascotas', 'mascotas:sin-vacunar')
+    // 'use cache'
+    // cacheTag('mascotas', 'mascotas:sin-vacunar')
 
     try {
         const mascotas = await prisma.mascota.findMany({
