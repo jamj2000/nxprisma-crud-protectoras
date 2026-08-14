@@ -3,7 +3,7 @@ import { DeleteMascota, UpdateMascota } from '@/app/mascotas/components'
 import { getMascota, getMascotasIdNombre } from '@/app/mascotas/data'
 import { getProtectorasIdNombre } from '@/app/protectoras/data'
 import { getVacunasIdNombre } from '@/app/vacunas/data'
-import { Suspense } from "react"
+import { Suspense, ViewTransition } from "react"
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import BackButton from '@/components/back-button'
@@ -59,7 +59,9 @@ const Content = async ({ params }) => {
                 <ArrowLeft />
             </BackButton>
 
-            <img src={mascota.foto} className='mx-auto' style={{ viewTransitionName: `mascota-foto-${mascota.id}` }} />
+            <ViewTransition name={`mascota-foto-${mascota.id}`} share="morph">
+                <img src={mascota.foto} className='mx-auto' />
+            </ViewTransition>
 
             <div className='flex justify-between mt-10'>
 

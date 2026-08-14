@@ -1,5 +1,6 @@
 'use client'   // <---- IMPORTANTE
 
+import { ViewTransition } from "react";
 import { Form, Button, CreateIcon, DeleteIcon, Modal, UpdateIcon, ViewIcon } from "@/components/simpleui";
 import { createMascota, deleteMascota, updateMascota } from "@/app/mascotas/actions";
 
@@ -166,7 +167,9 @@ export const CardMascota = ({ data, actions }) => (
     <div className="p-4 flex flex-col gap-2 bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-600 rounded-md shadow-md shadow-current/20">
 
         <div className="grid grid-cols-[80px_auto] gap-2">
-            <img src={data.foto} style={{ viewTransitionName: `mascota-foto-${data.id}` }} />
+            <ViewTransition name={`mascota-foto-${data.id}`} share="morph">
+                <img src={data.foto} />
+            </ViewTransition>
 
             <div>
                 <div className="font-semibold ">{data.nombre}</div>
@@ -198,7 +201,9 @@ export const CardMascota2 = ({ data, actions }) => (
     >
 
         <div className="xl:col-span-3 grid grid-cols-[80px_auto] gap-2">
-            <img src={data.foto} style={{ viewTransitionName: `mascota-foto-${data.id}` }} />
+            <ViewTransition name={`mascota-foto-${data.id}`} share="morph">
+                <img src={data.foto} />
+            </ViewTransition>
 
             <div>
                 <div className="font-semibold ">{data.nombre}</div>
