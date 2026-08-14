@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, startTransition } from "react";
 
 
 
@@ -86,11 +86,11 @@ export function List({
                     {orderedData.map((data) =>
                         <div
                             key={data.id}
-                            onClick={() => prefix ? router.push(prefix + '/' + data.id) : {}}
+                            onClick={() => prefix ? startTransition(() => router.push(prefix + '/' + data.id)) : {}}
                             className={prefix ? "cursor-pointer" : ""}
                         >
                             <Card
-                                onClick={() => prefix ? router.push(prefix + '/' + data.id) : {}}
+                                onClick={() => prefix ? startTransition(() => router.push(prefix + '/' + data.id)) : {}}
                                 data={data}
                                 actions={actions}
                             />
