@@ -31,3 +31,22 @@ body {
 @view-transition {
   navigation: auto;
 }
+
+::view-transition-group(.morph) {
+  animation-duration: var(--duration-move);
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::view-transition-image-pair(.morph) {
+  isolation: isolate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
