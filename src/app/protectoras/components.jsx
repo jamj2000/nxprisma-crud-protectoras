@@ -5,31 +5,69 @@ import { createProtectora, deleteProtectora, updateProtectora } from "@/app/prot
 
 
 
-const fields = (data) => [
-    {
-        name: "nombre",
-        label: "Nombre",
-        component: "InputText"
-    },
-    {
-        name: "localidad",
-        label: "Localidad",
-        component: "InputText"
-    },
+const FormProtectora = ({ data = {}, action, disabled }) => {
 
-    {
-        name: "telefono",
-        label: "Telefono",
-        component: "InputText"
-    },
-    {
-        name: "mascotas",
-        label: "Mascotas",
-        component: "InputGroup",
-        multiple: true,
-        options: data?.mascotasIdNombre?.map(({ id, nombre }) => ([nombre, id, data?.mascotas?.find(m => m.id == id)])) ?? []
-    },
-]
+    const submit = () => {
+        switch (action) {
+            case createProtectora: return {
+                color: "green",
+                component: "Submit",
+                labels: ["Registrar protectora", "Registrando protectora ..."],
+            }
+
+            case updateProtectora: return {
+                color: "orange",
+                component: "Submit",
+                labels: ["Modificar protectora", "Modificando protectora ..."],
+            }
+
+            case deleteProtectora: return {
+                color: "red",
+                component: "Submit",
+                labels: ["Eliminar protectora", "Eliminando protectora ..."]
+            }
+            default:
+                return null
+        }
+    }
+
+    const submitField = submit();
+
+    return (
+        <Form
+            data={data}
+            action={action}
+            disabled={disabled}
+            fields={[
+                {
+                    name: "nombre",
+                    label: "Nombre",
+                    component: "InputText"
+                },
+                {
+                    name: "localidad",
+                    label: "Localidad",
+                    component: "InputText"
+                },
+
+                {
+                    name: "telefono",
+                    label: "Telefono",
+                    component: "InputText"
+                },
+                {
+                    name: "mascotas",
+                    label: "Mascotas",
+                    component: "InputGroup",
+                    multiple: true,
+                    options: data?.mascotasIdNombre?.map(({ id, nombre }) => ([nombre, id, data?.mascotas?.find(m => m.id == id)])) ?? []
+                },
+                ...(submitField ? [submitField] : [])
+            ]}
+        />
+    )
+}
+
 
 
 const CreateButton = () => (
@@ -62,21 +100,9 @@ const ViewButton = () => (
 
 export const CreateProtectora = ({ data = {} }) => (
     <Modal trigger={<CreateButton />} className="my-1">
-        <h2 className="text-xl font-bold mb-4 text-green-400">Nueva Protectora</h2>
+        <h2 className="text-xl font-bold mb-4 text-green-400">Registrar Protectora</h2>
 
-        <Form
-            data={data}
-            action={createProtectora}
-            fields={[
-                ...fields(data),
-                {
-                    labels: ["Guardar protectora", "Guardando protectora ..."],
-                    component: "Submit",
-                    color: "green"
-                }
-            ]}
-        />
-
+        <FormProtectora data={data} action={createProtectora} />
     </Modal>
 )
 
@@ -85,19 +111,7 @@ export const UpdateProtectora = ({ data = {} }) => (
     <Modal trigger={<UpdateButton />}>
         <h2 className="text-xl font-bold mb-4 text-orange-400">Modificar Protectora</h2>
 
-        <Form
-            data={data}
-            action={updateProtectora}
-            fields={[
-                ...fields(data),
-                {
-                    labels: ["Modificar protectora", "Actualizando protectora ..."],
-                    component: "Submit",
-                    color: "orange"
-                }
-            ]}
-        />
-
+        <FormProtectora data={data} action={updateProtectora} />
     </Modal>
 )
 
@@ -108,40 +122,16 @@ export const DeleteProtectora = ({ data = {} }) => (
     <Modal trigger={<DeleteButton />}>
         <h2 className="text-xl font-bold mb-4 text-red-400">Eliminar Protectora</h2>
 
-        <Form
-            data={data}
-            action={deleteProtectora}
-            fields={[
-                ...fields(data),
-                {
-                    labels: ["Eliminar protectora", "Eliminando protectora ..."],
-                    component: "Submit",
-                    color: "red"
-                }
-            ]}
-            disabled />
-
+        <FormProtectora data={data} action={deleteProtectora} disabled />
     </Modal>
 )
 
 
 export const ViewProtectora = ({ data = {} }) => (
     <Modal trigger={<ViewButton />}>
-        <h2 className="text-xl font-bold mb-4 text-blue-400">Ver Protectora</h2>
+        <h2 className="text-xl font-bold mb-4 text-blue-400">Información de la Protectora</h2>
 
-        <Form
-            data={data}
-            action={async () => ({ type: "success", message: "Hasta la próxima" })}
-            fields={[
-                ...fields(data),
-                {
-                    labels: ["Aceptar", "..."],
-                    component: "Submit",
-                    color: "blue"
-                }
-            ]}
-            disabled />
-
+        <FormProtectora data={data} action={async () => ({ type: "success" })} disabled />
     </Modal>
 )
 

@@ -5,25 +5,69 @@ import { createVacuna, deleteVacuna, updateVacuna } from "@/app/vacunas/actions"
 
 
 
-const fields = (data) => [
-    {
-        name: "nombre",
-        label: "Nombre",
-        component: "InputText"
-    },
-    {
-        name: "especie",
-        label: "Especie",
-        component: "InputText"
-    },
-    {
-        name: "mascotas",
-        label: "Mascotas",
-        component: "InputGroup",
-        multiple: true,
-        options: data?.mascotasIdNombre?.map(({ id, nombre }) => ([nombre, id, data?.mascotas?.find(m => m.id == id)])) ?? []
-    },
-]
+const FormVacuna = ({ data = {}, action, disabled }) => {
+
+    const submit = () => {
+        switch (action) {
+            case createVacuna: return {
+                color: "green",
+                component: "Submit",
+                labels: ["Registrar vacuna", "Registrando vacuna ..."],
+            }
+
+            case updateVacuna: return {
+                color: "orange",
+                component: "Submit",
+                labels: ["Modificar vacuna", "Modificando vacuna ..."],
+            }
+
+            case deleteVacuna: return {
+                color: "red",
+                component: "Submit",
+                labels: ["Eliminar vacuna", "Eliminando vacuna ..."]
+            }
+            default:
+                return null
+        }
+    }
+
+    const submitField = submit();
+
+    return (
+        <Form
+            data={data}
+            action={action}
+            disabled={disabled}
+            fields={[
+                {
+                    name: "id",
+                    component: "InputHidden",
+                    value: data?.id,
+                },
+                {
+                    name: "nombre",
+                    label: "Nombre",
+                    component: "InputText"
+                },
+                {
+                    name: "especie",
+                    label: "Especie",
+                    component: "InputText"
+                },
+                {
+                    name: "mascotas",
+                    label: "Mascotas",
+                    component: "InputGroup",
+                    multiple: true,
+                    options: data?.mascotasIdNombre?.map(({ id, nombre }) => ([nombre, id, data?.mascotas?.find(m => m.id == id)])) ?? []
+                },
+                ...(submitField ? [submitField] : [])
+            ]}
+        />
+    )
+}
+
+
 
 
 const CreateButton = () => (
@@ -58,19 +102,7 @@ export const CreateVacuna = ({ data = {} }) => (
     <Modal trigger={<CreateButton />} className="my-1">
         <h2 className="text-xl font-bold mb-4 text-green-400">Nueva Vacuna</h2>
 
-        <Form
-            data={data}
-            action={createVacuna}
-            fields={[
-                ...fields(data),
-                {
-                    labels: ["Guardar vacuna", "Guardando vacuna ..."],
-                    component: "Submit",
-                    color: "green"
-                }
-            ]}
-        />
-
+        <FormVacuna data={data} action={createVacuna} />
     </Modal>
 )
 
@@ -79,22 +111,9 @@ export const UpdateVacuna = ({ data = {} }) => (
     <Modal trigger={<UpdateButton />}>
         <h2 className="text-xl font-bold mb-4 text-orange-400">Modificar Vacuna</h2>
 
-        <Form
-            data={data}
-            action={updateVacuna}
-            fields={[
-                ...fields(data),
-                {
-                    labels: ["Modificar vacuna", "Actualizando vacuna ..."],
-                    component: "Submit",
-                    color: "orange"
-                }
-            ]}
-        />
-
+        <FormVacuna data={data} action={updateVacuna} />
     </Modal>
 )
-
 
 
 
@@ -102,40 +121,16 @@ export const DeleteVacuna = ({ data = {} }) => (
     <Modal trigger={<DeleteButton />}>
         <h2 className="text-xl font-bold mb-4 text-red-400">Eliminar Vacuna</h2>
 
-        <Form
-            data={data}
-            action={deleteVacuna}
-            fields={[
-                ...fields(data),
-                {
-                    labels: ["Eliminar vacuna", "Eliminando vacuna ..."],
-                    component: "Submit",
-                    color: "red"
-                }
-            ]}
-            disabled />
-
+        <FormVacuna data={data} action={deleteVacuna} disabled />
     </Modal>
 )
 
 
 export const ViewVacuna = ({ data = {} }) => (
     <Modal trigger={<ViewButton />}>
-        <h2 className="text-xl font-bold mb-4 text-blue-400">Ver Vacuna</h2>
+        <h2 className="text-xl font-bold mb-4 text-blue-400">Información de la Vacuna</h2>
 
-        <Form
-            data={data}
-            action={async () => ({ type: "success", message: "Hasta la próxima" })}
-            fields={[
-                ...fields(data),
-                {
-                    labels: ["Aceptar", "..."],
-                    component: "Submit",
-                    color: "blue"
-                }
-            ]}
-            disabled />
-
+        <FormVacuna data={data} action={async () => ({ type: "success" })} disabled />
     </Modal>
 )
 

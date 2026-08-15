@@ -6,45 +6,84 @@ import { ViewTransition } from "react";
 
 
 
-const fields = (data) => [
-    {
-        name: "foto",
-        label: "Foto",
-        component: "InputImage",
-        width: 240,
-        height: 240,
-        className: "self-end"
-    },
-    {
-        name: "nombre",
-        label: "Nombre",
-        component: "InputText"
-    },
-    {
-        name: "descripcion",
-        label: "Descripción",
-        component: "InputText",
-    },
-    {
-        name: "fecha_nacimiento",
-        label: "Fecha de nacimiento",
-        component: "InputDate",
-        // value: data.fecha_nacimiento?.toISOString().split('T')[0] ?? new Date().toISOString().split('T')[0]
-    },
-    {
-        name: "protectoraId",
-        label: "Protectora",
-        component: "InputSelect",
-        options: data?.protectorasIdNombre?.map(({ id, nombre }) => ([nombre, id, data.protectora?.id == id])) ?? []
-    },
-    {
-        name: "vacunas",
-        label: "Vacunas",
-        component: "InputGroup",
-        multiple: true,
-        options: data?.vacunasIdNombre?.map(({ id, nombre }) => ([nombre, id, data?.vacunas?.find(v => v.id == id)])) ?? []
-    },
-]
+
+const FormMascota = ({ data = {}, action, disabled }) => {
+
+    const submit = () => {
+        switch (action) {
+            case createMascota: return {
+                color: "green",
+                component: "Submit",
+                labels: ["Registrar mascota", "Registrando mascota ..."],
+            }
+
+            case updateMascota: return {
+                color: "orange",
+                component: "Submit",
+                labels: ["Modificar mascota", "Modificando mascota ..."],
+            }
+
+            case deleteMascota: return {
+                color: "red",
+                component: "Submit",
+                labels: ["Eliminar mascota", "Eliminando mascota ..."]
+            }
+            default:
+                return null
+        }
+    }
+
+    const submitField = submit();
+
+    return (
+        <Form
+            data={data}
+            action={action}
+            disabled={disabled}
+            fields={[
+
+                {
+                    name: "foto",
+                    label: "Foto",
+                    component: "InputImage",
+                    width: 240,
+                    height: 240,
+                    className: "self-end"
+                },
+                {
+                    name: "nombre",
+                    label: "Nombre",
+                    component: "InputText"
+                },
+                {
+                    name: "descripcion",
+                    label: "Descripción",
+                    component: "InputText",
+                },
+                {
+                    name: "fecha_nacimiento",
+                    label: "Fecha de nacimiento",
+                    component: "InputDate",
+                    // value: data.fecha_nacimiento?.toISOString().split('T')[0] ?? new Date().toISOString().split('T')[0]
+                },
+                {
+                    name: "protectoraId",
+                    label: "Protectora",
+                    component: "InputSelect",
+                    options: data?.protectorasIdNombre?.map(({ id, nombre }) => ([nombre, id, data.protectora?.id == id])) ?? []
+                },
+                {
+                    name: "vacunas",
+                    label: "Vacunas",
+                    component: "InputGroup",
+                    multiple: true,
+                    options: data?.vacunasIdNombre?.map(({ id, nombre }) => ([nombre, id, data?.vacunas?.find(v => v.id == id)])) ?? []
+                },
+                ...(submitField ? [submitField] : [])
+            ]}
+        />
+    )
+}
 
 
 const CreateButton = () => (
@@ -79,19 +118,7 @@ export const CreateMascota = ({ data = {} }) => (
     <Modal trigger={<CreateButton />} className="my-1">
         <h2 className="text-xl font-bold mb-4 text-green-400">Nueva Mascota</h2>
 
-        <Form
-            data={data}
-            action={createMascota}
-            fields={[
-                ...fields(data),
-                {
-                    labels: ["Guardar mascota", "Guardando mascota ..."],
-                    component: "Submit",
-                    color: "green"
-                }
-            ]}
-        />
-
+        <FormMascota data={data} action={createMascota} />
     </Modal>
 )
 
@@ -100,19 +127,7 @@ export const UpdateMascota = ({ data = {} }) => (
     <Modal trigger={<UpdateButton />}>
         <h2 className="text-xl font-bold mb-4 text-orange-400">Modificar Mascota</h2>
 
-        <Form
-            data={data}
-            action={updateMascota}
-            fields={[
-                ...fields(data),
-                {
-                    labels: ["Modificar mascota", "Actualizando mascota ..."],
-                    component: "Submit",
-                    color: "orange"
-                }
-            ]}
-        />
-
+        <FormMascota data={data} action={updateMascota} />
     </Modal>
 )
 
@@ -123,40 +138,16 @@ export const DeleteMascota = ({ data = {} }) => (
     <Modal trigger={<DeleteButton />}>
         <h2 className="text-xl font-bold mb-4 text-red-400">Eliminar Mascota</h2>
 
-        <Form
-            data={data}
-            action={deleteMascota}
-            fields={[
-                ...fields(data),
-                {
-                    labels: ["Eliminar mascota", "Eliminando mascota ..."],
-                    component: "Submit",
-                    color: "red"
-                }
-            ]}
-            disabled />
-
+        <FormMascota data={data} action={deleteMascota} disabled />
     </Modal>
 )
 
 
 export const ViewMascota = ({ data = {} }) => (
     <Modal trigger={<ViewButton />}>
-        <h2 className="text-xl font-bold mb-4 text-blue-400">Ver Mascota</h2>
+        <h2 className="text-xl font-bold mb-4 text-blue-400">Información de la Mascota</h2>
 
-        <Form
-            data={data}
-            action={async () => ({ type: "success", message: "Hasta la próxima" })}
-            fields={[
-                ...fields(data),
-                {
-                    labels: ["Aceptar", "..."],
-                    component: "Submit",
-                    color: "blue"
-                }
-            ]}
-            disabled />
-
+        <FormMascota data={data} action={async () => ({ type: "success" })} disabled />
     </Modal>
 )
 

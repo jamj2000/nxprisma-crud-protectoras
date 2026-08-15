@@ -56,8 +56,9 @@ export const Form = ({
 
         handledStateRef.current = state;
 
-        if (state.message && state.type) {
-            toast[state.type](state.message);
+        if (state.type) {
+            if (state.message)
+                toast[state.type](state.message);
             if (state.type == "success" || state.type == "info")
                 formRef.current?.closest("dialog")?.close();
         }
@@ -78,7 +79,7 @@ export const Form = ({
                 const errorCampo = state?.errors?.[input.name];
 
                 return (
-                    <div key={input.name} className="flex flex-col gap-1 my-6">
+                    <div key={input.name} className="flex flex-col gap-1 my-3">
                         <ComponenteUI
                             label={input.label}
                             name={input.name}
@@ -94,12 +95,12 @@ export const Form = ({
 
             {submits.length > 0 ?
                 submits.map((submit, i) => (
-                    <Submit key={i} labels={submit.labels} disabled={isPending} className="w-full" {...submit}>
+                    <Submit key={i} labels={submit.labels} disabled={isPending} className="mt-4 w-full" {...submit}>
                         {isPending ? <span className="animate-pulse">{submit.labels[1]}</span> : submit.labels[0]}
                     </Submit>
 
                 ))
-                : <Submit disabled={isPending} className="w-full">
+                : <Submit disabled={isPending} className="mt-4 w-full">
                     {isPending ? <span className="animate-pulse">Espere por favor...</span> : "Aceptar"}
                 </Submit>
             }

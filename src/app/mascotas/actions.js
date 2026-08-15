@@ -123,6 +123,7 @@ export async function updateMascota(prevState, formData) {
   }
 
   updateTag('mascotas')
+  updateTag('protectoras')
   // revalidatePath('/mascotas');
   return {
     type: "success",
