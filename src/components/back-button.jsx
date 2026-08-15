@@ -1,40 +1,16 @@
 'use client'
-import { useRouter } from 'next/navigation';
-import { startTransition } from 'react';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';  // IMPORTANTE: No importar desde next/router
 
-function BackButton({ children, className, href }) {
-    const router = useRouter()
-
-    const handleClick = (e) => {
-        if (href) {
-            e.preventDefault()
-            startTransition(() => {
-                router.push(href)
-            })
-        } else {
-            startTransition(() => {
-                router.back()
-            })
-        }
-    }
-
-    if (href) {
-        return (
-            <Link
-                href={href}
-                onClick={handleClick}
-                className={`${className} hover:animate-pulse hover:cursor-pointer`}>
-                {children}
-            </Link>
-        )
-    }
+function BackButton({ children, className }) {
+    const { back } = useRouter()
 
     return (
         <div
-            onClick={handleClick}
+            onClick={back}
             className={`${className} hover:animate-pulse hover:cursor-pointer`}>
+
             {children}
+
         </div>
     );
 }
