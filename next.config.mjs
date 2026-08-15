@@ -4,9 +4,6 @@ const nextConfig = {
   reactCompiler: true,
   cacheComponents: true,
   partialPrefetching: true,
-  experimental: {
-    viewTransition: true,
-  },
 };
 
 export default nextConfig;
