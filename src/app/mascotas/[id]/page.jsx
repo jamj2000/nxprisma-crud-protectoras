@@ -49,7 +49,7 @@ const Content = async ({ params }) => {
     mascota.vacunasIdNombre = vacunasIdNombre
     mascota.protectorasIdNombre = protectorasIdNombre
 
-    const data = mascota
+    const data = { ...mascota, fecha_nacimiento: mascota?.fecha_nacimiento?.toISOString().split('T')[0] }
 
 
 
@@ -67,7 +67,8 @@ const Content = async ({ params }) => {
 
                 <div>
                     <p className='text-3xl'>{mascota.nombre}</p>
-                    <p>{mascota.especie}</p>
+                    <p>{mascota.descripcion}</p>
+                    <p>{mascota.fecha_nacimiento.toISOString().split('T')[0]}</p>
 
                     <p className='font-bold'>Protectora</p>
                     <p>
