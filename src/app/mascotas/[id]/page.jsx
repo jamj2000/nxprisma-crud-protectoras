@@ -59,6 +59,11 @@ const Content = async ({ params }) => {
                 <ArrowLeft />
             </BackButton>
 
+            {/* <Link href="/mascotas" className="mb-2 self-start size-10 grid place-content-center rounded-full border border-indigo-500 text-indigo-700 bg-indigo-200 hover:bg-indigo-500 hover:text-white hover:cursor-pointer">
+                <ArrowLeft />
+            </Link> */}
+
+
             <ViewTransition name={`mascota-foto-${data.id}`}>
                 <img src={data.foto} />
             </ViewTransition>

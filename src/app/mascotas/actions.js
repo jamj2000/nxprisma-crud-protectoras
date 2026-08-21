@@ -75,7 +75,7 @@ export async function createMascota(prevState, formData) {
   }
 
   updateTag('mascotas')
-  // revalidatePath('/mascotas');
+  revalidatePath('/mascotas');
   return {
     type: "success",
     message: "Mascota registrada correctamente"
@@ -124,7 +124,7 @@ export async function updateMascota(prevState, formData) {
 
   updateTag('mascotas')
   updateTag('protectoras')
-  // revalidatePath('/mascotas');
+  revalidatePath('/mascotas');
   return {
     type: "success",
     message: "Mascota actualizada correctamente"
@@ -148,7 +148,7 @@ export async function deleteMascota(prevState, formData) {
   }
 
   updateTag('mascotas')
-  // revalidatePath('/mascotas');
+  revalidatePath('/mascotas');
   return {
     type: "success",
     message: "Mascota actualizada correctamente"
