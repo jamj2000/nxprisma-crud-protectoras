@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
-import { useEffect, useState } from "react";
+
+import { useState } from "react";
 import { useRouter } from 'next/navigation'
 
 
@@ -27,12 +27,12 @@ export function Table({
         direccion: direction,
     });
 
-    useEffect(() => {
-        setOrden({
-            columna: sort,
-            direccion: direction,
-        });
-    }, [sort, direction]);
+    // useEffect(() => {
+    //     setOrden({
+    //         columna: sort,
+    //         direccion: direction,
+    //     });
+    // }, [sort, direction]);
 
     const originalData = data ?? [];
 

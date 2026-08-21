@@ -37,9 +37,9 @@ export const InputRange = ({
     const [val, setVal] = useState(value ?? min ?? 0);
     const percent = ((val - min) / (max - min)) * 100;
 
-    useEffect(() => {
-        setVal(value ?? min ?? 0);
-    }, [value, min]);
+    // useEffect(() => {
+    //     setVal(value ?? min ?? 0);
+    // }, [value, min]);
 
     return (
         <div className="flex gap-2 items-center">
