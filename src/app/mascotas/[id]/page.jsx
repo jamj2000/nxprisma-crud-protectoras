@@ -1,12 +1,12 @@
 import { Spinner } from '@/components/simpleui'
-import { DeleteMascota, UpdateMascota } from '@/app/mascotas/components'
-import { getMascota, getMascotasIdNombre } from '@/app/mascotas/data'
-import { getProtectorasIdNombre } from '@/app/protectoras/data'
-import { getVacunasIdNombre } from '@/app/vacunas/data'
+import { DeleteMascota, UpdateMascota } from '@/components/mascotas'
+import { getMascota, getMascotasIdNombre } from '@/lib/data/mascotas'
+import { getProtectorasIdNombre } from '@/lib/data/protectoras'
+import { getVacunasIdNombre } from '@/lib/data/vacunas'
 import { Suspense, ViewTransition } from "react"
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
-import BackButton from '@/components/back-button'
+import BackButton from '@/components/ui/back-button'
 import { notFound } from 'next/navigation'
 
 export async function generateStaticParams() {
@@ -59,14 +59,10 @@ const Content = async ({ params }) => {
                 <ArrowLeft />
             </BackButton>
 
-            {/* <Link href="/mascotas" className="mb-2 self-start size-10 grid place-content-center rounded-full border border-indigo-500 text-indigo-700 bg-indigo-200 hover:bg-indigo-500 hover:text-white hover:cursor-pointer">
-                <ArrowLeft />
-            </Link> */}
 
-
-            <ViewTransition name={`mascota-foto-${data.id}`}>
-                <img src={data.foto} />
-            </ViewTransition>
+            {/* <ViewTransition name={`mascota-foto-${data.id}`}> */}
+            <img src={data.foto} />
+            {/* </ViewTransition> */}
 
             <div className='flex justify-between mt-10'>
 

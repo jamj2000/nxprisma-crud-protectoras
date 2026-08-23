@@ -1,7 +1,7 @@
 'use client'   // <---- IMPORTANTE
 
 import { Form, Button, CreateIcon, DeleteIcon, Modal, UpdateIcon, ViewIcon } from "@/components/simpleui";
-import { createVacuna, deleteVacuna, updateVacuna } from "@/app/vacunas/actions";
+import { createVacuna, deleteVacuna, updateVacuna } from "@/lib/actions/vacunas";
 
 
 

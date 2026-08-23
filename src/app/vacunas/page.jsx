@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
-import { CardVacuna, CardVacuna2, CreateVacuna, DeleteVacuna, UpdateVacuna, ViewVacuna } from '@/app/vacunas/components'
-import { getMascotasIdNombre } from '@/app/mascotas/data'
-import { getVacunas, getVacunasSinAdministrar } from '@/app/vacunas/data'
+import { CardVacuna, CardVacuna2, CreateVacuna, DeleteVacuna, UpdateVacuna, ViewVacuna } from '@/components/vacunas'
+import { getMascotasIdNombre } from '@/lib/data/mascotas'
+import { getVacunas, getVacunasSinAdministrar } from '@/lib/data/vacunas'
 import { List, List2, Table, Spinner } from '@/components/simpleui'
 import Link from 'next/link'
 

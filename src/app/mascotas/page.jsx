@@ -1,7 +1,7 @@
-import { CardMascota, CardMascota2, CreateMascota, DeleteMascota, UpdateMascota, ViewMascota } from '@/app/mascotas/components'
-import { getMascotas, getMascotasSinProtectora, getMascotasSinVacunar } from '@/app/mascotas/data'
-import { getProtectorasIdNombre } from '@/app/protectoras/data'
-import { getVacunasIdNombre } from '@/app/vacunas/data'
+import { CardMascota, CardMascota2, CreateMascota, DeleteMascota, UpdateMascota, ViewMascota } from '@/components/mascotas'
+import { getMascotas, getMascotasSinProtectora, getMascotasSinVacunar } from '@/lib/data/mascotas'
+import { getProtectorasIdNombre } from '@/lib/data/protectoras'
+import { getVacunasIdNombre } from '@/lib/data/vacunas'
 import { Suspense } from 'react'
 import { List, List2, Table, Spinner } from '@/components/simpleui'
 import Link from 'next/link'
@@ -60,7 +60,7 @@ const Content = async () => {
             columns={[
                 { name: "nombre", label: "Nombre" },
                 { name: "descripcion", label: "Descripción" },
-                { name: "fecha_nacimiento", label: "Fecha de nacimiento" }
+                { name: "fecha_nacimiento", label: "Fecha de nacimiento" },
             ]}
             actions={[
                 ViewMascota,

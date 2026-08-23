@@ -1,7 +1,7 @@
 'use client'   // <---- IMPORTANTE
 
 import { Form, Button, CreateIcon, DeleteIcon, Modal, UpdateIcon, ViewIcon } from "@/components/simpleui";
-import { createProtectora, deleteProtectora, updateProtectora } from "@/app/protectoras/actions";
+import { createProtectora, deleteProtectora, updateProtectora } from "@/lib/actions/protectoras";
 
 
 

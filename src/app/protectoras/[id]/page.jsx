@@ -1,12 +1,17 @@
+import Link from "next/link"
+import { ArrowLeft } from "lucide-react"
+import { notFound } from "next/navigation"
 import { Suspense } from "react"
-import { UpdateProtectora, DeleteProtectora } from '@/app/protectoras/components';
-import { getMascotasIdNombre } from "@/app/mascotas/data";
-import { getProtectora, getProtectorasIdNombre } from "@/app/protectoras/data";
-import { ArrowLeft } from "lucide-react";
-import { notFound } from "next/navigation";
-import { Spinner } from "@/components/simpleui";
-import Link from "next/link";
-import BackButton from "@/components/back-button";
+
+import { getMascotasIdNombre } from "@/lib/data/mascotas"
+import { getProtectora, getProtectorasIdNombre } from "@/lib/data/protectoras"
+import { DeleteProtectora, UpdateProtectora } from "@/components/protectoras"
+
+import BackButton from "@/components/ui/back-button"
+import { Spinner } from "@/components/simpleui"
+
+
+
 
 
 export async function generateStaticParams() {

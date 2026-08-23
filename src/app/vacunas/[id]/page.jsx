@@ -1,10 +1,10 @@
 import { Spinner } from '@/components/simpleui'
-import { DeleteVacuna, UpdateVacuna } from '@/app/vacunas/components'
-import { getMascotasIdNombre } from '@/app/mascotas/data'
-import { getVacuna, getVacunasIdNombre } from '@/app/vacunas/data'
+import { DeleteVacuna, UpdateVacuna } from '@/components/vacunas'
+import { getMascotasIdNombre } from '@/lib/data/mascotas'
+import { getVacuna, getVacunasIdNombre } from '@/lib/data/vacunas'
 import { Suspense } from "react"
 import { ArrowLeft } from 'lucide-react'
-import BackButton from '@/components/back-button'
+import BackButton from '@/components/ui/back-button'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 

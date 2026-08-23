@@ -1,7 +1,7 @@
 import { List, List2, Table, Spinner } from '@/components/simpleui'
-import { CardProtectora, CreateProtectora, DeleteProtectora, UpdateProtectora, ViewProtectora } from '@/app/protectoras/components'
-import { getMascotasIdNombre } from '@/app/mascotas/data'
-import { getProtectoras, getProtectorasSinMascotas } from '@/app/protectoras/data'
+import { CardProtectora, CreateProtectora, DeleteProtectora, UpdateProtectora, ViewProtectora } from '@/components/protectoras'
+import { getMascotasIdNombre } from '@/lib/data/mascotas'
+import { getProtectoras, getProtectorasSinMascotas } from '@/lib/data/protectoras'
 import { Suspense } from 'react'
 import Link from 'next/link'
 

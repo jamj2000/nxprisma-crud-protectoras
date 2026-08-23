@@ -42,7 +42,7 @@ export async function getMascota(id) {
             }
         })
 
-        //console.log(mascota);
+        console.log('MASCOTA', mascota);
         return mascota;
     } catch (error) {
         // console.log(error);  

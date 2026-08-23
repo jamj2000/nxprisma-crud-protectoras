@@ -30,7 +30,9 @@ export async function createProtectora(prevState, formData) {
   }
 
   updateTag('protectoras')
-  // revalidatePath('/protectoras');
+  updateTag('mascotas')
+  revalidatePath('/protectoras');
+  revalidatePath('/mascotas');
   return {
     type: "success",
     message: "Protectora creada correctamente"
@@ -73,7 +75,11 @@ export async function updateProtectora(prevState, formData) {
   }
 
   updateTag('protectoras')
-  // revalidatePath('/protectoras');
+  updateTag(`protectora:${id}`)
+  updateTag('mascotas')
+  revalidatePath('/protectoras');
+  revalidatePath(`/protectoras/${id}`);
+  revalidatePath('/mascotas');
   return {
     type: "success",
     message: "Protectora modificada correctamente"
@@ -99,7 +105,9 @@ export async function deleteProtectora(prevState, formData) {
   }
 
   updateTag('protectoras')
-  // revalidatePath('/protectoras');
+  updateTag('mascotas')
+  revalidatePath('/protectoras');
+  revalidatePath('/mascotas');
   return {
     type: "success",
     message: "Protectora eliminada correctamente"

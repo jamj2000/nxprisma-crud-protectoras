@@ -1,9 +1,50 @@
 'use client'   // <---- IMPORTANTE
 
 import { Form, Button, CreateIcon, DeleteIcon, Modal, UpdateIcon, ViewIcon } from "@/components/simpleui";
-import { createMascota, deleteMascota, updateMascota } from "@/app/mascotas/actions";
-import { ViewTransition } from "react";
+import { createMascota, deleteMascota, updateMascota } from "@/lib/actions/mascotas";
+// import { ViewTransition } from "react";
 
+
+
+const fields = (data) => [
+    {
+        name: "foto",
+        label: "Foto",
+        component: "InputImage",
+        width: 240,
+        height: 240,
+        className: "self-end"
+    },
+    {
+        name: "nombre",
+        label: "Nombre",
+        component: "InputText"
+    },
+    {
+        name: "descripcion",
+        label: "Descripción",
+        component: "InputText",
+    },
+    {
+        name: "fecha_nacimiento",
+        label: "Fecha de nacimiento",
+        component: "InputDate",
+        // value: data.fecha_nacimiento?.toISOString().split('T')[0] ?? new Date().toISOString().split('T')[0]
+    },
+    {
+        name: "protectoraId",
+        label: "Protectora",
+        component: "InputSelect",
+        options: data?.protectorasIdNombre?.map(({ id, nombre }) => ([nombre, id, (data.protectora?.id ?? data.protectoraId) == id])) ?? []
+    },
+    {
+        name: "vacunas",
+        label: "Vacunas",
+        component: "InputGroup",
+        multiple: true,
+        options: data?.vacunasIdNombre?.map(({ id, nombre }) => ([nombre, id, data?.vacunas?.find(v => v.id == id)])) ?? []
+    }
+]
 
 
 
@@ -41,44 +82,7 @@ const FormMascota = ({ data = {}, action, disabled }) => {
             action={action}
             disabled={disabled}
             fields={[
-
-                {
-                    name: "foto",
-                    label: "Foto",
-                    component: "InputImage",
-                    width: 240,
-                    height: 240,
-                    className: "self-end"
-                },
-                {
-                    name: "nombre",
-                    label: "Nombre",
-                    component: "InputText"
-                },
-                {
-                    name: "descripcion",
-                    label: "Descripción",
-                    component: "InputText",
-                },
-                {
-                    name: "fecha_nacimiento",
-                    label: "Fecha de nacimiento",
-                    component: "InputDate",
-                    // value: data.fecha_nacimiento?.toISOString().split('T')[0] ?? new Date().toISOString().split('T')[0]
-                },
-                {
-                    name: "protectoraId",
-                    label: "Protectora",
-                    component: "InputSelect",
-                    options: data?.protectorasIdNombre?.map(({ id, nombre }) => ([nombre, id, data.protectora?.id == id])) ?? []
-                },
-                {
-                    name: "vacunas",
-                    label: "Vacunas",
-                    component: "InputGroup",
-                    multiple: true,
-                    options: data?.vacunasIdNombre?.map(({ id, nombre }) => ([nombre, id, data?.vacunas?.find(v => v.id == id)])) ?? []
-                },
+                ...fields(data),
                 ...(submitField ? [submitField] : [])
             ]}
         />
@@ -159,9 +163,9 @@ export const CardMascota = ({ data, actions }) => (
 
         <div className="grid grid-cols-[80px_auto] gap-2">
 
-            <ViewTransition name={`mascota-foto-${data.id}`}>
-                <img src={data.foto} />
-            </ViewTransition>
+            {/* <ViewTransition name={`mascota-foto-${data.id}`}> */}
+            <img src={data.foto} />
+            {/* </ViewTransition> */}
 
 
             <div>
@@ -170,6 +174,7 @@ export const CardMascota = ({ data, actions }) => (
                 <div className="text-sm text-gray-500 dark:text-gray-300">{data.descripcion}</div>
 
                 <div className="mt-2 xl:mt-0">{data.fecha_nacimiento}</div>
+
             </div>
         </div>
 
@@ -194,9 +199,9 @@ export const CardMascota2 = ({ data, actions }) => (
     >
 
         <div className="xl:col-span-3 grid grid-cols-[80px_auto] gap-2">
-            <ViewTransition name={`mascota-foto-${data.id}`}>
-                <img src={data.foto} />
-            </ViewTransition>
+            {/* <ViewTransition name={`mascota-foto-${data.id}`}> */}
+            <img src={data.foto} />
+            {/* </ViewTransition> */}
 
             <div>
                 <div className="font-semibold ">{data.nombre}</div>

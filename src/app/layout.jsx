@@ -2,8 +2,8 @@ import "@/app/globals.css";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "sonner";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
+import Header from "@/components/ui/header";
+import Footer from "@/components/ui/footer";
 
 
 
