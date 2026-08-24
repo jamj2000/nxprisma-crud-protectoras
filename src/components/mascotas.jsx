@@ -2,6 +2,8 @@
 
 import { Form, Button, CreateIcon, DeleteIcon, Modal, UpdateIcon, ViewIcon } from "@/components/simpleui";
 import { createMascota, deleteMascota, updateMascota } from "@/lib/actions/mascotas";
+import Image from 'next/image';
+import { defaultImage } from '@/lib/constants';
 // import { ViewTransition } from "react";
 
 
@@ -164,7 +166,7 @@ export const CardMascota = ({ data, actions }) => (
         <div className="grid grid-cols-[80px_auto] gap-2">
 
             {/* <ViewTransition name={`mascota-foto-${data.id}`}> */}
-            <img src={data.foto} />
+            <Image src={data.foto || defaultImage} alt={data.nombre || 'mascota'} width={80} height={80} className="object-cover rounded-md shadow-sm" />
             {/* </ViewTransition> */}
 
 
@@ -200,7 +202,7 @@ export const CardMascota2 = ({ data, actions }) => (
 
         <div className="xl:col-span-3 grid grid-cols-[80px_auto] gap-2">
             {/* <ViewTransition name={`mascota-foto-${data.id}`}> */}
-            <img src={data.foto} />
+            <Image src={data.foto || defaultImage} alt={data.nombre || 'mascota'} width={80} height={80} className="object-cover rounded-md shadow-sm" />
             {/* </ViewTransition> */}
 
             <div>

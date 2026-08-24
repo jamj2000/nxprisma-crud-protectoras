@@ -9,6 +9,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import BackButton from '@/components/ui/back-button'
 import { notFound } from 'next/navigation'
+import { defaultImage } from '@/lib/constants'
 
 export async function generateStaticParams() {
     const mascotas = await getMascotasIdNombre()
@@ -63,7 +64,7 @@ const Content = async ({ params }) => {
 
             {/* <ViewTransition name={`mascota-foto-${data.id}`}> */}
             <Image
-                src={data.foto}
+                src={data.foto || defaultImage}
                 alt={mascota.nombre}
                 width={384}
                 height={320}

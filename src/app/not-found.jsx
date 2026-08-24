@@ -1,4 +1,5 @@
 import BackButton from "@/components/ui/back-button"
+import Image from 'next/image'
 
 
 function notFound() {
@@ -9,7 +10,7 @@ function notFound() {
             </h1>
 
             <BackButton>
-                <img src="/not-found.webp" />
+                <Image src="/not-found.webp" alt="Página no encontrada" width={400} height={300} />
             </BackButton>
         </section >
     )

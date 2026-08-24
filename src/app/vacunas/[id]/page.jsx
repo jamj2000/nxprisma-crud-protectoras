@@ -6,7 +6,9 @@ import { Suspense } from "react"
 import { ArrowLeft } from 'lucide-react'
 import BackButton from '@/components/ui/back-button'
 import Link from 'next/link'
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
+import { defaultImage } from '@/lib/constants'
 
 
 
@@ -71,7 +73,7 @@ const Content = async ({ params }) => {
                     <div className='flex gap-2 flex-wrap'>
                         {vacuna.mascotas.map(mascota => (
                             <Link href={'/mascotas/' + mascota.id} key={mascota.id} className='flex flex-col items-center'>
-                                <img src={mascota.foto} className='size-20 rounded-full' />
+                                <Image src={mascota.foto || defaultImage} alt={mascota.nombre} width={80} height={80} className='size-20 rounded-full object-cover' />
                                 <p>{mascota.nombre}</p>
                             </Link>
                         ))}

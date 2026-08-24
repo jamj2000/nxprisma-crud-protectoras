@@ -2,6 +2,7 @@ import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import { notFound } from "next/navigation"
 import { Suspense } from "react"
+import Image from 'next/image'
 
 import { getMascotasIdNombre } from "@/lib/data/mascotas"
 import { getProtectora, getProtectorasIdNombre } from "@/lib/data/protectoras"
@@ -9,6 +10,7 @@ import { DeleteProtectora, UpdateProtectora } from "@/components/protectoras"
 
 import BackButton from "@/components/ui/back-button"
 import { Spinner } from "@/components/simpleui"
+import { defaultImage } from '@/lib/constants'
 
 
 
@@ -80,7 +82,7 @@ const Content = async ({ params }) => {
                     <div className='flex gap-2 flex-wrap'>
                         {protectora.mascotas.map(mascota => (
                             <Link href={'/mascotas/' + mascota.id} key={mascota.id} className='flex flex-col items-center'>
-                                <img src={mascota.foto} className='size-20 rounded-full' />
+                                <Image src={mascota.foto || defaultImage} alt={mascota.nombre} width={80} height={80} className='size-20 rounded-full object-cover' />
                                 <p>{mascota.nombre}</p>
                             </Link>
                         ))}

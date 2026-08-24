@@ -1,5 +1,8 @@
+import { Spinner } from '@/components/simpleui';
+import prisma from '@/lib/prisma';
 import { ArrowRight, Fence, PawPrint, Squirrel, Syringe } from 'lucide-react';
 import Link from "next/link";
+import { Suspense } from 'react';
 
 
 function CardIcon({ children }) {
@@ -31,13 +34,20 @@ export default function Home() {
           href="/protectoras"
           className="group rounded-2xl border border-slate-200 bg-white dark:bg-zinc-700 p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg"
         >
-          <CardIcon>
-            <PawPrint />
-          </CardIcon>
 
-          <h2 className="mt-5 text-xl font-semibold text-slate-800 dark:text-slate-200 group-hover:text-blue-500">
-            Protectoras
-          </h2>
+          <div className='flex gap-4 items-center'>
+            <CardIcon>
+              <PawPrint />
+            </CardIcon>
+
+            <Suspense fallback={<Spinner />}>
+              <TotalProtectoras />
+            </Suspense>
+
+            <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-200 group-hover:text-blue-500">
+              Protectoras
+            </h2>
+          </div>
 
           <p className="mt-2 text-sm leading-6 text-slate-500 dark:text-slate-300">
             Consulta y gestiona las protectoras de animales.
@@ -55,13 +65,20 @@ export default function Home() {
           href="/mascotas"
           className="group rounded-2xl border border-slate-200 bg-white dark:bg-zinc-700 p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-emerald-200 hover:shadow-lg"
         >
-          <CardIcon>
-            <Squirrel />
-          </CardIcon>
 
-          <h2 className="mt-5 text-xl font-semibold text-slate-800 dark:text-slate-200 group-hover:text-emerald-600">
-            Mascotas
-          </h2>
+          <div className='flex gap-4 items-center'>
+            <CardIcon>
+              <Squirrel />
+            </CardIcon>
+
+            <Suspense fallback={<Spinner />}>
+              <TotalMascotas />
+            </Suspense>
+
+            <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-200 group-hover:text-emerald-600">
+              Mascotas
+            </h2>
+          </div>
 
           <p className="mt-2 text-sm leading-6 text-slate-500 dark:text-slate-300">
             Consulta y administra las mascotas registradas.
@@ -79,13 +96,20 @@ export default function Home() {
           href="/vacunas"
           className="group rounded-2xl border border-slate-200 bg-white dark:bg-zinc-700 p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-amber-200 hover:shadow-lg"
         >
-          <CardIcon>
-            <Syringe />
-          </CardIcon>
 
-          <h2 className="mt-5 text-xl font-semibold text-slate-800 dark:text-slate-200 group-hover:text-amber-600">
-            Vacunas
-          </h2>
+          <div className='flex gap-4 items-center'>
+            <CardIcon>
+              <Syringe />
+            </CardIcon>
+
+            <Suspense fallback={<Spinner />}>
+              <TotalVacunas />
+            </Suspense>
+
+            <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-200 group-hover:text-amber-600">
+              Vacunas
+            </h2>
+          </div>
 
           <p className="mt-2 text-sm leading-6 text-slate-500 dark:text-slate-300">
             Gestiona las vacunas y el historial sanitario.
@@ -104,3 +128,23 @@ export default function Home() {
 }
 
 
+const TotalProtectoras = async () => {
+  const protectoras = await prisma.protectora.count();
+  return (
+    <p className='font-bold text-4xl'>{protectoras}</p>
+  )
+}
+
+const TotalMascotas = async () => {
+  const mascotas = await prisma.mascota.count();
+  return (
+    <p className='font-bold text-4xl'>{mascotas}</p>
+  )
+}
+
+const TotalVacunas = async () => {
+  const vacunas = await prisma.vacuna.count();
+  return (
+    <p className='font-bold text-4xl'>{vacunas}</p>
+  )
+}
