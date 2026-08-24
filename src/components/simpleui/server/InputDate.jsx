@@ -28,6 +28,7 @@ export const InputDate = ({ type = "date", label = "Fecha", name, value, disable
     return (
         <div className="relative">
             <input
+                key={value}
                 type={type}
                 name={name}
                 defaultValue={value}

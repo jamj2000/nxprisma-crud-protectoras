@@ -6,6 +6,7 @@ import { getVacunasIdNombre } from '@/lib/data/vacunas'
 import { Suspense, ViewTransition } from "react"
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 import BackButton from '@/components/ui/back-button'
 import { notFound } from 'next/navigation'
 
@@ -61,7 +62,14 @@ const Content = async ({ params }) => {
 
 
             {/* <ViewTransition name={`mascota-foto-${data.id}`}> */}
-            <img src={data.foto} />
+            <Image
+                src={data.foto}
+                alt={mascota.nombre}
+                width={384}
+                height={320}
+                priority
+                className="w-full max-w-sm h-80 object-cover rounded-xl shadow-md"
+            />
             {/* </ViewTransition> */}
 
             <div className='flex justify-between mt-10'>
