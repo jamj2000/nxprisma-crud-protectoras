@@ -88,12 +88,14 @@ const Content = async () => {
 const SinAdministrar = async () => {
     const vacunas = await getVacunasSinAdministrar()
     return (
-        <div>
+        <div className='text-xl'>
             {vacunas?.length > 0 ? (
                 <ul className='list-disc list-inside'>
                     {vacunas.map((vacuna) => (
                         <li key={vacuna.id}>
-                            <Link href={"/vacunas/" + vacuna.id} >{vacuna.nombre}</Link>
+                            <Link href={"/vacunas/" + vacuna.id} className='text-blue-400 hover:underline hover:underline-offset-4'>
+                                {vacuna.nombre}
+                            </Link>
                         </li>
                     ))}
                 </ul>

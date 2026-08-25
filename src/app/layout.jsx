@@ -2,8 +2,10 @@ import "@/app/globals.css";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "sonner";
-import Header from "@/components/ui/header";
-import Footer from "@/components/ui/footer";
+import { MainMenu, MenuLink, ThemeToggle } from "@/components/simpleui";
+import { Suspense } from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 
 
@@ -31,7 +33,6 @@ export default function RootLayout({ children }) {
       className="antialiased scrollbar-gutter-stable"
     >
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`} >
-        {/* <Header /> */}
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} enableColorScheme>
 
           <Header />
@@ -39,12 +40,71 @@ export default function RootLayout({ children }) {
           <main className="mt-20 container mx-auto grow px-6 py-4">
             {children}
           </main>
+
           <Footer />
+
           <Toaster position="top-center" richColors />
         </ThemeProvider>
       </body>
     </html>
   );
+}
+
+
+
+// Componentes
+
+
+function Header() {
+
+  return (
+    <nav className="fixed top-0 z-50 px-2 w-full flex gap-2 items-center justify-between py-4  bg-neutral-500/50  backdrop-blur-sm">
+      <div className="bg-white dark:bg-black rounded-full px-4">
+        <Logo />
+      </div>
+
+      <div className="flex gap-2 items-center">
+        <ThemeToggle />
+        <MainMenu>
+          <MenuLink href="/protectoras">Protectoras</MenuLink>
+          <MenuLink href="/mascotas">Mascotas</MenuLink>
+          <MenuLink href="/vacunas">Vacunas</MenuLink>
+        </MainMenu>
+      </div>
+    </nav>
+  );
+}
+
+
+const Logo = () => (
+  <Link
+    href="/"
+    className="flex gap-3 items-center">
+
+    <Image
+      src="/logo.svg"
+      height={48}
+      width={48}
+      alt="Protectora Logo"
+      loading="eager"
+    />
+
+    <span className="hidden sm:block self-center text-xl font-semibold whitespace-nowrap text-gray-900 dark:text-gray-100/80">
+      Protect
+    </span>
+  </Link>
+)
+
+
+
+async function Footer() {
+  'use cache'
+  return (
+    <footer className="flex justify-between px-4 text-slate-500 bg-slate-200 dark:bg-slate-900 ">
+      <div><a href="https://github.com/jamj2000"> &copy; jamj2000 </a></div>
+      <p>{new Date().getFullYear()} </p>
+    </footer>
+  )
 }
 
 

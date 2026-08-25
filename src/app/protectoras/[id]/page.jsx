@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
+import { ArrowLeft, PawPrint } from "lucide-react"
 import { notFound } from "next/navigation"
 import { Suspense } from "react"
 import Image from 'next/image'
@@ -8,7 +8,7 @@ import { getMascotasIdNombre } from "@/lib/data/mascotas"
 import { getProtectora, getProtectorasIdNombre } from "@/lib/data/protectoras"
 import { DeleteProtectora, UpdateProtectora } from "@/components/protectoras"
 
-import BackButton from "@/components/ui/back-button"
+import { BackLink } from "@/components/simpleui"
 import { Spinner } from "@/components/simpleui"
 import { defaultImage } from '@/lib/constants'
 
@@ -64,16 +64,18 @@ const Content = async ({ params }) => {
 
     return (
         <>
-            <BackButton className="mb-2 self-start size-10 grid place-content-center rounded-full border border-indigo-500 text-indigo-700 bg-indigo-200 hover:bg-indigo-500 hover:text-white hover:cursor-pointer" >
+            <BackLink className="mb-2 self-start size-10 grid place-content-center rounded-full border border-indigo-500 text-indigo-700 bg-indigo-200 hover:bg-indigo-500 hover:text-white hover:cursor-pointer" >
                 <ArrowLeft />
-            </BackButton>
+            </BackLink>
 
             <div className='flex justify-between mt-10'>
 
-                <div>
-                    <p className='text-3xl'>{protectora.nombre}</p>
-                    <p>{protectora.localidad}</p>
-                    <p>{protectora.telefono}</p>
+                <div className="flex flex-col gap-4 text-xl">
+                    <p className='text-3xl flex items-center gap-2'>
+                        <PawPrint className="size-10" />{protectora.nombre}
+                    </p>
+                    <p className='text-slate-400'>{protectora.localidad}</p>
+                    <p className='text-slate-400'>{protectora.telefono}</p>
 
                     {protectora.mascotas?.length > 0
                         ? <p className='font-bold'>Mascotas en esta protectora.</p>

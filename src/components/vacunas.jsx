@@ -5,6 +5,32 @@ import { createVacuna, deleteVacuna, updateVacuna } from "@/lib/actions/vacunas"
 
 
 
+const fields = (data) => [
+    {
+        name: "id",
+        component: "InputHidden",
+        value: data?.id,
+    },
+    {
+        name: "nombre",
+        label: "Nombre",
+        component: "InputText"
+    },
+    {
+        name: "especie",
+        label: "Especie",
+        component: "InputText"
+    },
+    {
+        name: "mascotas",
+        label: "Mascotas",
+        component: "InputGroup",
+        multiple: true,
+        options: data?.mascotasIdNombre?.map(({ id, nombre }) => ([nombre, id, data?.mascotas?.find(m => m.id == id)])) ?? []
+    }
+]
+
+
 const FormVacuna = ({ data = {}, action, disabled }) => {
 
     const submit = () => {
@@ -39,28 +65,7 @@ const FormVacuna = ({ data = {}, action, disabled }) => {
             action={action}
             disabled={disabled}
             fields={[
-                {
-                    name: "id",
-                    component: "InputHidden",
-                    value: data?.id,
-                },
-                {
-                    name: "nombre",
-                    label: "Nombre",
-                    component: "InputText"
-                },
-                {
-                    name: "especie",
-                    label: "Especie",
-                    component: "InputText"
-                },
-                {
-                    name: "mascotas",
-                    label: "Mascotas",
-                    component: "InputGroup",
-                    multiple: true,
-                    options: data?.mascotasIdNombre?.map(({ id, nombre }) => ([nombre, id, data?.mascotas?.find(m => m.id == id)])) ?? []
-                },
+                ...fields(data),
                 ...(submitField ? [submitField] : [])
             ]}
         />
@@ -143,7 +148,7 @@ export const CardVacuna = ({ data, actions }) => (
 
         <div className="text-sm text-gray-500 dark:text-gray-300">{data.descripcion}</div>
 
-        <div className="mt-2 xl:mt-0">{data.especie}</div>
+        <div className="mt-2 xl:mt-0">Para {data.especie}</div>
 
         {actions &&
             <div className="flex gap-1 self-end" onClick={e => e.stopPropagation()}>
@@ -169,7 +174,7 @@ export const CardVacuna2 = ({ data, actions }) => (
 
         <div className="text-sm text-gray-500 dark:text-gray-300">{data.descripcion}</div>
 
-        <div className="mt-2 xl:mt-0">{data.especie}</div>
+        <div className="mt-2 xl:mt-0">Para {data.especie}</div>
 
         <div className="mt-3 xl:mt-0 flex justify-end">
             {actions &&

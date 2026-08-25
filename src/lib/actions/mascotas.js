@@ -1,20 +1,23 @@
 'use server'
-import { revalidatePath, updateTag } from 'next/cache';
 import prisma from '@/lib/prisma'
-import cloudinary from '@/lib/cloudinary';
+import { updateTag } from 'next/cache'
+import { redirect } from 'next/navigation'
+
+import cloudinary from '@/lib/cloudinary'
 import path from 'node:path'
 
 
 
+
 async function imageUpload(file) {
-  console.log(file);
+  console.log(file)
 
-  const fileBuffer = await file.arrayBuffer();
+  const fileBuffer = await file.arrayBuffer()
 
-  let mime = file.type;
-  let encoding = 'base64';
-  let base64Data = Buffer.from(fileBuffer).toString('base64');
-  let fileUri = 'data:' + mime + ';' + encoding + ',' + base64Data;
+  let mime = file.type
+  let encoding = 'base64'
+  let base64Data = Buffer.from(fileBuffer).toString('base64')
+  let fileUri = 'data:' + mime + '' + encoding + ',' + base64Data
 
   try {
     // Transformamos imagen al subirla
@@ -29,10 +32,10 @@ async function imageUpload(file) {
       gravity: "center"
     })
 
-    console.log(result);
+    console.log(result)
     return result.secure_url
   } catch (error) {
-    console.log(error);
+    console.log(error)
     return null
   }
 }
@@ -67,20 +70,23 @@ export async function createMascota(prevState, formData) {
       },
     })
 
+    updateTag('mascotas')
+    updateTag('protectoras')
+    updateTag('vacunas')
+
+    return {
+      type: "success",
+      message: "Mascota registrada correctamente"
+    }
+
   } catch (error) {
     return {
       type: "error",
       message: "Error al registrar la mascota" + error
     }
   }
-
-  updateTag('mascotas')
-  revalidatePath('/mascotas');
-  return {
-    type: "success",
-    message: "Mascota registrada correctamente"
-  }
 }
+
 
 
 
@@ -115,23 +121,24 @@ export async function updateMascota(prevState, formData) {
       },
     })
 
+    updateTag('mascotas')
+    updateTag('protectoras')
+    updateTag('vacunas')
+
+    return {
+      type: "success",
+      message: "Mascota actualizada correctamente"
+    }
+
   } catch (error) {
     return {
       type: "error",
       message: "Error al actualizar la mascota"
     }
   }
-
-  updateTag('mascotas')
-  updateTag(`mascota:${id}`)
-  updateTag('protectoras')
-  // revalidatePath('/mascotas');
-  // revalidatePath(`/mascotas/${id}`);
-  return {
-    type: "success",
-    message: "Mascota actualizada correctamente"
-  }
 }
+
+
 
 
 export async function deleteMascota(prevState, formData) {
@@ -141,6 +148,14 @@ export async function deleteMascota(prevState, formData) {
     await prisma.mascota.delete({
       where: { id },
     })
+    updateTag('mascotas')
+    updateTag('protectoras')
+    updateTag('vacunas')
+
+    // return {
+    //   type: "success",
+    //   message: "Mascota actualizada correctamente"
+    // }
 
   } catch (error) {
     return {
@@ -149,11 +164,6 @@ export async function deleteMascota(prevState, formData) {
     }
   }
 
-  updateTag('mascotas')
-  revalidatePath('/mascotas');
-  return {
-    type: "success",
-    message: "Mascota actualizada correctamente"
-  }
+  redirect('/mascotas')
 }
 

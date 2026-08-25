@@ -1,6 +1,7 @@
 'use server'
-import { revalidatePath, updateTag } from 'next/cache';
 import prisma from '@/lib/prisma'
+import { updateTag } from 'next/cache'
+import { redirect } from 'next/navigation'
 
 
 export async function createProtectora(prevState, formData) {
@@ -22,24 +23,20 @@ export async function createProtectora(prevState, formData) {
       }
     })
 
+    updateTag('protectoras')
+    updateTag('mascotas')
+    return {
+      type: "success",
+      message: "Protectora creada correctamente"
+    }
+
   } catch (error) {
     return {
       type: "error",
       message: "Error al crear la protectora"
     }
   }
-
-  updateTag('protectoras')
-  updateTag('mascotas')
-  revalidatePath('/protectoras');
-  revalidatePath('/mascotas');
-  return {
-    type: "success",
-    message: "Protectora creada correctamente"
-  }
-
 }
-
 
 
 
@@ -66,6 +63,12 @@ export async function updateProtectora(prevState, formData) {
         mascotas: { set: mascotas },
       }
     })
+    updateTag('protectoras')
+    updateTag('mascotas')
+    return {
+      type: "success",
+      message: "Protectora modificada correctamente"
+    }
 
   } catch (error) {
     return {
@@ -74,16 +77,7 @@ export async function updateProtectora(prevState, formData) {
     }
   }
 
-  updateTag('protectoras')
-  updateTag(`protectora:${id}`)
-  updateTag('mascotas')
-  revalidatePath('/protectoras');
-  revalidatePath(`/protectoras/${id}`);
-  revalidatePath('/mascotas');
-  return {
-    type: "success",
-    message: "Protectora modificada correctamente"
-  }
+
 
 }
 
@@ -95,21 +89,20 @@ export async function deleteProtectora(prevState, formData) {
     await prisma.protectora.delete({
       where: { id }
     })
+    updateTag('protectoras')
+    updateTag('mascotas')
+    // return {
+    //   type: "success",
+    //   message: "Protectora eliminada correctamente"
+    // }
 
   } catch (error) {
-    console.log(error);
+    console.log(error)
     return {
       type: "error",
       message: "Error al eliminar la protectora"
     }
   }
 
-  updateTag('protectoras')
-  updateTag('mascotas')
-  revalidatePath('/protectoras');
-  revalidatePath('/mascotas');
-  return {
-    type: "success",
-    message: "Protectora eliminada correctamente"
-  }
+  redirect('/protectoras')
 }

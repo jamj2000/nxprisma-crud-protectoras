@@ -4,10 +4,10 @@ import { getMascota, getMascotasIdNombre } from '@/lib/data/mascotas'
 import { getProtectorasIdNombre } from '@/lib/data/protectoras'
 import { getVacunasIdNombre } from '@/lib/data/vacunas'
 import { Suspense, ViewTransition } from "react"
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, Squirrel } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
-import BackButton from '@/components/ui/back-button'
+import { BackLink } from '@/components/simpleui'
 import { notFound } from 'next/navigation'
 import { defaultImage } from '@/lib/constants'
 
@@ -57,9 +57,9 @@ const Content = async ({ params }) => {
 
     return (
         <>
-            <BackButton className="mb-2 self-start size-10 grid place-content-center rounded-full border border-indigo-500 text-indigo-700 bg-indigo-200 hover:bg-indigo-500 hover:text-white hover:cursor-pointer" >
+            <BackLink className="mb-2 self-start size-10 grid place-content-center rounded-full border border-indigo-500 text-indigo-700 bg-indigo-200 hover:bg-indigo-500 hover:text-white hover:cursor-pointer" >
                 <ArrowLeft />
-            </BackButton>
+            </BackLink>
 
 
             {/* <ViewTransition name={`mascota-foto-${data.id}`}> */}
@@ -75,24 +75,34 @@ const Content = async ({ params }) => {
 
             <div className='flex justify-between mt-10'>
 
-                <div>
-                    <p className='text-3xl'>{mascota.nombre}</p>
-                    <p>{mascota.descripcion}</p>
-                    <p>{mascota.fecha_nacimiento.toISOString().split('T')[0]}</p>
+                <div className="flex flex-col gap-4 text-xl">
 
+                    <p className='text-3xl flex items-center gap-2'>
+                        <Squirrel className="size-10" />{mascota.nombre}
+                    </p>
+                    <p className='text-slate-400'>{mascota.descripcion}</p>
+
+                    <p className='text-slate-400'>Nació el {new Intl.DateTimeFormat("es-ES", {
+                        dateStyle: "full",
+                        timeZone: "Europe/Madrid",
+                    }).format(mascota.fecha_nacimiento)}</p>
+
+                    {/* <p>Nació en {mascota.fecha_nacimiento.toISOString().split('T')[0]}</p> */}
                     <p className='font-bold'>Protectora</p>
                     <p>
                         {mascota.protectora?.nombre
-                            ? <Link href={'/protectoras/' + mascota.protectora.id}>{mascota.protectora.nombre}</Link>
+                            ? <Link href={'/protectoras/' + mascota.protectora.id} className='text-blue-400 hover:underline hover:underline-offset-4'>
+                                {mascota.protectora.nombre}
+                            </Link>
                             : "(Sin protectora)"
                         }
                     </p>
 
                     <p className='font-bold'>Vacunas administradas</p>
                     {mascota.vacunas.length > 0
-                        ? < ul className='text-left list-disc list-inside'>
+                        ? < ul className='text-left list-disc list-inside text-blue-400'>
                             {mascota.vacunas.map(vacuna => (
-                                <Link href={'/vacunas/' + vacuna.id} key={vacuna.id}>
+                                <Link href={'/vacunas/' + vacuna.id} key={vacuna.id} className='text-blue-400 hover:underline hover:underline-offset-4'>
                                     <li>{vacuna.nombre}</li>
                                 </Link>
                             ))}

@@ -1,6 +1,6 @@
 import { Spinner } from '@/components/simpleui';
 import prisma from '@/lib/prisma';
-import { ArrowRight, Fence, PawPrint, Squirrel, Syringe } from 'lucide-react';
+import { ArrowRight, PawPrint, Squirrel, Syringe } from 'lucide-react';
 import Link from "next/link";
 import { Suspense } from 'react';
 
@@ -29,7 +29,7 @@ export default function Home() {
       </header>
 
       {/* Opciones */}
-      <section className="grid gap-6 md:grid-cols-3">
+      <section className="grid gap-6 lg:grid-cols-3">
         <Link
           href="/protectoras"
           className="group rounded-2xl border border-slate-200 bg-white dark:bg-zinc-700 p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg"
@@ -40,7 +40,7 @@ export default function Home() {
               <PawPrint />
             </CardIcon>
 
-            <Suspense fallback={<Spinner />}>
+            <Suspense fallback={<Spinner color="text-slate-500" />}>
               <TotalProtectoras />
             </Suspense>
 
@@ -71,7 +71,7 @@ export default function Home() {
               <Squirrel />
             </CardIcon>
 
-            <Suspense fallback={<Spinner />}>
+            <Suspense fallback={<Spinner color="text-slate-500" />}>
               <TotalMascotas />
             </Suspense>
 
@@ -102,7 +102,7 @@ export default function Home() {
               <Syringe />
             </CardIcon>
 
-            <Suspense fallback={<Spinner />}>
+            <Suspense fallback={<Spinner color="text-slate-500" />}>
               <TotalVacunas />
             </Suspense>
 
@@ -129,6 +129,7 @@ export default function Home() {
 
 
 const TotalProtectoras = async () => {
+
   const protectoras = await prisma.protectora.count();
   return (
     <p className='font-bold text-4xl'>{protectoras}</p>

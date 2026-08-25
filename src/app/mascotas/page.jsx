@@ -131,12 +131,14 @@ const SinProtectora = async () => {
     const mascotas = await getMascotasSinProtectora();
 
     return (
-        <div>
+        <div className='text-xl'>
             {mascotas?.length ? (
                 <ul className='list-disc list-inside'>
                     {mascotas.map((mascota) => (
                         <li key={mascota.id}>
-                            <Link href={"/mascotas/" + mascota.id} >{mascota.nombre}</Link>
+                            <Link href={"/mascotas/" + mascota.id} className='text-blue-400 hover:underline hover:underline-offset-4'>
+                                {mascota.nombre}
+                            </Link>
                         </li>
                     ))}
                 </ul>
@@ -153,12 +155,14 @@ const SinVacunar = async () => {
     const mascotas = await getMascotasSinVacunar()
 
     return (
-        <div>
+        <div className='text-xl'>
             {mascotas?.length ? (
                 <ul className='list-disc list-inside'>
                     {mascotas.map((mascota) => (
                         <li key={mascota.id}>
-                            <Link href={"/mascotas/" + mascota.id} >{mascota.nombre}</Link>
+                            <Link href={"/mascotas/" + mascota.id} className='text-blue-400 hover:underline hover:underline-offset-4'>
+                                {mascota.nombre}
+                            </Link>
                         </li>
                     ))}
                 </ul>

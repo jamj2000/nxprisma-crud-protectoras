@@ -5,6 +5,33 @@ import { createProtectora, deleteProtectora, updateProtectora } from "@/lib/acti
 
 
 
+const fields = (data) => [
+    {
+        name: "nombre",
+        label: "Nombre",
+        component: "InputText"
+    },
+    {
+        name: "localidad",
+        label: "Localidad",
+        component: "InputText"
+    },
+
+    {
+        name: "telefono",
+        label: "Telefono",
+        component: "InputText"
+    },
+    {
+        name: "mascotas",
+        label: "Mascotas",
+        component: "InputGroup",
+        multiple: true,
+        options: data?.mascotasIdNombre?.map(({ id, nombre }) => ([nombre, id, data?.mascotas?.find(m => m.id == id)])) ?? []
+    }
+]
+
+
 const FormProtectora = ({ data = {}, action, disabled }) => {
 
     const submit = () => {
@@ -39,29 +66,7 @@ const FormProtectora = ({ data = {}, action, disabled }) => {
             action={action}
             disabled={disabled}
             fields={[
-                {
-                    name: "nombre",
-                    label: "Nombre",
-                    component: "InputText"
-                },
-                {
-                    name: "localidad",
-                    label: "Localidad",
-                    component: "InputText"
-                },
-
-                {
-                    name: "telefono",
-                    label: "Telefono",
-                    component: "InputText"
-                },
-                {
-                    name: "mascotas",
-                    label: "Mascotas",
-                    component: "InputGroup",
-                    multiple: true,
-                    options: data?.mascotasIdNombre?.map(({ id, nombre }) => ([nombre, id, data?.mascotas?.find(m => m.id == id)])) ?? []
-                },
+                ...fields(data),
                 ...(submitField ? [submitField] : [])
             ]}
         />
@@ -140,7 +145,7 @@ export const ViewProtectora = ({ data = {} }) => (
 export const CardProtectora = ({ data, actions }) => (
     <div className="p-4 flex flex-col gap-2 bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-600 rounded-md shadow-md shadow-current/20">
 
-        <div className="font-semibold ">{data.nombre}</div>
+        <div className="font-semibold">{data.nombre}</div>
 
         <div className="text-sm text-gray-500 dark:text-gray-300">{data.localidad}</div>
 

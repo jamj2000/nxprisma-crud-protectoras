@@ -1,4 +1,4 @@
-import BackButton from "@/components/ui/back-button"
+import { BackLink } from "@/components/simpleui"
 import Image from 'next/image'
 
 
@@ -9,9 +9,9 @@ function notFound() {
                 Página no encontrada
             </h1>
 
-            <BackButton>
+            <BackLink>
                 <Image src="/not-found.webp" alt="Página no encontrada" width={400} height={300} />
-            </BackButton>
+            </BackLink>
         </section >
     )
 }
