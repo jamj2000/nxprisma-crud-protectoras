@@ -136,7 +136,7 @@ const SinProtectora = async () => {
                 <ul className='list-disc list-inside'>
                     {mascotas.map((mascota) => (
                         <li key={mascota.id}>
-                            <Link href={"/mascotas/" + mascota.id} className='text-blue-400 hover:underline hover:underline-offset-4'>
+                            <Link href={"/mascotas/" + mascota.id} className='text-blue-400 hover:underline hover:underline-offset-4' prefetch>
                                 {mascota.nombre}
                             </Link>
                         </li>
@@ -160,7 +160,7 @@ const SinVacunar = async () => {
                 <ul className='list-disc list-inside'>
                     {mascotas.map((mascota) => (
                         <li key={mascota.id}>
-                            <Link href={"/mascotas/" + mascota.id} className='text-blue-400 hover:underline hover:underline-offset-4'>
+                            <Link href={"/mascotas/" + mascota.id} className='text-blue-400 hover:underline hover:underline-offset-4' prefetch>
                                 {mascota.nombre}
                             </Link>
                         </li>
