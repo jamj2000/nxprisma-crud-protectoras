@@ -21,18 +21,16 @@ export async function createVacuna(prevState, formData) {
       }
     })
 
+    updateTag('vacunas')
+    return {
+      type: "success",
+      message: "Vacuna creada correctamente"
+    }
   } catch (error) {
     return {
       type: "error",
       message: "Error al crear la vacuna"
     }
-  }
-
-  updateTag('vacunas')
-  // revalidatePath('/vacunas');
-  return {
-    type: "success",
-    message: "Vacuna creada correctamente"
   }
 }
 
@@ -54,22 +52,19 @@ export async function updateVacuna(prevState, formData) {
       }
     })
 
-
+    updateTag('vacunas')
+    return {
+      type: "success",
+      message: "Vacuna actualizada correctamente"
+    }
   } catch (error) {
     return {
       type: "error",
       message: "Error al actualizar la vacuna"
     }
   }
-
-  updateTag('vacunas')
-  updateTag('vacunas')
-  // revalidatePath('/vacunas');
-  return {
-    type: "success",
-    message: "Vacuna actualizada correctamente"
-  }
 }
+
 
 
 
@@ -81,18 +76,17 @@ export async function deleteVacuna(prevState, formData) {
       where: { id },
     })
 
+    updateTag('vacunas')
+    return {
+      type: "success",
+      message: "Vacuna eliminada correctamente"
+    }
+
   } catch (error) {
     return {
       type: "error",
       message: "Error al eliminar la vacuna"
     }
-  }
-
-  updateTag('vacunas')
-  // revalidatePath('/vacunas');
-  return {
-    type: "success",
-    message: "Vacuna eliminada correctamente"
   }
 }
 

@@ -9,37 +9,68 @@ import path from 'node:path'
 
 
 
+// async function imageUpload(file) {
+//   console.log(file)
+
+//   const fileBuffer = await file.arrayBuffer()
+
+//   let mime = file.type
+//   let encoding = 'base64'
+//   let base64Data = Buffer.from(fileBuffer).toString('base64')
+//   let fileUri = 'data:' + mime + '' + encoding + ',' + base64Data
+
+//   try {
+//     // Transformamos imagen al subirla
+//     // width: 512, aspect-ratio: 1
+//     const result = await cloudinary.uploader.upload(fileUri, {
+//       invalidate: true,
+//       asset_folder: 'protectora',
+//       public_id: path.parse(file.name).name,
+//       aspect_ratio: "1.0",
+//       width: 512,
+//       crop: "fill",
+//       gravity: "center"
+//     })
+
+//     console.log(result)
+//     return result.secure_url
+//   } catch (error) {
+//     console.log(error)
+//     return null
+//   }
+// }
+
+
 async function imageUpload(file) {
-  console.log(file)
-
-  const fileBuffer = await file.arrayBuffer()
-
-  let mime = file.type
-  let encoding = 'base64'
-  let base64Data = Buffer.from(fileBuffer).toString('base64')
-  let fileUri = 'data:' + mime + '' + encoding + ',' + base64Data
-
   try {
-    // Transformamos imagen al subirla
-    // width: 512, aspect-ratio: 1
-    const result = await cloudinary.uploader.upload(fileUri, {
-      invalidate: true,
-      asset_folder: 'protectora',
-      public_id: path.parse(file.name).name,
-      aspect_ratio: "1.0",
-      width: 512,
-      crop: "fill",
-      gravity: "center"
-    })
+    const buffer = Buffer.from(await file.arrayBuffer());
 
-    console.log(result)
-    return result.secure_url
+    const result = await new Promise((resolve, reject) => {
+      const stream = cloudinary.uploader.upload_stream(
+        {
+          invalidate: true,
+          asset_folder: "protectora",
+          public_id: path.parse(file.name).name,
+          width: 512,
+          aspect_ratio: "1.0",
+          crop: "fill",
+          gravity: "center",
+        },
+        (error, result) => {
+          if (error) reject(error);
+          else resolve(result);
+        }
+      );
+
+      stream.end(buffer);
+    });
+
+    return result.secure_url;
   } catch (error) {
-    console.log(error)
-    return null
+    console.error(error);
+    return null;
   }
 }
-
 
 
 export async function createMascota(prevState, formData) {

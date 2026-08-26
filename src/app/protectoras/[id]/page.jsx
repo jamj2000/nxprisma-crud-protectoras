@@ -72,7 +72,7 @@ const Content = async ({ params }) => {
 
                 <div className="flex flex-col gap-4 text-xl">
                     <p className='text-3xl flex items-center gap-2'>
-                        <PawPrint className="size-10" />{protectora.nombre}
+                        <PawPrint className="size-10 shrink-0" />{protectora.nombre}
                     </p>
                     <p className='text-slate-400'>{protectora.localidad}</p>
                     <p className='text-slate-400'>{protectora.telefono}</p>

@@ -65,7 +65,7 @@ const Content = async ({ params }) => {
                 <div className="flex flex-col gap-4 text-xl">
 
                     <p className='text-3xl flex items-center gap-2'>
-                        <Syringe className="size-10" />{vacuna.nombre}
+                        <Syringe className="size-10 shrink-0" />{vacuna.nombre}
                     </p>
 
                     <p className='text-slate-400'>{vacuna.descripcion}</p>

@@ -78,7 +78,7 @@ const Content = async ({ params }) => {
                 <div className="flex flex-col gap-4 text-xl">
 
                     <p className='text-3xl flex items-center gap-2'>
-                        <Squirrel className="size-10" />{mascota.nombre}
+                        <Squirrel className="size-10 shrink-0" />{mascota.nombre}
                     </p>
                     <p className='text-slate-400'>{mascota.descripcion}</p>
 

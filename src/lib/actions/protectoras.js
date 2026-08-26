@@ -76,10 +76,8 @@ export async function updateProtectora(prevState, formData) {
       message: "Error al modificar la protectora"
     }
   }
-
-
-
 }
+
 
 
 export async function deleteProtectora(prevState, formData) {
