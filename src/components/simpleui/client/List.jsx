@@ -94,40 +94,41 @@ export function List({
                             );
                         })
                         .map((data) =>
-                            <div
-                                key={data.id}
-                                onMouseEnter={() => prefix ? router.prefetch(`${prefix}/${data.id}`) : {}}
-                                onClick={() => prefix ? router.push(prefix + '/' + data.id) : {}}
-                                className={prefix ? "cursor-pointer" : ""}
-                            >
-                                <Card
-                                    data={data}
-                                    actions={actions}
-                                />
-                            </div>
+                            // <div
+                            //     key={data.id}
+                            //     onMouseEnter={() => prefix ? router.prefetch(`${prefix}/${data.id}`) : {}}
+                            //     onClick={() => prefix ? router.push(prefix + '/' + data.id) : {}}
+                            //     className={prefix ? "cursor-pointer" : ""}
+                            // >
+                            //     <Card
+                            //         data={data}
+                            //         actions={actions}
+                            //     />
+                            // </div>
+                            prefix ? (
+                                <Link
+                                    key={data.id}
+                                    href={`${prefix}/${data.id}`}
+                                    prefetch
+                                    className="block cursor-pointer"
+                                >
+                                    <Card
+                                        data={data}
+                                        actions={actions}
+                                    />
+                                </Link>
+                            ) : (
+                                <div key={data.id}>
+                                    <Card
+                                        data={data}
+                                        actions={actions}
+                                    />
+                                </div>
+                            )
                         )
 
-                        // prefix ? (
-                        //     <Link
-                        //         key={data.id}
-                        //         href={`${prefix}/${data.id}`}
-                        //         prefetch
-                        //         className="block cursor-pointer"
-                        //     >
-                        //         <Card
-                        //             data={data}
-                        //             actions={actions}
-                        //         />
-                        //     </Link>
-                        // ) : (
-                        //     <div key={data.id}>
-                        //         <Card
-                        //             data={data}
-                        //             actions={actions}
-                        //         />
-                        //     </div>
-                        // )
-                        // )
+
+
                     }
                 </div>
 

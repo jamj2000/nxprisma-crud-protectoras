@@ -1,6 +1,6 @@
 {
     "name": "Protectoras CRUD",
-    "short_name": "protectoras",
+    "short_name": "Protect",
     "description": "NextJS app with ORM Prisma",
     "start_url": "/",
     "scope": "/",
