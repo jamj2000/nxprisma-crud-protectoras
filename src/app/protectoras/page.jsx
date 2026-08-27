@@ -101,7 +101,7 @@ const SinMascotas = async () => {
                 <ul className='list-disc list-inside'>
                     {protectoras.map((protectora) => (
                         <li key={protectora.id}>
-                            <Link href={"/protectoras/" + protectora.id} className='text-blue-400 hover:underline hover:underline-offset-4'>
+                            <Link prefetch href={"/protectoras/" + protectora.id} className='text-blue-400 hover:underline hover:underline-offset-4'>
                                 {protectora.nombre}
                             </Link>
                         </li>

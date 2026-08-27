@@ -93,7 +93,7 @@ const SinAdministrar = async () => {
                 <ul className='list-disc list-inside'>
                     {vacunas.map((vacuna) => (
                         <li key={vacuna.id}>
-                            <Link href={"/vacunas/" + vacuna.id} className='text-blue-400 hover:underline hover:underline-offset-4'>
+                            <Link prefetch href={"/vacunas/" + vacuna.id} className='text-blue-400 hover:underline hover:underline-offset-4'>
                                 {vacuna.nombre}
                             </Link>
                         </li>

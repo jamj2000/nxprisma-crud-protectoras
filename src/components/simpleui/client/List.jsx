@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 
@@ -17,8 +16,6 @@ export function List({
     children,
 }) {
     const Card = card ?? CardEmpty
-
-    const router = useRouter()
 
     const [orden, setOrden] = useState({
         columna: sort,
@@ -93,19 +90,8 @@ export function List({
                                 String(item[name] ?? "").toLowerCase().includes(texto)
                             );
                         })
-                        .map((data) =>
-                            // <div
-                            //     key={data.id}
-                            //     onMouseEnter={() => prefix ? router.prefetch(`${prefix}/${data.id}`) : {}}
-                            //     onClick={() => prefix ? router.push(prefix + '/' + data.id) : {}}
-                            //     className={prefix ? "cursor-pointer" : ""}
-                            // >
-                            //     <Card
-                            //         data={data}
-                            //         actions={actions}
-                            //     />
-                            // </div>
-                            prefix ? (
+                        .map((data) => prefix
+                            ? (
                                 <Link
                                     key={data.id}
                                     href={`${prefix}/${data.id}`}
@@ -126,9 +112,6 @@ export function List({
                                 </div>
                             )
                         )
-
-
-
                     }
                 </div>
 
