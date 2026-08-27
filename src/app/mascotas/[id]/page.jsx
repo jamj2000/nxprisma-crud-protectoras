@@ -90,7 +90,7 @@ const Content = async ({ params }) => {
                     <p className='font-bold'>Protectora</p>
                     <p>
                         {mascota.protectora?.nombre
-                            ? <Link href={'/protectoras/' + mascota.protectora.id} className='text-blue-400 hover:underline hover:underline-offset-4'>
+                            ? <Link prefetch href={'/protectoras/' + mascota.protectora.id} className='text-blue-400 hover:underline hover:underline-offset-4'>
                                 {mascota.protectora.nombre}
                             </Link>
                             : "(Sin protectora)"
@@ -101,7 +101,7 @@ const Content = async ({ params }) => {
                     {mascota.vacunas.length > 0
                         ? < ul className='text-left list-disc list-inside text-blue-400'>
                             {mascota.vacunas.map(vacuna => (
-                                <Link href={'/vacunas/' + vacuna.id} key={vacuna.id} className='text-blue-400 hover:underline hover:underline-offset-4'>
+                                <Link prefetch href={'/vacunas/' + vacuna.id} key={vacuna.id} className='text-blue-400 hover:underline hover:underline-offset-4'>
                                     <li>{vacuna.nombre}</li>
                                 </Link>
                             ))}
