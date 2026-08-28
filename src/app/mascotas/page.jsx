@@ -52,39 +52,15 @@ const Content = async () => {
     // console.log(JSON.stringify(mascotas, null, 2))
 
 
-    return (
-        <List
-            prefix="/mascotas"
-            card={CardMascota}
-            data={data}
-            columns={[
-                { name: "nombre", label: "Nombre" },
-                { name: "descripcion", label: "Descripción" },
-                { name: "fecha_nacimiento", label: "Fecha de nacimiento" },
-            ]}
-            actions={[
-                ViewMascota,
-                UpdateMascota,
-                DeleteMascota
-            ]}
-            sort="nombre"
-        >
-            <div className="flex justify-between">
-                <h2 className="text-2xl text-center inline"></h2>
-                <CreateMascota data={{ protectorasIdNombre: protectorasIdNombre, vacunasIdNombre: vacunasIdNombre }} />
-            </div>
-        </List>
-    )
-
     // return (
-    //     <List2
+    //     <List
     //         prefix="/mascotas"
-    //         card={Card2Mascota}
+    //         card={CardMascota}
     //         data={data}
     //         columns={[
     //             { name: "nombre", label: "Nombre" },
     //             { name: "descripcion", label: "Descripción" },
-    //             { name: "fecha_nacimiento", label: "Fecha de nacimiento" }
+    //             { name: "fecha_nacimiento", label: "Fecha de nacimiento" },
     //         ]}
     //         actions={[
     //             ViewMascota,
@@ -95,10 +71,34 @@ const Content = async () => {
     //     >
     //         <div className="flex justify-between">
     //             <h2 className="text-2xl text-center inline"></h2>
-    //             <CreateMascota data={{ vacunasIdNombre: vacunasIdNombre }} />
+    //             <CreateMascota data={{ protectorasIdNombre: protectorasIdNombre, vacunasIdNombre: vacunasIdNombre }} />
     //         </div>
-    //     </List2>
+    //     </List>
     // )
+
+    return (
+        <List2
+            prefix="/mascotas"
+            card={Card2Mascota}
+            data={data}
+            columns={[
+                { name: "nombre", label: "Nombre" },
+                { name: "descripcion", label: "Descripción" },
+                { name: "fecha_nacimiento", label: "Fecha de nacimiento" }
+            ]}
+            actions={[
+                ViewMascota,
+                UpdateMascota,
+                DeleteMascota
+            ]}
+            sort="nombre"
+        >
+            <div className="flex justify-between">
+                <h2 className="text-2xl text-center inline"></h2>
+                <CreateMascota data={{ vacunasIdNombre: vacunasIdNombre }} />
+            </div>
+        </List2>
+    )
 
 
     // return (

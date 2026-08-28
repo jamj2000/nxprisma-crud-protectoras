@@ -4,6 +4,7 @@ import { Form, Button, CreateIcon, DeleteIcon, Modal, UpdateIcon, ViewIcon, Pref
 import { createMascota, deleteMascota, updateMascota } from "@/lib/actions/mascotas";
 import Image from 'next/image';
 import { defaultImage } from '@/lib/constants';
+import { ViewTransition } from "react";
 // import { ViewTransition } from "react";
 
 
@@ -161,7 +162,7 @@ export const ViewMascota = ({ data = {} }) => (
 
 
 export const CardMascota = ({ prefix, data, actions }) => (
-    <div className="p-4 flex flex-col gap-2 bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-600 rounded-md shadow-md shadow-current/20">
+    <div className="p-4 xl:p-2 flex flex-col xl:items-center xl:flex-row gap-2 bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-600 not-xl:rounded-md not-xl:shadow-md not-xl:shadow-current/20 xl:bg-inherit xl:dark:bg-inherit">
 
 
         <Prefetch href={prefix && `${prefix}/${data.id}`}>
@@ -169,7 +170,6 @@ export const CardMascota = ({ prefix, data, actions }) => (
                 {/* <ViewTransition name={`mascota-foto-${data.id}`}> */}
                 <Image src={data.foto || defaultImage} alt={data.nombre || 'mascota'} width={80} height={80} className="object-cover rounded-md shadow-sm" />
                 {/* </ViewTransition> */}
-
 
                 <div>
                     <div className="font-semibold ">{data.nombre}</div>
@@ -182,8 +182,7 @@ export const CardMascota = ({ prefix, data, actions }) => (
             </div>
         </Prefetch>
 
-        {
-            actions &&
+        {actions &&
             <div className="flex gap-1 self-end"
                 onClick={e => e.stopPropagation()}
             >
@@ -199,39 +198,33 @@ export const CardMascota = ({ prefix, data, actions }) => (
 
 export const Card2Mascota = ({ prefix, data, actions }) => (
 
-    <div className={`
-        place-self-stretch p-4 bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-600 rounded-md shadow-md shadow-current/20
-        xl:p-2 xl:grid xl:grid-cols-[2fr_3fr_1fr_1fr] xl:border-none xl:rounded-none xl:items-center xl:gap-4 xl:bg-inherit xl:dark:bg-inherit
-       `}
-    >
+    <div className="p-4 xl:p-2 flex flex-col xl:items-center xl:flex xl:flex-row xl:justify-between bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-600 not-xl:rounded-md not-xl:shadow-md not-xl:shadow-current/20 xl:bg-inherit xl:dark:bg-inherit">
 
         <Prefetch href={prefix && `${prefix}/${data.id}`}>
-            <div className="xl:col-span-3 grid grid-cols-[80px_auto] gap-2 p-2">
-                {/* <ViewTransition name={`mascota-foto-${data.id}`}> */}
-                <Image src={data.foto || defaultImage} alt={data.nombre || 'mascota'} width={80} height={80} className="object-cover rounded-md shadow-sm" />
-                {/* </ViewTransition> */}
+            <div className="grid grid-cols-[80px_1fr] gap-2 p-2">
+                <ViewTransition name={`mascota-foto-${data.id}`}>
+                    <Image src={data.foto || defaultImage} alt={data.nombre || 'mascota'} width={80} height={80} className="object-cover rounded-md shadow-sm xl:size-10" />
+                </ViewTransition>
 
-                <div>
+                <div className="flex flex-col gap-2 items-start xl:items-center xl:grid xl:grid-cols-[1fr_4fr_1fr] ">
                     <div className="font-semibold ">{data.nombre}</div>
 
                     <div className="text-sm text-gray-500 dark:text-gray-300">{data.descripcion}</div>
 
-                    <div className="mt-2 xl:mt-0">{data.fecha_nacimiento}</div>
+                    <div className="text-center">{data.fecha_nacimiento}</div>
                 </div>
             </div>
         </Prefetch>
 
 
-        <div className="mt-3 xl:mt-0 flex justify-end">
-            {actions &&
-                <div className="flex gap-1 self-end"
-                    onClick={e => e.stopPropagation()}
-                >
-                    {actions.map((Action, index) =>
-                        <Action key={index} data={data} />
-                    )}
-                </div>
-            }
-        </div>
-    </div >
+        {actions &&
+            <div className="flex gap-1 justify-end"
+                onClick={e => e.stopPropagation()}
+            >
+                {actions.map((Action, index) =>
+                    <Action key={index} data={data} />
+                )}
+            </div>
+        }
+    </div>
 )

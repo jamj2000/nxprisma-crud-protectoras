@@ -78,7 +78,7 @@ export function List2({
                 </div>
 
 
-                <div className='grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-10 items-stretch xl:grid-cols-1 xl:gap-0 w-full'>
+                <div className='grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-6 items-stretch xl:grid-cols-1 xl:gap-0 w-full'>
 
                     {/* Card / Row */}
                     {orderedData

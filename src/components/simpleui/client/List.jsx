@@ -80,7 +80,7 @@ export function List({
                 </div>
 
 
-                <div className='grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-10 items-stretch'>
+                <div className='grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-6 items-stretch'>
                     {orderedData
                         .filter((item) => {
                             if (!busqueda.trim()) return true;

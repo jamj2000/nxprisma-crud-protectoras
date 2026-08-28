@@ -61,16 +61,16 @@ const Content = async ({ params }) => {
             </BackLink>
 
 
-            {/* <ViewTransition name={`mascota-foto-${data.id}`}> */}
-            <Image
-                src={data.foto || defaultImage}
-                alt={mascota.nombre}
-                width={384}
-                height={320}
-                priority
-                className="w-full max-w-sm h-80 object-cover rounded-xl shadow-md"
-            />
-            {/* </ViewTransition> */}
+            <ViewTransition name={`mascota-foto-${data.id}`}>
+                <Image
+                    src={data.foto || defaultImage}
+                    alt={mascota.nombre}
+                    width={384}
+                    height={320}
+                    priority
+                    className="w-full max-w-sm h-80 object-cover rounded-xl shadow-md"
+                />
+            </ViewTransition>
 
             <div className='flex justify-between mt-10'>
 
