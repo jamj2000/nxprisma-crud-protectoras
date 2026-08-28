@@ -1,7 +1,7 @@
 'use client'
 
 
-export const Card = ({ data, actions }) => (
+export const Card = ({ prefix, data, actions }) => (
     <div className="p-4 rounded-xl border border-gray-300 dark:border-gray-700 flex flex-col h-full shadow-md shadow-current/20">
 
         Coloca aquí el contenido del Card
@@ -9,10 +9,7 @@ export const Card = ({ data, actions }) => (
         {actions &&
             <div
                 className="flex gap-1 self-end"
-                onClick={e => {
-                    e.preventDefault()
-                    e.stopPropagation()
-                }}
+                onClick={e => e.stopPropagation()}
             >
                 {actions.map((Action, index) => (
                     <Action

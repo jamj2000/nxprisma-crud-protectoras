@@ -1,4 +1,4 @@
-import { CardMascota, CardMascota2, CreateMascota, DeleteMascota, UpdateMascota, ViewMascota } from '@/components/mascotas'
+import { CardMascota, Card2Mascota, CreateMascota, DeleteMascota, UpdateMascota, ViewMascota } from '@/components/mascotas'
 import { getMascotas, getMascotasSinProtectora, getMascotasSinVacunar } from '@/lib/data/mascotas'
 import { getProtectorasIdNombre } from '@/lib/data/protectoras'
 import { getVacunasIdNombre } from '@/lib/data/vacunas'
@@ -79,7 +79,7 @@ const Content = async () => {
     // return (
     //     <List2
     //         prefix="/mascotas"
-    //         card={CardMascota2}
+    //         card={Card2Mascota}
     //         data={data}
     //         columns={[
     //             { name: "nombre", label: "Nombre" },

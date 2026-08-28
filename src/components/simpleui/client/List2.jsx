@@ -96,27 +96,13 @@ export function List2({
                         .map((data) =>
                             <div
                                 key={data.id}
-                                // onMouseEnter={() => prefix ? router.prefetch(`${prefix}/${data.id}`) : {}}
                                 className={(prefix ? "cursor-pointer" : "") + " " + "xl:odd:bg-slate-50 xl:even:bg-slate-100 xl:dark:odd:bg-slate-800 xl:dark:even:bg-slate-700 "}
                             >
-                                {prefix
-                                    ? (
-                                        <Link
-                                            href={`${prefix}/${data.id}`}
-                                            prefetch
-                                            className="block cursor-pointer"
-                                        >
-                                            <Card
-                                                data={data}
-                                                actions={actions}
-                                            />
-                                        </Link>
-                                    ) : (
-                                        <Card
-                                            data={data}
-                                            actions={actions}
-                                        />
-                                    )}
+                                <Card
+                                    prefix={prefix}
+                                    data={data}
+                                    actions={actions}
+                                />
                             </div>
                         )
                     }

@@ -1,5 +1,6 @@
 "use client";
 
+import { Datatype } from "next/font/google";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -90,27 +91,13 @@ export function List({
                                 String(item[name] ?? "").toLowerCase().includes(texto)
                             );
                         })
-                        .map((data) => prefix
-                            ? (
-                                <Link
-                                    key={data.id}
-                                    href={`${prefix}/${data.id}`}
-                                    prefetch
-                                    className="block cursor-pointer"
-                                >
-                                    <Card
-                                        data={data}
-                                        actions={actions}
-                                    />
-                                </Link>
-                            ) : (
-                                <div key={data.id}>
-                                    <Card
-                                        data={data}
-                                        actions={actions}
-                                    />
-                                </div>
-                            )
+                        .map((data) =>
+                            <Card
+                                key={data.id}
+                                prefix={prefix}
+                                data={data}
+                                actions={actions}
+                            />
                         )
                     }
                 </div>

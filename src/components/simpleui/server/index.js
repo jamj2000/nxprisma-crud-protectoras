@@ -1,6 +1,7 @@
 export { Alert } from './Alert'
 export { Badge } from './Badge'
 export { Button } from './Button'
+export { Prefetch } from './Prefetch'
 export { Submit } from './Submit'
 export { Space } from './Space'
 export { Separator } from './Separator'

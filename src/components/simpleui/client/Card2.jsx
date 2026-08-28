@@ -3,7 +3,7 @@
 // const classBase = "place-self-stretch p-4 bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-600 rounded-md shadow-md shadow-current/20"
 // const classXl = "xl:p-2 xl:grid xl:grid-cols-[2fr_3fr_1fr_1fr] xl:border-none xl:rounded-none xl:items-center xl:gap-4 xl:bg-inherit xl:dark:bg-inherit"
 
-export const Card2 = ({ data, actions }) => (
+export const Card2 = ({ prefix, data, actions }) => (
 
     <div className={`
         place-self-stretch p-4 bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-600 rounded-md shadow-md shadow-current/20
@@ -16,10 +16,7 @@ export const Card2 = ({ data, actions }) => (
             {actions &&
                 <div
                     className="flex gap-1 self-end"
-                    onClick={e => {
-                        e.preventDefault()
-                        e.stopPropagation()
-                    }}
+                    onClick={e => e.stopPropagation()}
                 >
                     {actions.map((Action, index) =>
                         <Action key={index} data={data} />
