@@ -166,10 +166,10 @@ export const CardMascota = ({ prefix, data, actions }) => (
 
 
         <Prefetch href={prefix && `${prefix}/${data.id}`}>
-            <div className="grid grid-cols-[80px_auto] gap-2 p-2">
-                {/* <ViewTransition name={`mascota-foto-${data.id}`}> */}
-                <Image src={data.foto || defaultImage} alt={data.nombre || 'mascota'} width={80} height={80} className="object-cover rounded-md shadow-sm" />
-                {/* </ViewTransition> */}
+            <div className="grid grid-cols-[80px_auto] gap-2">
+                <ViewTransition name={`mascota-foto-${data.id}`}>
+                    <Image src={data.foto || defaultImage} alt={data.nombre || 'mascota'} width={80} height={80} className="object-cover rounded-md shadow-sm" />
+                </ViewTransition>
 
                 <div>
                     <div className="font-semibold ">{data.nombre}</div>
@@ -201,7 +201,7 @@ export const Card2Mascota = ({ prefix, data, actions }) => (
     <div className="p-4 xl:p-2 flex flex-col xl:items-center xl:flex xl:flex-row xl:justify-between bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-600 not-xl:rounded-md not-xl:shadow-md not-xl:shadow-current/20 xl:bg-inherit xl:dark:bg-inherit">
 
         <Prefetch href={prefix && `${prefix}/${data.id}`}>
-            <div className="grid grid-cols-[80px_1fr] gap-2 p-2">
+            <div className="grid grid-cols-[80px_1fr] gap-2">
                 <ViewTransition name={`mascota-foto-${data.id}`}>
                     <Image src={data.foto || defaultImage} alt={data.nombre || 'mascota'} width={80} height={80} className="object-cover rounded-md shadow-sm xl:size-10" />
                 </ViewTransition>
