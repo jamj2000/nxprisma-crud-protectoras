@@ -1,6 +1,6 @@
 'use client'   // <---- IMPORTANTE
 
-import { Form, Button, CreateIcon, DeleteIcon, Modal, UpdateIcon, ViewIcon } from "@/components/simpleui";
+import { Form, Button, CreateIcon, DeleteIcon, Modal, UpdateIcon, ViewIcon, Prefetch } from "@/components/simpleui";
 import { createVacuna, deleteVacuna, updateVacuna } from "@/lib/actions/vacunas";
 
 
@@ -141,59 +141,56 @@ export const ViewVacuna = ({ data = {} }) => (
 
 
 
-export const CardVacuna = ({ data, actions }) => (
+export const CardVacuna = ({ prefix, data, actions }) => (
     <div className="p-4 flex flex-col gap-2 bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-600 rounded-md shadow-md shadow-current/20">
 
-        <div className="font-semibold ">{data.nombre}</div>
+        <Prefetch href={prefix && `${prefix}/${data.id}`}>
+            <div className="flex flex-col gap-2 p-2">
+                <div className="font-semibold ">{data.nombre}</div>
 
-        <div className="text-sm text-gray-500 dark:text-gray-300">{data.descripcion}</div>
+                <div className="text-sm text-gray-500 dark:text-gray-300">{data.descripcion}</div>
 
-        <div className="mt-2 xl:mt-0">Para {data.especie}</div>
+                <div className="mt-2 xl:mt-0">Para {data.especie}</div>
+            </div>
+        </Prefetch >
 
         {actions &&
             <div className="flex gap-1 self-end"
-                onClick={e => {
-                    e.preventDefault()
-                    e.stopPropagation()
-                }}
+                onClick={e => e.stopPropagation()}
             >
                 {actions.map((Action, index) =>
                     <Action key={index} data={data} />
                 )}
             </div>
         }
-    </div>
+    </div >
 )
 
 
 
-export const CardVacuna2 = ({ data, actions }) => (
+export const Card2Vacuna = ({ prefix, data, actions }) => (
 
-    <div className={`
-        place-self-stretch p-4 bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-600 rounded-md shadow-md shadow-current/20
-        xl:p-2 xl:grid xl:grid-cols-[2fr_3fr_1fr_1fr] xl:border-none xl:rounded-none xl:items-center xl:gap-4 xl:bg-inherit xl:dark:bg-inherit
-       `}
-    >
+    <div className="p-4 xl:p-2 flex flex-col xl:items-center xl:flex-row gap-2 bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-600 not-xl:rounded-md not-xl:shadow-md not-xl:shadow-current/20 xl:bg-inherit xl:dark:bg-inherit">
 
-        <div className="font-semibold ">{data.nombre}</div>
+        <Prefetch href={prefix && `${prefix}/${data.id}`}>
+            <div className={`place-self-stretch p-2 xl:p-0 xl:grid xl:grid-cols-[2fr_3fr_1fr] xl:border-none xl:rounded-none xl:items-center xl:gap-4`}>
+                <div className="font-semibold ">{data.nombre}</div>
 
-        <div className="text-sm text-gray-500 dark:text-gray-300">{data.descripcion}</div>
+                <div className="text-sm text-gray-500 dark:text-gray-300">{data.descripcion}</div>
 
-        <div className="mt-2 xl:mt-0">Para {data.especie}</div>
+                <div className="mt-2 xl:mt-0">Para {data.especie}</div>
+            </div>
+        </Prefetch>
 
-        <div className="mt-3 xl:mt-0 flex justify-end">
-            {actions &&
-                <div className="flex gap-1 self-end"
-                    onClick={e => {
-                        e.preventDefault()
-                        e.stopPropagation()
-                    }}
-                >
-                    {actions.map((Action, index) =>
-                        <Action key={index} data={data} />
-                    )}
-                </div>
-            }
-        </div>
+
+        {actions &&
+            <div className="flex gap-1 justify-end"
+                onClick={e => e.stopPropagation()}
+            >
+                {actions.map((Action, index) =>
+                    <Action key={index} data={data} />
+                )}
+            </div>
+        }
     </div>
 )

@@ -165,7 +165,7 @@ export const CardMascota = ({ prefix, data, actions }) => (
 
 
         <Prefetch href={prefix && `${prefix}/${data.id}`}>
-            <div className="grid grid-cols-[80px_auto] gap-2">
+            <div className="grid grid-cols-[80px_auto] gap-2 p-2">
                 {/* <ViewTransition name={`mascota-foto-${data.id}`}> */}
                 <Image src={data.foto || defaultImage} alt={data.nombre || 'mascota'} width={80} height={80} className="object-cover rounded-md shadow-sm" />
                 {/* </ViewTransition> */}
@@ -205,9 +205,8 @@ export const Card2Mascota = ({ prefix, data, actions }) => (
        `}
     >
 
-
         <Prefetch href={prefix && `${prefix}/${data.id}`}>
-            <div className="xl:col-span-3 grid grid-cols-[80px_auto] gap-2">
+            <div className="xl:col-span-3 grid grid-cols-[80px_auto] gap-2 p-2">
                 {/* <ViewTransition name={`mascota-foto-${data.id}`}> */}
                 <Image src={data.foto || defaultImage} alt={data.nombre || 'mascota'} width={80} height={80} className="object-cover rounded-md shadow-sm" />
                 {/* </ViewTransition> */}

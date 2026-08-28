@@ -1,7 +1,5 @@
 "use client";
 
-import { Datatype } from "next/font/google";
-import Link from "next/link";
 import { useState } from "react";
 
 

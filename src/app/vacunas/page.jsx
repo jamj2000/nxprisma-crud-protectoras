@@ -1,5 +1,5 @@
 import { Suspense } from 'react'
-import { CardVacuna, CardVacuna2, CreateVacuna, DeleteVacuna, UpdateVacuna, ViewVacuna } from '@/components/vacunas'
+import { CardVacuna, Card2Vacuna, CreateVacuna, DeleteVacuna, UpdateVacuna, ViewVacuna } from '@/components/vacunas'
 import { getMascotasIdNombre } from '@/lib/data/mascotas'
 import { getVacunas, getVacunasSinAdministrar } from '@/lib/data/vacunas'
 import { List, List2, Table, Spinner } from '@/components/simpleui'
@@ -39,7 +39,7 @@ const Content = async () => {
     return (
         <List2
             prefix="/vacunas"
-            card={CardVacuna2}
+            card={Card2Vacuna}
             data={data}
             columns={[
                 { name: "nombre", label: "Nombre" },
