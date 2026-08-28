@@ -2,7 +2,7 @@ import { Spinner } from '@/components/simpleui'
 import { DeleteVacuna, UpdateVacuna } from '@/components/vacunas'
 import { getMascotasIdNombre } from '@/lib/data/mascotas'
 import { getVacuna, getVacunasIdNombre } from '@/lib/data/vacunas'
-import { Suspense } from "react"
+import { Suspense, ViewTransition } from "react"
 import { ArrowLeft, Syringe } from 'lucide-react'
 import { BackLink } from '@/components/simpleui'
 import Link from 'next/link'
@@ -78,7 +78,9 @@ const Content = async ({ params }) => {
                     <div className='flex gap-2 flex-wrap'>
                         {vacuna.mascotas.map(mascota => (
                             <Link prefetch href={'/mascotas/' + mascota.id} key={mascota.id} className='flex flex-col items-center'>
-                                <Image src={mascota.foto || defaultImage} alt={mascota.nombre} width={80} height={80} className='size-20 rounded-full object-cover' />
+                                <ViewTransition name={`mascota-foto-${data.id}`}>
+                                    <Image src={mascota.foto || defaultImage} alt={mascota.nombre} width={80} height={80} className='size-20 rounded-full object-cover' />
+                                </ViewTransition>
                                 <p>{mascota.nombre}</p>
                             </Link>
                         ))}

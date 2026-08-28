@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { ArrowLeft, PawPrint } from "lucide-react"
 import { notFound } from "next/navigation"
-import { Suspense } from "react"
+import { Suspense, ViewTransition } from "react"
 import Image from 'next/image'
 
 import { getMascotasIdNombre } from "@/lib/data/mascotas"
@@ -84,7 +84,9 @@ const Content = async ({ params }) => {
                     <div className='flex gap-2 flex-wrap'>
                         {protectora.mascotas.map(mascota => (
                             <Link prefetch href={'/mascotas/' + mascota.id} key={mascota.id} className='flex flex-col items-center'>
-                                <Image src={mascota.foto || defaultImage} alt={mascota.nombre} width={80} height={80} className='size-20 rounded-full object-cover' />
+                                <ViewTransition name={`mascota-foto-${data.id}`}>
+                                    <Image src={mascota.foto || defaultImage} alt={mascota.nombre} width={80} height={80} className='size-20 rounded-full object-cover' />
+                                </ViewTransition>
                                 <p>{mascota.nombre}</p>
                             </Link>
                         ))}
