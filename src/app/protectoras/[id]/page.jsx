@@ -84,7 +84,7 @@ const Content = async ({ params }) => {
                     <div className='flex gap-2 flex-wrap'>
                         {protectora.mascotas.map(mascota => (
                             <Link prefetch href={'/mascotas/' + mascota.id} key={mascota.id} className='flex flex-col items-center'>
-                                <ViewTransition name={`mascota-foto-${data.id}`}>
+                                <ViewTransition name={`mascota-foto-${mascota.id}`}>
                                     <Image src={mascota.foto || defaultImage} alt={mascota.nombre} width={80} height={80} className='size-20 rounded-full object-cover' />
                                 </ViewTransition>
                                 <p>{mascota.nombre}</p>
