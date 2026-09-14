@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Para que funcione next-theme */
+/* Para que funcione next-themes */
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
